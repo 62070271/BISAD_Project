@@ -21,13 +21,22 @@
             if (isset($_SESSION['email'])) {
                 echo "<h4>Welcome: " . $_SESSION['email'] . "</h4>";
                 echo "<h4>Welcome: " . $_SESSION['user_name'] . "</h4>";
+
+                echo "<br>";
+                echo '<h3><a href="index.php?logout=1" style="color: red;">Log Out</a></h3>';
+                echo "<br>";
+                echo '<h3><a href="Editprofile.php" style="color: blue;">Editprofile</a></h3>';
             }
             if (isset($_SESSION['success'])) {
                 echo "<h4>Welcome: " . $_SESSION['success'] . "</h4>";
                 unset($_SESSION['success']);
             }
+            else if (!isset($_SESSION['email'])){
+                echo "<h3><a style='color: red;' href='logIn_front.php'>Log in</a></h3>";
+            }
         ?>
-        <h3><a href="index.php?logout='1'" style="color: red;">Log Out</a></h3>
+        
+        
     </div>
 </body>
 </html>

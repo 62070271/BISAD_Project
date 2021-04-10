@@ -12,11 +12,19 @@
             <h2>Log In</h2>
             <input type="text" name="email" placeholder="E-mail">
             <br><br>
-            <input type="text" name='password' placeholder="Password">
+            <input type="password" name='password' placeholder="Password">
             <br><br>
             <button type="submit" name="submit">Log In!</button>
         </form>
-        <h5>Create your account. <a href="reg.php">Sign Up!</a></h5>
+        <h5>Create your account. <a href="reg_front.php">Sign Up!</a></h5>
     </div>
+
+    <?php
+            if (isset($_GET["error"])) {
+                if (($_GET["error"]) == "Wrongemailorpassword!") {
+                    echo "<script>alert('Wrong email or password')</script>";
+                }
+            }
+    ?>
 </body>
 </html>

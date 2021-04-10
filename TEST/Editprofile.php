@@ -18,7 +18,7 @@
 <body>
     <?php
         $email = $_SESSION['email'];
-        $sql = "SELECT * FROM user WHERE email = '$email';";
+        $sql = "SELECT * FROM USER WHERE email = '$email';";
        
 
         $result = mysqli_query($db_con, $sql);
@@ -31,7 +31,7 @@
                 $lname = $row['last_name'];
                 $tel = $row['Tel'];
                 $mail = $row['email'];
-                $pass = $row['u_password'];
+                $pass = $row['user_password'];
                 $gender = $row['gender'];
                 $year = $row['year_of_birth'];
                 $type = $row['user_type'];
@@ -113,11 +113,11 @@
             $n_tel = $_POST['tel'];
             
             // SQL UPDATE VALUES
-            $sql = "UPDATE user SET
+            $sql = "UPDATE USER SET
                 first_name = '$n_fname',
                 last_name = '$n_lname',
                 Tel = '$n_tel',
-                u_password = '$n_pass'
+                user_password = '$n_pass'
             WHERE email = '$email';
             ";
 

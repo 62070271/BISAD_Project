@@ -14,7 +14,7 @@
 
         // userLogin($db_con, $email, $pass);
 
-        $sql = "SELECT * FROM user WHERE email = '$email' AND u_password = '$pass'";
+        $sql = "SELECT * FROM USER WHERE email = '$email' AND user_password = '$pass'";
         $result = mysqli_query($db_con, $sql);
 
         if (mysqli_num_rows($result) == 1) {
@@ -31,7 +31,7 @@
         }
         else {
             // $_SESSION['error'] = "";
-            header("Location: logIn_front.php?error=Wrong_email_or_password!");
+            header("Location: logIn_front.php?error=Wrongemailorpassword!");
         }
     }
     else {
