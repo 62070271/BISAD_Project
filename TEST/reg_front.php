@@ -18,10 +18,10 @@
             <br><br>
             <input type="text" name='email' placeholder="E-mail">
             <br><br>
-            <input type="text" name='password' placeholder="Password">
+            <input type="password" name='password' placeholder="Password">
             <br>
             <br>
-            <input type="text" name='pwdRepeat' placeholder="Confirm Password">
+            <input type="password" name='pwdRepeat' placeholder="Confirm Password">
            
             <p>Gender: 
                 <select name="gender" id="">

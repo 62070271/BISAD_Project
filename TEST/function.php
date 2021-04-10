@@ -34,7 +34,7 @@
     }
 
     function emailExit($db_con, $email) {
-      $sql = "SELECT * FROM user WHERE email = ?;";
+      $sql = "SELECT * FROM USER WHERE email = ?;";
       $prePair = mysqli_stmt_init($db_con);
 
       if(!mysqli_stmt_prepare($prePair, $sql)) {
@@ -58,7 +58,7 @@
     }
 
     function createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type) {
-      $sql = "INSERT INTO user (first_name, last_name, Tel, email, u_password, gender, year_of_birth, user_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+      $sql = "INSERT INTO USER (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
       $prePair = mysqli_stmt_init($db_con);
 
       if(!mysqli_stmt_prepare($prePair, $sql)) {
