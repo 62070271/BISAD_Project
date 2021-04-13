@@ -123,7 +123,7 @@
 
         //         $result = mysqli_query($db_con, $sql) or die ("Error in query: $sql " . mysqli_error($db_con));
 
-        //         mysqli_close($db_con);
+                mysqli_close($db_con);
         //     }
         // }
         
