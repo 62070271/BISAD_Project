@@ -54,6 +54,9 @@
                 else if (($_GET["error"]) == "none") {
                     echo "<script>alert('You have signed up!')</script>";
                 }
+                else if(($_GET["error"]) == "wrongTelephonenumber"){
+                    echo "<script>alert('The phone number should be 10 characters.')</script>";
+                }
                 else {
                     echo "";
                 }

@@ -34,8 +34,15 @@
         exit();
       }
 
+      if(strlen($_POST['tel']) != 10)
+      {
+        header("Location: Editprofile.php?error=wrongTelephonenumber");
+        exit();
+      }
+
       createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type);
     }
+    
     else {
       
       header("Location:reg_front.php");

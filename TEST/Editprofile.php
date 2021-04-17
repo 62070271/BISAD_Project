@@ -35,12 +35,21 @@
                 $gender = $row['gender'];
                 $year = $row['year_of_birth'];
                 $type = $row['user_type'];
+                $img = $row['user_image'];
             }
         }
+        // echo $img;
         echo "<div style='text-align: center;'>";
             echo "<h2>Edit Your Profile</h2>";
 
-            echo " <form action='' method='POST' onsubmit='' name='edit'>";
+            echo " <form action='' method='POST' onsubmit='' name='edit' enctype='multipart/form-data'>";
+
+                echo "<img src='user_images/" . $img . "' width='150' name='pic' height='150' style='border-radius: 50%;'>";
+                echo "<br><br>";
+
+                echo '<input type="file" name="user_img"  require accept="image/*">';
+                echo "<input type='text' name='user_currentimg' value='$img' style='display:none;'>";
+                echo "<br><br>";
 
                 echo "<label>Id: $id </label><br>";
                 echo "<br>";
@@ -86,7 +95,38 @@
         
 
         if (isset($_POST['submit'])) {
+
+            $current_img = $_POST['user_currentimg'];
+            $new_img = $_FILES['user_img']['name'];
+
+            if($new_img != "")
+            {
+                $path = "user_images/";
+
+                $type = strrchr($_FILES['user_img']['name'], '.');
+
+                date_default_timezone_set('Asia/Bangkok');
+                $date = date("Ymd");
+
+                $numrand = (mt_rand());
+                $user_image =  $date . $numrand . $type;
+                $pathCopy = $path . $user_image;
+                $pathLink = 'user_images/' . $user_image;
+
+                move_uploaded_file($_FILES['user_img']['tmp_name'], $pathCopy);
+            }
+            else
+            {
+                $user_image = $current_img;
+            }
             
+
+            if(strlen($_POST['tel']) != 10)
+            {
+                header("Location: Editprofile.php?error=wrongTelephonenumber");
+                exit();
+            }
+
             if (emptyCheck($_POST['fname'], $_POST['lname'], $_POST['tel']))
             {
                 header("Location: Editprofile.php?error=emptyinput");
@@ -113,13 +153,14 @@
             $n_tel = $_POST['tel'];
             
             // SQL UPDATE VALUES
-            $sql = "UPDATE USER SET
-                first_name = '$n_fname',
-                last_name = '$n_lname',
-                Tel = '$n_tel',
-                user_password = '$n_pass'
-            WHERE email = '$email';
-            ";
+            $sql = "UPDATE USER 
+                    SET
+                        first_name = '$n_fname',
+                        last_name = '$n_lname',
+                        Tel = '$n_tel',
+                        user_password = '$n_pass',
+                        user_image = '$user_image'
+                    WHERE email = '$email';";
 
             $result = mysqli_query($db_con, $sql);
             mysqli_close($db_con);
@@ -158,6 +199,9 @@
                 }
                 else if (($_GET["error"]) == "none") {
                     echo "<script>alert('Update Success!')</script>";
+                }
+                else if(($_GET["error"]) == "wrongTelephonenumber"){
+                    echo "<script>alert('The phone number should be 10 characters.')</script>";
                 }
                 else {
                     echo "";
