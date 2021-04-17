@@ -43,11 +43,11 @@
                           </button>
                         </div>
                         <div class="modal-body text-left mx-3">
+                          <h5>Confirm ID : <input type="text" id="saccount" name="saccount" style="border:none;"></h5>
                           <h5>Firstname : <span id="sfirstname"></span></h5>
                           <h5>Lastname : <span id="slastname"></span></h5>
                           <h5>Booking Date : <span id="sbook"></span></h5>
                           <h5>Quantity Order : <span id="squan"></span></h5>
-                          <h5>Accounting ID : <input type="text" id="saccount" name="saccount" style="border:none;"></h5>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Unaccept</button>
@@ -64,13 +64,13 @@
                     // sql to update a record
                     if (isset($_POST['btaccept'])){
                         $accidsql = intval(mysqli_real_escape_string($connection, $_POST['saccount']));
-                        $tkstatus = "SELECT qrcode_status FROM QR_CODE WHERE qr_id=$accidsql";
+                        $tkstatus = "SELECT qrcode_status FROM QR_CODE WHERE confirm_id=$accidsql";
                         $querystatus = mysqli_query($connection, $tkstatus);
                         $fetquestatus = mysqli_fetch_assoc($querystatus);
 
                         if (mysqli_num_rows($querystatus) == 1){
                           if ($fetquestatus['qrcode_status'] == '1'){
-                            $sql = "UPDATE QR_CODE SET qrcode_status='0' WHERE qr_id=$accidsql";
+                            $sql = "UPDATE QR_CODE SET qrcode_status='0' WHERE confirm_id=$accidsql";
                             mysqli_query($connection, $sql);
                             echo "<script>";
                             echo "alert('Use QR-code success!');";
@@ -97,6 +97,7 @@
                         //   echo "Error deleting record: " . $connection->error;
                         // }
                     }
+                    mysqli_close($connection);
                   ?>
                 </p>
             </div>
@@ -112,11 +113,11 @@
         // document.getElementById("pscan").innerHTML = content;
 
         spldata = content.split(",");
-        document.getElementById("sfirstname").innerHTML = spldata[0];
-        document.getElementById("slastname").innerHTML = spldata[1];
-        document.getElementById("sbook").innerHTML = spldata[2];
-        document.getElementById("squan").innerHTML = spldata[3];
-        document.getElementById("saccount").value = spldata[4];
+        document.getElementById("saccount").value = spldata[0];
+        document.getElementById("sfirstname").innerHTML = spldata[1];
+        document.getElementById("slastname").innerHTML = spldata[2];
+        document.getElementById("sbook").innerHTML = spldata[3];
+        document.getElementById("squan").innerHTML = spldata[4];
 
         document.getElementById("pscan").innerHTML = '<p class="alert text-success">Scan Success!</p>';
 
