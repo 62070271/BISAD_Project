@@ -60,7 +60,7 @@
             echo "<br>";
             echo "</div>";
             echo "<div class='col-sm'>";
-            echo "<td>" . "<img src='images/$user_image' width='200px' height='200px' alt=''>" . "</td>";
+            echo "<td>" . "<img src='user_images/$user_image' width='200px' height='200px' alt=''>" . "</td>";
             echo "</div>";
             echo "<div class='col-sm'>";
             echo "<h5 class='mb-3' style='line-height: 50px'>First Name: $fname </h5>";
@@ -91,7 +91,7 @@
             echo "<tbody>";
 
             // ดึงข้อมูลรายละเอียดเกี่ยวกับ Order
-            $sql2 = "SELECT * FROM USER RIGHT JOIN ORDERS ON USER.user_id = ORDERS.user_id WHERE USER.user_id = '$id';";
+            $sql2 = "SELECT * FROM USER RIGHT JOIN ORDERS ON USER.user_id = ORDERS.user_id WHERE USER.user_id = '8';";
             $result = mysqli_query($db_con, $sql2);
             $check_row = mysqli_num_rows($result);
 
@@ -102,7 +102,7 @@
                     $total_quantity = $row['total_quantity'];
                     $total_price = $row['total_price'];
                     $status = $row['status'];
-                    
+
                     $sql3 = "SELECT * FROM SLIP_OF_PAYMENT, CONFIRM_SLIP, QR_CODE WHERE SLIP_OF_PAYMENT.order_id = $order_id AND SLIP_OF_PAYMENT.slip_id = CONFIRM_SLIP.slip_id AND CONFIRM_SLIP.confirm_id = QR_CODE.confirm_id;";
                     $result = mysqli_query($db_con, $sql3);
                     $check_row = mysqli_num_rows($result);
@@ -121,7 +121,7 @@
                         echo "<td class='text-info text-center' style='vertical-align: middle;'>รายการของท่านอยู่ในระหว่างการตรวจสอบ</td>";
                     } elseif ($status == "Complete") {
                         echo "<td class='text-center' style='vertical-align: middle;'>";
-                        echo "<img src='images/'$qr_code'' width='150px' height='150px' alt=''>";
+                        echo "<img src='qrcodes/$qr_code' width='150px' height='150px' alt=''>";
                         echo "</td>";
                     } else {
                         echo "<td class='text-danger text-center' style='vertical-align: middle;'>รายการของท่านถูกยกเลิกการตรวจสอบ <br>เนื่องจากพบปัญหา</td>";
@@ -174,6 +174,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <img src='qrcodes/$qr_code' width='150px' height='150px' alt=''>
 
                 </div>
                 <div class="modal-footer">
