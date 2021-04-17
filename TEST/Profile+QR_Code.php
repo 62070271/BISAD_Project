@@ -19,7 +19,6 @@
 </head>
 
 <body>
-    <?php
     <nav class="navbar navbar-dark bg-dark mb-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
