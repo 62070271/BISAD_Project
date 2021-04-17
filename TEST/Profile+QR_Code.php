@@ -22,7 +22,7 @@
     <nav class="navbar navbar-dark bg-dark mb-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="images\20210413885810631.jpg" alt="" width=" 30" height="24" class="d-inline-block align-text-top">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="24" class="d-inline-block align-text-top">
                 ZOO
             </a>
         </div>
@@ -48,43 +48,46 @@
                     $gender = $row['gender'];
                     $year = $row['year_of_birth'];
                     $type = $row['user_type'];
+                    $user_image = $row['user_image'];
                 }
             }
             // แสดงข้อมูล Profile
-            echo "<div class='row mb-3'>";
+            echo "<div class='row mb-3 mt-4'>";
             echo "<h2 class='text-center'>Profile</h2>";
             echo "<br>";
             echo "</div>";
             echo "<div class='col-sm'>";
-            echo "<td>" . "<img src='\images\20210413885810631.jpg' width='200px' height='200px' alt=''>" . "</td>";
+            echo "<td>" . "<img src='images/$user_image' width='200px' height='200px' alt=''>" . "</td>";
             echo "</div>";
             echo "<div class='col-sm'>";
-            echo "<h4 class='mb-3'>First Name: $fname </h4>";
-            echo "<h4 class='mb-3'>Last Name: $lname </h4>";
-            echo "<h4 class='mb-3'>Telephone Number: $tel</h4>";
+            echo "<h5 class='mb-3' style='line-height: 50px'>First Name: $fname </h5>";
+            echo "<h5 class='mb-3' style='line-height: 50px'>Last Name: $lname </h5>";
+            echo "<h5 class='mb-3' style='line-height: 50px'>Telephone Number: $tel</h5>";
             echo "</div>";
-            echo "<div class='col-sm'>";
-            echo "<h4 class='mb-3'>E-mail: $mail</h4>";
-            echo "<h4 class='mb-3'>Gender: $gender</h4>";
-            echo "<h4 class='mb-3'>Year of Birth:$year</h4>";
+            echo "<div class='col-sm' >";
+            echo "<h5 class='mb-3' style='line-height: 50px'>E-mail: $mail</h5>";
+            echo "<h5 class='mb-3' style='line-height: 50px'>Gender: $gender</h5>";
+            echo "<h5 class='mb-3' style='line-height: 50px'>Year of Birth:$year</h5>";
             echo "</div>";
             ?>
 
         </div>
         <br>
-        <div class="row">
+        <div class="row mt-4">
             <?php
             // Query ข้อมูลการ Orders
             echo "<h2 class='text-center'>History & QR Code</h2>";
             echo "<table class='table'>";
             echo "<thead>";
             echo "<tr>";
-            echo "<th scope='col'>QR Code</th>";
-            echo "<th scope='col'>Detail</th>";
-            echo "<th scope='col'>Action</th>";
+            echo "<th scope='col' class='text-center'>QR Code</th>";
+            echo "<th scope='col' class='text-center'>Detail</th>";
+            echo "<th scope='col' class='text-center'>Action</th>";
             echo "</tr>";
             echo "</thead>";
             echo "<tbody>";
+
+            // ดึงข้อมูลรายละเอียดเกี่ยวกับ Order
             $sql2 = "SELECT * FROM USER RIGHT JOIN ORDERS ON USER.user_id = ORDERS.user_id WHERE USER.user_id = '3';";
             $result = mysqli_query($db_con, $sql2);
             $check_row = mysqli_num_rows($result);
@@ -100,12 +103,20 @@
                     echo "<tr>";
                     echo "<div class='row'>";
                     echo "<div class='col-sm'>";
-                    echo "<td>";
-                    echo "<img src='images\20210413885810631.jpg' width='200px' height='200px' alt=''>";
-                    echo "</td>";
+                    if ($status == "Not_payment_yet") {
+                        echo "<td class='text-center' style='vertical-align: middle;'>กรุณาอัพโหลดหลักฐานการชำระเงิน</td>";
+                    } elseif ($status == "In_progress") {
+                        echo "<td class='text-info text-center' style='vertical-align: middle;'>รายการของท่านอยู่ในระหว่างการตรวจสอบ</td>";
+                    } elseif ($status == "Complete") {
+                        echo "<td class='text-center' style='vertical-align: middle;'>";
+                        echo "<img src='images/20210413885810631.jpg' width='150px' height='150px' alt=''>";
+                        echo "</td>";
+                    } else {
+                        echo "<td class='text-danger text-center' style='vertical-align: middle;'>รายการของท่านถูกยกเลิกการตรวจสอบ <br>เนื่องจากพบปัญหา</td>";
+                    }
                     echo "</div>";
                     echo "<div class='col-sm'>";
-                    echo "<td>";
+                    echo "<td style='vertical-align: middle;'>";
                     echo "Order ID: $order_id<br>";
                     echo "Booking_date: $booking_date<br>";
                     echo "Total Quantity: $total_quantity<br>";
@@ -115,22 +126,19 @@
                     echo "</div>";
                     echo "<div class='col-sm'>";
 
-                        if($status == "Not_payment_yet"){
-                            echo "<td>";
-                            echo "<button type='button' class='btn btn-warning'>Upload Payment</button>";
-                            echo "</td>";
-                        }
-                        elseif($status == "In_progress"){
-                            echo "<td class='text-info'>อยู่ระหว่างการตรวจสอบ</td>";
-                        }
-                        elseif($status == "Complete"){
-                            echo "<td>";
-                            echo "<button type='button' class='btn btn-primary'>View QR Code</button>";
-                            echo "</td>";
-                        }
-                        else{
-                            echo "<td class='text-danger'>ยกเลิกการตรวจสอบ</td>";
-                        }
+                    if ($status == "Not_payment_yet") {
+                        echo "<td class='text-center' style='vertical-align: middle;'>";
+                        echo "<button type='button' class='btn btn-warning'>Upload Payment</button>";
+                        echo "</td>";
+                    } elseif ($status == "In_progress") {
+                        echo "<td class='text-info text-center' style='vertical-align: middle;'>อยู่ระหว่างการตรวจสอบ</td>";
+                    } elseif ($status == "Complete") {
+                        echo "<td class='text-center' style='vertical-align: middle;'>";
+                        echo "<button type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModalCenter'>View QR Code</button>";
+                        echo "</td>";
+                    } else {
+                        echo "<td class='text-danger text-center' style='vertical-align: middle;'>ยกเลิกการตรวจสอบ</td>";
+                    }
                     echo "</div>";
                     echo "</div>";
                     echo "</tr>";
