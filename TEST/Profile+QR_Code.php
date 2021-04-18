@@ -91,7 +91,7 @@
             echo "<tbody>";
 
             // ดึงข้อมูลรายละเอียดเกี่ยวกับ Order
-            $sql2 = "SELECT * FROM USER RIGHT JOIN ORDERS ON USER.user_id = ORDERS.user_id WHERE USER.user_id = '8';";
+            $sql2 = "SELECT * FROM USER RIGHT JOIN ORDERS ON USER.user_id = ORDERS.user_id WHERE USER.user_id = '$id';";
             $result = mysqli_query($db_con, $sql2);
             $check_row = mysqli_num_rows($result);
 
@@ -148,6 +148,34 @@
                         echo "<td class='text-center' style='vertical-align: middle;'>";
                         // Button trigger modal
                         echo "<button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#QR_Modal'>View QR Code</button>";
+            ?>
+                        <!-- QR Modal -->
+                        <div class="modal fade" id="QR_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">QR Code</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <?php
+                                        echo "<img src='qrcodes/$qr_code' width='250px' height='250px' alt=''>";
+                                        echo "<div class='modal-body'>";
+                                        echo "Order ID: $order_id<br>";
+                                        echo "Booking_date: $booking_date<br>";
+                                        echo "Total Quantity: $total_quantity<br>";
+                                        echo "Total Price: $total_price<br>";
+                                        echo "Status: $status";
+                                        echo "</div>";
+                                        ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            <?php
                         echo "</td>";
                     } else {
                         echo "<td class='text-danger text-center' style='vertical-align: middle;'>ยกเลิกการตรวจสอบ</td>";
@@ -163,25 +191,6 @@
             }
             echo "</tbody>";
             ?>
-        </div>
-    </div>
-    <!-- QR Modal -->
-    <div class="modal fade" id="QR_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">QR Code</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src='qrcodes/$qr_code' width='150px' height='150px' alt=''>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
         </div>
     </div>
 </body>
