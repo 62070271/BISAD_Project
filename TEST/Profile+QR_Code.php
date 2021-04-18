@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile+QR_Code</title>
+    <!-- Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <!-- Sperate -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
     <?php
     include('dbserver.php');
     require_once('function.php');
@@ -22,55 +24,71 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark mb-3">
+    <?php
+    // ใช้ session จาก Email
+    $email = $_SESSION['email'];
+    // Query ข้อมูล Profile จาก email 
+    $sql = "SELECT * FROM USER WHERE email = '$email';";
+
+    $result = mysqli_query($db_con, $sql);
+    $check_row = mysqli_num_rows($result);
+
+    if ($check_row > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id = $row['user_id'];
+            $fname = $row['first_name'];
+            $lname = $row['last_name'];
+            $tel = $row['Tel'];
+            $mail = $row['email'];
+            $pass = $row['user_password'];
+            $gender = $row['gender'];
+            $year = $row['year_of_birth'];
+            $type = $row['user_type'];
+            $user_image = $row['user_image'];
+            $name_and_type = $fname . " " . $lname . " " . " (" . $type . ") ";
+        }
+    }
+    ?>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="24" class="d-inline-block align-text-top">
+            <a class="navbar-brand" href="index.php">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
                 ZOO
             </a>
+            <!-- Dropdown -->
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-white rounded-circle'>"; ?>&nbsp;<?php echo "$name_and_type"; ?></a>
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
+                    <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Log out</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     <div class="container">
         <div class="row mb-3">
             <?php
-            $email = $_SESSION['email'];
-            // Query ข้อมูล Profile จาก email 
-            $sql = "SELECT * FROM USER WHERE email = '$email';";
-
-            $result = mysqli_query($db_con, $sql);
-            $check_row = mysqli_num_rows($result);
-
-            if ($check_row > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $id = $row['user_id'];
-                    $fname = $row['first_name'];
-                    $lname = $row['last_name'];
-                    $tel = $row['Tel'];
-                    $mail = $row['email'];
-                    $pass = $row['user_password'];
-                    $gender = $row['gender'];
-                    $year = $row['year_of_birth'];
-                    $type = $row['user_type'];
-                    $user_image = $row['user_image'];
-                }
-            }
             // แสดงข้อมูล Profile
             echo "<div class='row mb-3 mt-4'>";
             echo "<h2 class='text-center'>Profile</h2>";
             echo "<br>";
             echo "</div>";
-            echo "<div class='col-sm'>";
-            echo "<td>" . "<img src='user_images/$user_image' width='200px' height='200px' alt=''>" . "</td>";
+            echo "<div class='col-md-4 col-12 text-center'>";
+            echo "<td>" . "<img src='user_images/$user_image' class='rounded border border-dark' width='200px' height='200px' alt=''>" . "</td>";
             echo "</div>";
-            echo "<div class='col-sm'>";
+            echo "<div class='col-md-4 col-12'>";
             echo "<h5 class='mb-3' style='line-height: 50px'>First Name: $fname </h5>";
             echo "<h5 class='mb-3' style='line-height: 50px'>Last Name: $lname </h5>";
             echo "<h5 class='mb-3' style='line-height: 50px'>Telephone Number: $tel</h5>";
             echo "</div>";
-            echo "<div class='col-sm' >";
+            echo "<div class='col-md-4 col-12' >";
             echo "<h5 class='mb-3' style='line-height: 50px'>E-mail: $mail</h5>";
             echo "<h5 class='mb-3' style='line-height: 50px'>Gender: $gender</h5>";
-            echo "<h5 class='mb-3' style='line-height: 50px'>Year of Birth:$year</h5>";
+            echo "<h5 class='mb-3' style='line-height: 50px'>Year of Birth: $year</h5>";
             echo "</div>";
             ?>
 
@@ -140,7 +158,7 @@
 
                     if ($status == "Not_payment_yet") {
                         echo "<td class='text-center' style='vertical-align: middle;'>";
-                        echo "<button type='button' class='btn btn-warning'>Upload Payment</button>";
+                        echo "<button type='button' class='btn btn-warning' href='#uploadslip_front.php'>Upload Payment</button>";
                         echo "</td>";
                     } elseif ($status == "In_progress") {
                         echo "<td class='text-info text-center' style='vertical-align: middle;'>อยู่ระหว่างการตรวจสอบ</td>";
