@@ -160,4 +160,64 @@
 
       mysqli_close($db_con);
     }
+
+
+
+
+
+    function addToSummary($order_id)
+    {
+      // DATABASE CONNECTION
+      $server_name = 'freedb.tech';
+      $user_name = 'freedbtech_Weeravat';
+      $user_password = 'KLIptp17';
+      $db_name = 'freedbtech_BISADProject';
+      $db_con =  mysqli_connect($server_name, $user_name, $user_password, $db_name) or die("Unable Connect");
+
+      // GET ORDER DETAILS DATA WHEN APPROVE 
+      $sql = "SELECT *
+              FROM ORDER_TICKET AS OT
+              INNER JOIN ORDERS AS O
+              USING (order_id)
+              INNER JOIN SLIP_OF_PAYMENT AS SP
+              USING (order_id)
+              INNER JOIN CONFIRM_SLIP AS CS
+              USING (slip_id)
+              INNER JOIN TICKET AS T
+              USING (ticket_id)
+              WHERE O.order_id = '$order_id'
+              ORDER BY CS.confirm_id ASC;";
+
+      $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
+      $check_row = mysqli_num_rows($result);
+
+      $quantity_thkid = 0;
+      $quantity_thad = 0;
+      $quantity_fkkid = 0;
+      $quantity_fkad = 0;
+
+      if ($check_row > 0) 
+      {
+          while ($row = mysqli_fetch_assoc($result)) 
+          {
+            $confirm_id = $row['confirm_id'];
+            $totalpriceVat = $row['total_price_and_vat'];
+            $countofSale = $row['total_quantity'];
+
+            if ($row['type'] == 'Thai_kid') { $quantity_thkid = $row['quantity']; }
+            else if ($row['type'] == 'Thai_adult')  { $quantity_thad =  $row['quantity']; }
+            else if ($row['type'] == 'Foreigner_kid') { $quantity_fkkid = $row['quantity']; }
+            else if ($row['type'] == 'Foreigner_Adult') { $quantity_fkad = $row['quantity']; }
+          }
+      }
+      else {echo '0 rows';}
+
+
+      $insert = "INSERT INTO SUMMARY_ACCOUNT (confirm_id, income, count_of_sale_ticket, count_thai_kid_ticket, count_thai_adult_ticket, count_forenign_kid_ticket, count_forenign_adult_ticket)
+                  VALUES ('$confirm_id', '$totalpriceVat', '$countofSale', '$quantity_thkid', '$quantity_thad', '$quantity_fkkid', '$quantity_fkad');";
+      $result2 = mysqli_query($db_con, $insert) or die("Error in query: $insert " . mysqli_error($db_con));
+
+      if($result && $result2){return true;}
+      else{return false;}
+    }
 ?>
