@@ -115,7 +115,8 @@
                     <div class='col-7'>
                     </div>
                     <div class='col-5'>
-                        <form style="display: inline;" action="up_payment_back.php" method="POST" name="back_payment_" onsubmit="return validateForm()"><button class="btn btn-success mr-5" type="submit" name="back_payment">back</button></form>
+                        
+                        <form style="display: inline;" action="up_payment_back.php" method="POST" name="back_payment_" onsubmit="return validateForm()"><button class="btn btn-success mr-5" type="submit" name="back_payment">later</button></form>
 
                         <form style="display: inline;" action="up_payment_back.php" method="POST" name="upload_payment_" onsubmit="return validateForm()"><button class="btn btn-success " type="submit" name="upload_payment">Upload Payment</button></form>
                     </div>
