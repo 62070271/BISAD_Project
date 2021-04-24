@@ -1,0 +1,31 @@
+/* หัวข้อ */
+.rammeto{
+    
+    font-family: 'Rammetto One', cursive;
+}
+
+/* เนื้อความ */
+.kanit{
+    
+    font-family: 'Kanit', sans-serif;
+}
+
+/* สีเขียวอ่อน */
+.ptlightgreen{
+    color: #395902;
+}
+
+/* สีเขียวเข้ม */
+.ptdarkgreen{
+    color: #284001;
+}
+
+/* สีเขียวเหลือง */
+.ptyellow{
+    color: #FBB03B;
+}
+
+/* สีเขียวขาว */
+.ptwhite{
+    color: #ffffff;
+}
