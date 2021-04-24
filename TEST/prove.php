@@ -38,10 +38,37 @@
             max-width: 200px;
             margin: 10px;
         }
+
+        body{
+            background-image: url('https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+            background-size: cover;
+        }
     </style>
 </head>
 
-<body>
+<body class="">
+
+<nav class="navbar navbar-expand-lg navbar-secondary  mb-3" style="background-color: #395902;">
+            <div class="container-fluid">
+                <a class="navbar-brand text-light" href="index.php">
+                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
+                    ZOO
+                </a>
+                <!-- Dropdown -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"></a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
+                        <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
 
     <div class="container my-5 table-responsive">
         <?php
@@ -49,46 +76,47 @@
         // echo $QR;
         ?>
 
-        <h2 class="text-center mb-3">Prove Statement</h2>
+        <h2 class="text-center mb-3" style="color:#FBB03B;">Prove Statement</h2>
 
-        <table class="table table-bordered table-striped" style="z-index: 1;">
+            <table class="table table-light table-bordered table-striped rounded-5" style="z-index: 1;">
 
-            <thead class="text-center thead-dark">
-                <tr>
-                    <th scope="col">Order ID</th>
-                    <th scope="col" >Customer ID</th>
-                    <th scope="col" style="width: 15%;">Total price (vat 7 %)</th>
-                    <th scope="col" style="width: 15%;">Booking Date</th>
-                    <th scope="col" style="width: 15%;">Slip TimeStamp</th>
-                    <th scope="col">Slip of Payment</th>
-                    <th scope="col">Confirm</th>
-                    <th scope="col">Deny</th>
-                </tr>
-            </thead>
+                <thead class="text-center">
+                    <tr class="py-3" style="background-color: #395902; color:#FBB03B; font-size: 15px;">
+                        <th scope="col">Order ID</th>
+                        <th scope="col" >Customer ID</th>
+                        <th scope="col" >Total price (vat 7 %)</th>
+                        <th scope="col" >Booking Date</th>
+                        <th scope="col" >Slip TimeStamp</th>
+                        <th scope="col">Slip of Payment</th>
+                        <th scope="col">Confirm</th>
+                        <th scope="col">Deny</th>
+                    </tr>
+                </thead>
 
-            <tbody class="text-center">
-                <?php
-                if ($check_row > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
+                <tbody class="text-center text-dark">
+                    <?php
+                    if ($check_row > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
 
-                        echo "<tr>";
+                            echo "<tr>";
 
-                        echo "<p value='" . $row['slip_id'] . "'></p>";
-                        echo "<th name='" . $row['order_id'] . "' value ='" . $row['order_id'] . "' scope='row' style='padding-top:75px;'>" . $row['order_id'] . "</th>";
-                        echo "<th scope='row' style='padding-top:75px;'>" . $row['user_id'] . "</th>";
-                        echo "<td style='padding-top:75px;'>" . $row['total_price_and_vat'] . "</td>";
-                        echo "<td style='padding-top:75px;'>" . $row['booking_date'] . "</td>";
-                        echo "<td style='padding-top:75px;'>" . $row['time_stamp'] . "</td>";
-                        echo "<td>" . "<img src='images/" . $row['picture'] . "' width='200px' height='200px' alt='' class='slip'>" . "</td>";
-                        echo "<td style='padding-top:75px;'>" . "<a href='' id='x" . $row['slip_id'] . "' class='header btn btn-success btn-lg' onclick='return x(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Confirm</a>" . "</td>";
-                        echo "<td style='padding-top:75px;'>" . "<a href='' id='y" . $row['slip_id'] . "' class='header btn btn-danger btn-lg' onclick='return y(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Cancel</a>" . "</td>";
-                        echo "</tr>";
+                            echo "<p value='" . $row['slip_id'] . "'></p>";
+                            echo "<th name='" . $row['order_id'] . "' value ='" . $row['order_id'] . "' scope='row' style='padding-top:75px;'>" . $row['order_id'] . "</th>";
+                            echo "<th scope='row' style='padding-top:75px;'>" . $row['user_id'] . "</th>";
+                            echo "<td style='padding-top:75px;'>" . $row['total_price_and_vat'] . "</td>";
+                            echo "<td style='padding-top:75px;'>" . $row['booking_date'] . "</td>";
+                            echo "<td style='padding-top:75px;'>" . $row['time_stamp'] . "</td>";
+                            echo "<td>" . "<img src='images/" . $row['picture'] . "' width='200px' height='200px' alt='' class='slip'>" . "</td>";
+                            echo "<td style='padding-top:75px;'>" . "<a href='' id='x" . $row['slip_id'] . "' class='header btn btn-success btn-lg' onclick='return x(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Confirm</a>" . "</td>";
+                            echo "<td style='padding-top:75px;'>" . "<a href='' id='y" . $row['slip_id'] . "' class='header btn btn-danger btn-lg' onclick='return y(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Cancel</a>" . "</td>";
+                            echo "</tr>";
+                        }
                     }
-                }
-                ?>
-            </tbody>
+                    ?>
+                </tbody>
 
-        </table>
+            </table>
+
         <script>
             function x(slip_id, order_id, user_id) 
             {
