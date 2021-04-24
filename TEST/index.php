@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+        integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+        crossorigin="anonymous"></script>
     <script src="Datepicka_Fong.S.W/jquery.min.js"></script>
     <script src="Datepicka_Fong.S.W/node_modules/jquery/dist/jquery.js"></script>
     <script src="Datepicka_Fong.S.W/lib/picker.js"></script>
@@ -20,6 +26,22 @@
             display: flex;
             flex-flow: row wrap;
             align-items: center;
+        }
+        .carousel-indicators [data-bs-target] {
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+        }
+        .carousel-item {
+            transition: transform 2s;
+        }
+
+        .carousel-inner {
+            object-fit: cover;
+            width: 100%;
+            height: 25vw;
+            overflow: hidden;
+            display: block;
         }
 
         /* .show_calendar {
@@ -38,8 +60,51 @@
         header("Location: logIn_front.php");
     }
     ?>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <!-- <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                aria-label="Slide 3"></button> -->
+        </div>
+        <div class="carousel-inner img-fluid">
+            <div class="carousel-item active" data-bs-interval="6000">
+                <img src="https://images.wallpapersden.com/image/download/planet-zoo_a2lpZ2aUmZqaraWkpJRnamtlrWZlbWU.jpg"
+                    class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+            <div class="carousel-item img-fluid" data-bs-interval="6000">
+                <img src="https://d3tidaycr45ky4.cloudfront.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/planet-zoo--australia-pack.jpg"
+                    class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
+                </div>
+            </div>
+            <!-- <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Third slide label</h5>
+              <p>Some representative placeholder content for the third slide.</p>
+            </div>
+          </div> -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
     <div class="container">
-        <div class="row" style="margin-top: 10vw">
+        <div class="row" style="margin-top: 5vw">
             <div class="col" style="text-align: center;">
                 <h2 style="text-align: center;">Home Page</h2>
                 <?php
@@ -87,13 +152,15 @@
             if (isset($_GET["status_date"])) {
                 echo '<style>.show_calendar {display: none;}</style>';
                 echo '<style>.num_book {display: inline;}</style>';
+                echo '<style>.textdate {display: inline;}</style>';
                 echo '<div class="col-6 pl-5"><h3>Set : ' . $_SESSION['$date'] . '</h3></div>';
                 echo  '<div class="col-6 pr-5"><h3>Booking amount : ' . $_SESSION['number_booking'] . '</h3></div>';
             } else {
+                echo '<style>.textdate {display: none;}</style>';
                 echo '<style>.show_calendar {display: inline;}</style>';
                 echo '<style>#num_book {display: none;}</style>';
-                echo '<div class="col-6 pl-5"><h3>Set : yyyy-mm-dd</h3></div>';
-                echo  '<div class="col-6 pr-5"><h3>Booking amount : Unknow</h3></div>';
+                echo '<div class="textdate col-6 pl-5"><h3>Set : yyyy-mm-dd</h3></div>';
+                echo  '<div class="textdate col-6 pr-5"><h3>Booking amount : Unknow</h3></div>';
             }
             ?>
         </div>
