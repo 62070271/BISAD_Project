@@ -1,0 +1,57 @@
+/* <!-- Font Kanit -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+  <!-- Font Rammetto -->
+  <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet"> */
+
+
+/* หัวข้อ */
+.rammeto{
+    
+    font-family: 'Rammetto One', cursive;
+}
+
+/* เนื้อความ */
+.kanit{
+    
+    font-family: 'Kanit', sans-serif;
+}
+
+/* สีเขียวอ่อน */
+.ptlightgreen{
+    color: #395902;
+}
+
+/* สีเขียวเข้ม */
+.ptdarkgreen{
+    color: #284001;
+}
+
+/* สีเขียวเหลือง */
+.ptyellow{
+    color: #FBB03B;
+}
+
+/* สีเขียวขาว */
+.ptwhite{
+    color: #ffffff;
+}
+
+/* พื้นหลังสีเขียวอ่อน */
+.bglightgreen{
+    background-color: #395902;
+}
+
+/* พื้นหลังสีเขียวเข้ม */
+.bgdarkgreen{
+    background-color: #284001;
+}
+
+/* พื้นหลังสีเขียวเหลือง */
+.bgyellow{
+    background-color: #FBB03B;
+}
+
+/* พื้นหลังสีเขียวขาว */
+.bgwhite{
+    background-color: #ffffff;
+}
