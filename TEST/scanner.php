@@ -87,19 +87,19 @@
 
           <p>
             <?php
-            include('server.php');
+            include('dbserver.php');
 
             // sql to update a record
             if (isset($_POST['btaccept'])) {
-              $accidsql = intval(mysqli_real_escape_string($connection, $_POST['saccount']));
+              $accidsql = intval(mysqli_real_escape_string($db_con, $_POST['saccount']));
               $tkstatus = "SELECT qrcode_status FROM QR_CODE WHERE confirm_id=$accidsql";
-              $querystatus = mysqli_query($connection, $tkstatus);
+              $querystatus = mysqli_query($db_con, $tkstatus);
               $fetquestatus = mysqli_fetch_assoc($querystatus);
 
               if (mysqli_num_rows($querystatus) == 1) {
                 if ($fetquestatus['qrcode_status'] == '1') {
                   $sql = "UPDATE QR_CODE SET qrcode_status='0' WHERE confirm_id=$accidsql";
-                  mysqli_query($connection, $sql);
+                  mysqli_query($db_con, $sql);
                   echo "<script>";
                   echo "alert('Use QR-code success!');";
                   echo "</script>";
@@ -118,13 +118,13 @@
                 echo "</script>";
               }
 
-              // if ($connection->query($sql) === TRUE) {
+              // if ($db_con->query($sql) === TRUE) {
               //   echo "Record deleted successfully";
               // } else {
-              //   echo "Error deleting record: " . $connection->error;
+              //   echo "Error deleting record: " . $db_con->error;
               // }
             }
-            mysqli_close($connection);
+            mysqli_close($db_con);
             ?>
           </p>
         </div>
