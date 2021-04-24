@@ -23,6 +23,7 @@
                 // echo "<script>alert('" . $row['first_name'] . "')</script>";
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['user_name'] = $row['first_name'] . ' ' . $row['last_name'];
+                $_SESSION['user_image'] = $row['user_image'];
             }
 
             

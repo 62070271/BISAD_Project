@@ -113,6 +113,7 @@
             $result = mysqli_query($db_con, $sql2);
             $check_row = mysqli_num_rows($result);
 
+            // แสดงข้อมูล order
             if ($check_row > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $order_id = $row['order_id'];
@@ -120,12 +121,13 @@
                     $total_quantity = $row['total_quantity'];
                     $total_price = $row['total_price'];
                     $status = $row['status'];
-
-                    $sql3 = "SELECT * FROM SLIP_OF_PAYMENT, CONFIRM_SLIP, QR_CODE WHERE SLIP_OF_PAYMENT.order_id = $order_id AND SLIP_OF_PAYMENT.slip_id = CONFIRM_SLIP.slip_id AND CONFIRM_SLIP.confirm_id = QR_CODE.confirm_id;";
-                    $result = mysqli_query($db_con, $sql3);
-                    $check_row = mysqli_num_rows($result);
+                    // 
+                    $sql3 = "SELECT * FROM SLIP_OF_PAYMENT, CONFIRM_SLIP, QR_CODE WHERE SLIP_OF_PAYMENT.order_id = 
+                    $order_id AND SLIP_OF_PAYMENT.slip_id = CONFIRM_SLIP.slip_id AND CONFIRM_SLIP.confirm_id = QR_CODE.confirm_id;";
+                    $result2 = mysqli_query($db_con, $sql3);
+                    $check_row = mysqli_num_rows($result2);
                     if ($check_row > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        while ($row = mysqli_fetch_assoc($result2)) {
                             $qr_code = $row['qr_code'];
                         }
                     }
