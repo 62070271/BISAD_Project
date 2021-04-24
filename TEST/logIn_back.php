@@ -24,8 +24,9 @@
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['user_name'] = $row['first_name'] . ' ' . $row['last_name'];
                 $_SESSION['user_image'] = $row['user_image'];
+                $_SESSION['user_type'] = $row['user_type'];
             }
-
+            
             
             $_SESSION['success'] = "You are now logged in.";
             header("Location: index.php?status=loggedIn");
