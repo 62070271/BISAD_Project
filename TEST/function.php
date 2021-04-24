@@ -203,6 +203,7 @@
             $confirm_id = $row['confirm_id'];
             $totalpriceVat = $row['total_price_and_vat'];
             $countofSale = $row['total_quantity'];
+            $date = $row['booking_date'];
 
             if ($row['type'] == 'Thai_kid') { $quantity_thkid = $row['quantity']; }
             else if ($row['type'] == 'Thai_adult')  { $quantity_thad =  $row['quantity']; }
@@ -213,8 +214,8 @@
       else {echo '0 rows';}
 
 
-      $insert = "INSERT INTO SUMMARY_ACCOUNT (confirm_id, income, count_of_sale_ticket, count_thai_kid_ticket, count_thai_adult_ticket, count_forenign_kid_ticket, count_forenign_adult_ticket)
-                  VALUES ('$confirm_id', '$totalpriceVat', '$countofSale', '$quantity_thkid', '$quantity_thad', '$quantity_fkkid', '$quantity_fkad');";
+      $insert = "INSERT INTO SUMMARY_ACCOUNT (confirm_id, income, date_booking, count_of_sale_ticket, count_thai_kid_ticket, count_thai_adult_ticket, count_forenign_kid_ticket, count_forenign_adult_ticket)
+                  VALUES ('$confirm_id', '$totalpriceVat', '$date', '$countofSale', '$quantity_thkid', '$quantity_thad', '$quantity_fkkid', '$quantity_fkad');";
       $result2 = mysqli_query($db_con, $insert) or die("Error in query: $insert " . mysqli_error($db_con));
 
       if($result && $result2){return true;}

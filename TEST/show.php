@@ -22,7 +22,7 @@
     ob_start();
     // session_start();
 
-    $sql = "SELECT *
+    $sql = "SELECT O.order_id, OT.ticket_id
             FROM ORDER_TICKET AS OT
             INNER JOIN ORDERS AS O
             USING (order_id)
@@ -32,7 +32,7 @@
             USING (slip_id)
             INNER JOIN TICKET AS T
             USING (ticket_id)
-            WHERE O.order_id = 1
+            GROUP BY OT.order_id, OT.ticket_id
             ORDER BY CS.confirm_id ASC;
             ";
 
@@ -49,28 +49,20 @@
     {
         while ($row = mysqli_fetch_assoc($result)) 
         {
-            $order_id = $row['order_id'];
-            $confirm_id = $row['confirm_id'];
-            $totalpriceVat = $row['total_price_and_vat'];
-            $countofSale = $row['total_quantity'];
-
-
-            if ($row['type'] == 'Thai_kid') { $quantity_thkid = $row['quantity']; }
-            else if ($row['type'] == 'Thai_adult')  { $quantity_thad =  $row['quantity']; }
-            else if ($row['type'] == 'Foreigner_kid') { $quantity_fkkid = $row['quantity']; }
-            else if ($row['type'] == 'Foreigner_Adult') { $quantity_fkad = $row['quantity']; }
+            echo 'Order id: ' . $row['order_id'] . '<br/>';
+            echo 'confirm_id: ' . $row['confirm_id'] . '<br/>';
+            // echo 'totalpriceVat: ' . $totalpriceVat . '<br/>';
+            // echo 'total_quantity: ' . $countofSale . '<br/>';
+            // echo 'TH_kid: ' . $quantity_thkid . '<br/>';
+            // echo 'TH_adult: ' . $quantity_thad . '<br/>';
+            // echo 'FK_kid: ' . $quantity_fkkid . '<br/>';
+            // echo 'FK_adult: ' . $quantity_fkad . '<br/>';
+            echo '<br/><br/><br/>';
         }
     }
     else {echo '0 rows';}
 
-    echo 'Order id: ' . $order_id . '<br/>';
-    echo 'confirm_id: ' . $confirm_id . '<br/>';
-    echo 'totalpriceVat: ' . $totalpriceVat . '<br/>';
-    echo 'total_quantity: ' . $countofSale . '<br/>';
-    echo 'TH_kid: ' . $quantity_thkid . '<br/>';
-    echo 'TH_adult: ' . $quantity_thad . '<br/>';
-    echo 'FK_kid: ' . $quantity_fkkid . '<br/>';
-    echo 'FK_adult: ' . $quantity_fkad . '<br/>';
+    
 
     ?>
 </body>
