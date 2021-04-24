@@ -35,3 +35,23 @@
 .ptwhite{
     color: #ffffff;
 }
+
+/* พื้นหลังสีเขียวอ่อน */
+.bglightgreen{
+    background-color: #395902;
+}
+
+/* พื้นหลังสีเขียวเข้ม */
+.bgdarkgreen{
+    background-color: #284001;
+}
+
+/* พื้นหลังสีเขียวเหลือง */
+.bgyellow{
+    background-color: #FBB03B;
+}
+
+/* พื้นหลังสีเขียวขาว */
+.bgwhite{
+    background-color: #ffffff;
+}
