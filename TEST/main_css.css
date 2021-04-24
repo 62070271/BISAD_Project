@@ -38,20 +38,20 @@
 
 /* พื้นหลังสีเขียวอ่อน */
 .bglightgreen{
-    color: #395902;
+    background-color: #395902;
 }
 
 /* พื้นหลังสีเขียวเข้ม */
 .bgdarkgreen{
-    color: #284001;
+    background-color: #284001;
 }
 
 /* พื้นหลังสีเขียวเหลือง */
 .bgyellow{
-    color: #FBB03B;
+    background-color: #FBB03B;
 }
 
 /* พื้นหลังสีเขียวขาว */
 .bgwhite{
-    color: #ffffff;
+    background-color: #ffffff;
 }
