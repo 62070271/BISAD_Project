@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('dbserver.php');
+include('server.php');
     if (isset($_POST['submit'])){
         $upload = $_FILES['pic']['name'];
         $soderid = $_SESSION['order_id'];
@@ -26,9 +26,9 @@ include('dbserver.php');
             $sql = "INSERT INTO SLIP_OF_PAYMENT (picture, time_stamp, order_id)
                     VALUES ('$newName', '$date', '$soderid')";
 
-            $result = mysqli_query($db_con, $sql) or die ("Error in query: $sql " . mysqli_error($db_con));
+            $result = mysqli_query($connection, $sql) or die ("Error in query: $sql " . mysqli_error($connection));
 
-            mysqli_close($db_con);
+            mysqli_close($connection);
         }
     }
     header('Location: uploadslip_front.php');
