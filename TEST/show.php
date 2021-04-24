@@ -22,7 +22,7 @@
     ob_start();
     // session_start();
 
-    $sql = "SELECT SUM(quantity) AS ticket_quantity, order_id, ticket_id
+    $sql = "SELECT *
             FROM ORDER_TICKET AS OT
             INNER JOIN ORDERS AS O
             USING (order_id)
@@ -30,31 +30,48 @@
             USING (order_id)
             INNER JOIN CONFIRM_SLIP AS CS
             USING (slip_id)
-            GROUP BY  order_id, ticket_id
+            INNER JOIN TICKET AS T
+            USING (ticket_id)
+            WHERE O.order_id = 1
+            ORDER BY CS.confirm_id ASC;
             ";
 
     $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     $check_row = mysqli_num_rows($result);
 
+    
+    $quantity_thkid = 0;
+    $quantity_thad = 0;
+    $quantity_fkkid = 0;
+    $quantity_fkad = 0;
+
     if ($check_row > 0) 
     {
         while ($row = mysqli_fetch_assoc($result)) 
         {
-            // echo "Confrim id: " . $row['confirm_id'] . "<br/>";
-            // echo "Slip id: " . $row['slip_id'] . "<br/>";
-            echo "Order id: " . $row['order_id'] . "<br/>";
-            // echo "Booking Date: " . $row['booking_date'] . "<br/>";
-            // echo "Total Price + vat 7%: " . $row['total_price_and_vat'] . "<br/>";
-            // echo "Total Quantity: " . $row['total_quantity'] . "<br/>";
-            // echo "Total Price: " . $row['total_price'] . "<br/>";
-            echo "Ticket id: " . $row['ticket_id'] . " Quantity: " .  $row['ticket_quantity'] . "<br/>";
-            echo "<br/><br/><br/>";
+            $order_id = $row['order_id'];
+            $confirm_id = $row['confirm_id'];
+            $totalpriceVat = $row['total_price_and_vat'];
+            $countofSale = $row['total_quantity'];
+
+
+            if ($row['type'] == 'Thai_kid') { $quantity_thkid = $row['quantity']; }
+            else if ($row['type'] == 'Thai_adult')  { $quantity_thad =  $row['quantity']; }
+            else if ($row['type'] == 'Foreigner_kid') { $quantity_fkkid = $row['quantity']; }
+            else if ($row['type'] == 'Foreigner_Adult') { $quantity_fkad = $row['quantity']; }
         }
     }
-    else 
-    {
-        echo '0 rows';
-    }
+    else {echo '0 rows';}
+
+    echo 'Order id: ' . $order_id . '<br/>';
+    echo 'confirm_id: ' . $confirm_id . '<br/>';
+    echo 'totalpriceVat: ' . $totalpriceVat . '<br/>';
+    echo 'total_quantity: ' . $countofSale . '<br/>';
+    echo 'TH_kid: ' . $quantity_thkid . '<br/>';
+    echo 'TH_adult: ' . $quantity_thad . '<br/>';
+    echo 'FK_kid: ' . $quantity_fkkid . '<br/>';
+    echo 'FK_adult: ' . $quantity_fkad . '<br/>';
+
     ?>
 </body>
 </html>

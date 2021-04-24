@@ -39,10 +39,10 @@
             margin: 10px;
         }
 
-        body{
+        /* body{
             background-image: url('https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
             background-size: cover;
-        }
+        } */
     </style>
 </head>
 
@@ -80,7 +80,7 @@
 
             <table class="table table-light table-bordered table-striped rounded-5" style="z-index: 1;">
 
-                <thead class="text-center">
+                <thead class="text-center" style="position: sticky;">
                     <tr class="py-3" style="background-color: #395902; color:#FBB03B; font-size: 15px;">
                         <th scope="col">Order ID</th>
                         <th scope="col" >Customer ID</th>
@@ -165,7 +165,7 @@
                     $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
 
                     
-                    if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id))
+                    if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($order_id))
                     {
                         header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
                     }
