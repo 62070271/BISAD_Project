@@ -109,6 +109,7 @@
                             echo "<td>" . "<img src='images/" . $row['picture'] . "' width='200px' height='200px' alt='' class='slip'>" . "</td>";
                             echo "<td style='padding-top:75px;'>" . "<a href='' id='x" . $row['slip_id'] . "' class='header btn btn-success btn-lg' onclick='return x(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Confirm</a>" . "</td>";
                             echo "<td style='padding-top:75px;'>" . "<a href='' id='y" . $row['slip_id'] . "' class='header btn btn-danger btn-lg' onclick='return y(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Cancel</a>" . "</td>";
+                            
                             echo "</tr>";
                         }
                     }
@@ -165,7 +166,7 @@
                     $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
 
                     
-                    if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($order_id))
+                    if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id))
                     {
                         header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
                     }
