@@ -190,18 +190,27 @@
 
         <div class="row show_calendar">
             <form action="index_back.php" method="POST" name="pick_day" onsubmit="return validateForm()">
-                <div class="col-12">
-                    <div class='card' style="width: 50rem; height: 25rem; margin : auto;">
-                        <div class="card-body">
+                <div class="col-cnt">
+                    <div class='card justify-content-md-end' style="width: 50rem; height: 12rem; margin : auto;">
+                        <div class="card-body card-body-date">
                             <h2 style="text-align: center;">Book Tickets</h2>
-                            <label for="datepicker">Enter Date</label>
+                            <label for="datepicker">Enter Date :</label>
                             <input class="datepicker form-control" name="date" id="date" aria-owns="date_1_root" aria-hidden='false' placeholder="pick date">
-                            <button class="btn btn-success mt-3" type="submit" name="pick_date">Choose a date</button>
+                            <div class="row">
+                                <div class="col-10">
+                                </div>
+                                <div class="col-2 pl-2"><button class="btn btn-success mt-3 flex-row-reverse" type="submit" name="pick_date">Choose</button></div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </form>
         </div>
+        <div class='br-display'>
+            <br><br><br><br><br><br><br><br><br><br><br><br>
+        </div>
+        <div>
 
         <div class="row mt-5" style="text-align: center;">
             <?php
@@ -211,11 +220,12 @@
                 }
             }
             if (isset($_GET["status_date"])) {
+                echo '<style>.br-display {display: none;}</style>';
                 echo '<style>.show_calendar {display: none;}</style>';
                 echo '<style>.num_book {display: inline;}</style>';
                 echo '<style>.textdate {display: inline;}</style>';
-                echo '<div class="col-6 pl-5"><h3>Set : ' . $_SESSION['$date'] . '</h3></div>';
-                echo  '<div class="col-6 pr-5"><h3>Booking amount : ' . $_SESSION['number_booking'] . '</h3></div>';
+                echo '<div class="col-6 pl-5 text-warning"><h3>Set : ' . $_SESSION['$date'] . '</h3></div>';
+                echo  '<div class="col-6 pr-5 text-warning"><h3>Booking amount : ' . $_SESSION['number_booking'] . '</h3></div>';
             } else {
                 echo '<style>.textdate {display: none;}</style>';
                 echo '<style>.show_calendar {display: inline;}</style>';
@@ -467,6 +477,10 @@
             line-height: 1.5;
             display: inline-block;
             vertical-align: middle;
+            
+        }
+        .card-body-date {
+            font-family: 'Kanit', sans-serif;
         }
     </style>
 
