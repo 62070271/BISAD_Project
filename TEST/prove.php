@@ -208,30 +208,32 @@
     </div> -->
 
     <?php
-       
-
-            
-    
     // if (isset($_POST['submit']))
     // {
     //     $upload = $_FILES['pic']['name'];
 
     //     if($upload != "")
     //     {
+    //         // File contain pictures
     //         $path = "images/";
 
+    //         // Cut file name
     //         $type = strrchr($_FILES['pic']['name'], '.');
 
+    //         // Set date
     //         date_default_timezone_set('Asia/Bangkok');
     //         $date = date("Ymd");
 
     //         $numrand = (mt_rand());
+    //         // Set New name picture
     //         $newName =  $date . $numrand . $type;
     //         $pathCopy = $path . $newName;
     //         $pathLink = 'images/' . $newName;
 
+    //         // move file to File contain pictures
     //         move_uploaded_file($_FILES['pic']['tmp_name'], $pathCopy);
 
+    //         // Insert to db
     //         $sql = "INSERT INTO SLIP_OF_PAYMENT (picture, time_stamp, order_id)
     //                 VALUES ('$newName', '$date', '1')";
 
@@ -240,7 +242,6 @@
     //         mysqli_close($db_con);
     //     }
     // }
-
     ?>
 
 
