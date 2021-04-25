@@ -185,10 +185,35 @@
     <div class="container">
         <div class="row" style="margin-top: 5vw">
             <div class="col" style="text-align: center;">
-                <h2 style="text-align: center;" class="homepage_name text-warning">เลือกวันที่ต้องการจองบัตร</h2>
+                <h2 style="text-align: center;" class="homepage_name1 text-warning">เลือกวันที่ต้องการจองบัตร</h2>
+                <!-- <h2 style="text-align: center;" class="homepage_name2 text-warning">เลือกบัตร</h2> -->
             </div>
         </div>
-
+        <div class="row mt-5" style="text-align: center;">
+            <?php
+            if (isset($_GET["error"])) {
+                if ($_GET["error"] == 'Please pick date before booking the ticket!') {
+                    echo "<script>alert('Please pick date before booking the ticket!')</script>";
+                }
+            }
+            if (isset($_GET["status_date"])) {
+                echo '<style>.homepage_name1 {display: none;}</style>';
+                echo '<style>.homepage_name2 {display: inline;}</style>';
+                echo '<style>.br-display {display: none;}</style>';
+                echo '<style>.show_calendar {display: none;}</style>';
+                echo '<style>.num_book {display: inline;}</style>';
+                echo '<style>.textdate {display: inline;}</style>';
+                echo '<div class="col-5 pl-1 text-warning"><h1>Set : ' . $_SESSION['$date'] . '</h1></div>';
+                echo  '<div class="col-7 pr-5 text-warning"><h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBooking amount : ' . $_SESSION['number_booking'] . '</h1></div>';
+            } else {
+                echo '<style>.homepage_name1 {display: inline;}</style>';
+                echo '<style>.homepage_name2 {display: none;}</style>';
+                echo '<style>.br-display {display: inline;}</style>';
+                echo '<style>.show_calendar {display: inline;}</style>';
+                echo '<style>#num_book {display: none;}</style>';
+            }
+            ?>
+        </div>
         <div class="row show_calendar">
             <form action="index_back.php" method="POST" name="pick_day" onsubmit="return validateForm()">
                 <div class="col-cnt">
@@ -213,36 +238,14 @@
         </div>
         <div>
 
-        <div class="row mt-5" style="text-align: center;">
-            <?php
-            if (isset($_GET["error"])) {
-                if ($_GET["error"] == 'Please pick date before booking the ticket!') {
-                    echo "<script>alert('Please pick date before booking the ticket!')</script>";
-                }
-            }
-            if (isset($_GET["status_date"])) {
-                echo '<style>.br-display {display: none;}</style>';
-                echo '<style>.show_calendar {display: none;}</style>';
-                echo '<style>.num_book {display: inline;}</style>';
-                echo '<style>.textdate {display: inline;}</style>';
-                echo '<div class="col-6 pl-5 text-warning"><h3>Set : ' . $_SESSION['$date'] . '</h3></div>';
-                echo  '<div class="col-6 pr-5 text-warning"><h3>Booking amount : ' . $_SESSION['number_booking'] . '</h3></div>';
-            } else {
-                echo '<style>.textdate {display: none;}</style>';
-                echo '<style>.show_calendar {display: inline;}</style>';
-                echo '<style>#num_book {display: none;}</style>';
-                echo '<div class="textdate col-6 pl-5"><h3>Set : yyyy-mm-dd</h3></div>';
-                echo  '<div class="textdate col-6 pr-5"><h3>Booking amount : Unknow</h3></div>';
-            }
-            ?>
-        </div>
+        
 
-        <div class="row">
-            <div class="col">
+        <div class="row ">
+            <div class="col pl-5">
                 <form action="index_back.php" method="POST" name="book" onsubmit="return validateForm()">
-                    <div class='card' id='num_book' style="width: 50rem; height: 40rem; margin : auto; margin-top:5vw">
-                        <div class="card-body">
-                            <h2 style="text-align: center;">Ticket type</h2>
+                    <div class='card ml-5 ' id='num_book' style="width: 50rem; height: 41rem; margin : auto; margin-top:4vw; margin-bottom: 4vw;">
+                        <div class="card-body ">
+                            <h2 style="color:#395902; text-align: center;">Select Ticket</h2>
                             <?php
                             include('dbserver.php');
                             $sql = "SELECT * FROM TICKET WHERE ticket_id = 1";
@@ -282,79 +285,81 @@
                                 $_SESSION['ticket_adult_2'] = $row['ticket_id'];
                             }
                             ?>
-                            <div class="row">
+                            
+                            <div class="row bg-light " style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5>บัตรเด็ก</h5>
+                                        <h5 style="color:#395902;">บัตรเด็ก</h5>
                                         <div class='box-detail'>
                                             <p><?php echo  $_SESSION['card_detail_1'] ?></p>
                                         </div>
                                     </div>
                                     <div class="col-price" style="width: 20%;">
-                                        <h5>ราคาบัตร :<?php echo $_SESSION['card_price_1'] ?></h5>
+                                        <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_1'] ?></h5>
                                     </div>
                                     <div class="col-price" style="width: 10%;">
-                                        <label for="type-card-1">number:</label>
+                                        <!-- <label for="type-card-1">number:</label> -->
                                         <input class="type-card-1" type="number" step="any" min="0" value="0" max="35" name="type-card-1" id="type-card-1">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5>บัตรผู้ใหญ่</h5>
+                                        <h5 style="color:#395902;">บัตรผู้ใหญ่</h5>
                                         <div class='box-detail'>
                                             <p><?php echo  $_SESSION['card_detail_2'] ?></p>
                                         </div>
                                     </div>
                                     <div class="col-price" style="width: 20%;">
-                                        <h5>ราคาบัตร :<?php echo $_SESSION['card_price_2'] ?></h5>
+                                        <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_2'] ?></h5>
                                     </div>
                                     <div class="col-price" style="width: 10%;">
-                                        <label for="type-card-1">number:</label>
+                                        <!-- <label for="type-card-1">number:</label> -->
                                         <input class="type-card-2" type="number" step="any" min="0" value="0" max="35" name="type-card-2" id="type-card-2">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row bg-light" style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5>บัตรเด็กต่างชาติ</h5>
+                                        <h5 style="color:#395902;">บัตรเด็กต่างชาติ</h5>
                                         <div class='box-detail'>
                                             <p><?php echo  $_SESSION['card_detail_3'] ?></p>
                                         </div>
                                     </div>
                                     <div class="col-price" style="width: 20%;">
-                                        <h5>ราคาบัตร :<?php echo $_SESSION['card_price_3'] ?></h5>
+                                        <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_3'] ?></h5>
                                     </div>
                                     <div class="col-price" style="width: 10%;">
-                                        <label for="type-card-1">number:</label>
+                                        <!-- <label for="type-card-1">number:</label> -->
                                         <input class="type-card-3" type="number" step="any" min="0" value="0" max="35" name="type-card-3" id="type-card-3">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5>บัตรผู้ใหญ่ต่างชาติ</h5>
+                                        <h5 style="color:#395902;">บัตรผู้ใหญ่ต่างชาติ</h5>
                                         <div class='box-detail'>
                                             <p><?php echo  $_SESSION['card_detail_4'] ?></p>
                                         </div>
                                     </div>
                                     <div class="col-price" style="width: 20%;">
-                                        <h5>ราคาบัตร :<?php echo $_SESSION['card_price_4'] ?></h5>
+                                        <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_4'] ?></h5>
                                     </div>
                                     <div class="col-price" style="width: 10%;">
-                                        <label for="type-card-1">number:</label>
+                                        <!-- <label for="type-card-1">number:</label> -->
                                         <input class="type-card-4" type="number" step="any" min="0" value="0" max="35" name="type-card-4" id="type-card-4">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            
+                            <div class="row" style="padding-left: 30px;">
                                 <div class="col-8"></div>
                                 <div class="col-4">
-                                    <form action="index_back.php" method="POST" name="book" onsubmit="return validateForm()"><button class="btn btn-success mt-3" type="submit" name="back">back</button></form>
-                                    <button class="btn btn-success mt-3" type="submit" name="payment">payment</button>
+                                    <form action="index_back.php" method="POST" name="book" onsubmit="return validateForm()"><button class="btn btn-success mr-3 mt-3" type="submit" name="back">back</button></form>
+                                    <button class="btn btn-success  mt-3" type="submit" name="payment" style="margin-right: 10px;">payment</button>
                                 </div>
                             </div>
                         </div>
@@ -475,7 +480,7 @@
     <style>
         .picker__holder {
             text-align: center;
-            margin-left: 10vw;
+            margin-left: 7vw;
             line-height: 1.5;
             display: inline-block;
             vertical-align: middle;
