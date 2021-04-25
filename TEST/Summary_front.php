@@ -36,10 +36,11 @@
 
             date_default_timezone_set('Asia/Bangkok');
             $date = date("Y-m-d");
+            $current_year = date("Y");
             // echo $date;
             if(isset($_GET['month']) && isset($_GET['date']))
             {
-                $date = "2021-" . $_GET['month'] . "-" . $_GET['date'];
+                $date = $current_year . "-" . $_GET['month'] . "-" . $_GET['date'];
 
               
             }
@@ -75,7 +76,7 @@
                 <div class="col-sm-1">
                     <p class="text-center">Year</p>
                     <div class="input-group mb-3">
-                        <input name="year" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="2021" disabled>
+                        <input name="year" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo $current_year ?>" disabled>
                     </div>
 
                 </div>
@@ -251,7 +252,7 @@
 
                                 <!-- <h6 class="pl-2 pb-2">Number of Search Results : 998</h6> -->
                                 <div class="row pb-3">
-                                    <button type="submit" class="btn btn-success ">Save</button>
+                                    <button name="submit" type="submit" class="btn btn-success ">Save</button>
                                 </div>
 
                             </div>
