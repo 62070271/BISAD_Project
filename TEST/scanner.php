@@ -134,6 +134,7 @@
   </div>
 
   <script type="text/javascript">
+  // script //
     var txt = "";
     let scanner = new Instascan.Scanner({
       video: document.getElementById('preview')
