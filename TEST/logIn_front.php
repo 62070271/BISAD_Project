@@ -24,6 +24,9 @@
                 if (($_GET["error"]) == "Wrongemailorpassword!") {
                     echo "<script>alert('Wrong email or password')</script>";
                 }
+                if (($_GET["error"]) == "Please login before booking the ticket!") {
+                    echo "<script>alert('Please login before booking the ticket!')</script>";
+                }
             }
     ?>
 </body>
