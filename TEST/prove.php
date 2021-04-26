@@ -73,7 +73,7 @@
     </style>
 </head>
 
-<body class="">
+<body>
     <?php
     if (isset($_GET['logout'])) {
         session_destroy();
@@ -109,7 +109,7 @@
                                 <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item text-white">
-                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="Summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only">(current)</span></a>
+                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only">(current)</span></a>
                             </li>
                         </ul>
                     </div>
