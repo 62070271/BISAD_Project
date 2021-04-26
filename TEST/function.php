@@ -57,6 +57,7 @@
       mysqli_stmt_close($prePair);
     }
 
+    // Register แหกยังใช้ไม่ได้
     function createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type) {
       $sql = "INSERT INTO USER (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
       $prePair = mysqli_stmt_init($db_con);

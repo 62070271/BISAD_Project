@@ -93,6 +93,7 @@
                         </ul>
                     </div>
                 <?php
+                     header("Location: login_front.php?pleaseLogin");
                 }
                 ?>
             </div>
@@ -148,7 +149,7 @@
 
                     <p class="text-center">Month</p>
                     <select class="form-select" aria-label="Default select example" name="month">
-                        <option selected>Select Month</option>
+                        <option selected><?php if(isset($_GET['month'])){ echo $_GET['month']; } else{ echo 'Select month'; } ?></option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -168,7 +169,7 @@
                     <p class="text-center">Date</p>
 
                     <select class="form-select" aria-label="Default select example" name="date">
-                        <option selected>Select Date</option>
+                        <option selected><?php if(isset($_GET['date'])){ echo $_GET['date']; } else{ echo 'Select Date'; } ?></option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -306,8 +307,8 @@
                                 </table>
 
                                 <!-- <h6 class="pl-2 pb-2">Number of Search Results : 998</h6> -->
-                                <div class="row pb-3">
-                                    <button name="submit" type="submit" class="btn btn-success ">Save</button>
+                                <div class="row pb-3 mt-3">
+                                    <!-- <button name="submit" type="submit" class="btn btn-success ">Save</button> -->
                                 </div>
 
                             </div>
