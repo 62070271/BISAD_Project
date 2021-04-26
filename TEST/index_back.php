@@ -18,24 +18,32 @@ if (isset($_POST['payment'])) {
             $_SESSION['sum_type_1'] = (int)$_SESSION['card_price_1'] * (int)$_SESSION['$num_type_1'];
             $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_1'];
             $_SESSION['total_quantity'] = $_SESSION['total_quantity'] + (int)$_SESSION['$num_type_1'];
+        }else {
+            unset($_SESSION['$num_type_1']);
         }
         if (!((int)$num_card_2 == 0)) {
             $_SESSION['$num_type_2'] = $num_card_2;
             $_SESSION['sum_type_2'] = (int)$_SESSION['card_price_2'] * (int)$_SESSION['$num_type_2'];
             $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_2'];
             $_SESSION['total_quantity'] = $_SESSION['total_quantity'] + (int)$_SESSION['$num_type_2'];
+        }else {
+            unset($_SESSION['$num_type_2']);
         }
         if (!((int)$num_card_3 == 0)) {
             $_SESSION['$num_type_3'] = $num_card_3;
             $_SESSION['sum_type_3'] = (int)$_SESSION['card_price_3'] * (int)$_SESSION['$num_type_3'];
             $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_3'];
             $_SESSION['total_quantity'] = $_SESSION['total_quantity'] + (int)$_SESSION['$num_type_3'];
+        }else {
+            unset($_SESSION['$num_type_3']);
         }
         if (!((int)$num_card_4 == 0)) {
             $_SESSION['$num_type_4'] = $num_card_4;
             $_SESSION['sum_type_4'] = (int)$_SESSION['card_price_4'] * (int)$_SESSION['$num_type_4'];
             $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_4'];
             $_SESSION['total_quantity'] = $_SESSION['total_quantity'] + (int)$_SESSION['$num_type_4'];
+        }else {
+            unset($_SESSION['$num_type4']);
         }
         $_SESSION['sum_price_vat'] = (float)($_SESSION['sum_price'] *1.07);
         $v_booking_date = $_SESSION['$date'];
