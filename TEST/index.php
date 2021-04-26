@@ -182,7 +182,7 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="container">
+    <div class="container" style="font-family: 'Kanit', sans-serif;">
         <div class="row" style="margin-top: 5vw">
             <div class="col" style="text-align: center;">
                 <h2 style="text-align: center;" class="homepage_name1 text-warning">เลือกวันที่ต้องการจองบัตร</h2>
