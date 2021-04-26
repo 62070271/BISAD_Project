@@ -40,7 +40,7 @@ if (isset($_POST['payment'])) {
         $_SESSION['sum_price_vat'] = (float)($_SESSION['sum_price'] *1.07);
         $v_booking_date = $_SESSION['$date'];
         $v_total_price = (float)$_SESSION['sum_price'];
-        $v_status = "Not_payment_yet";
+        $v_status = "Unpaid";
         $v_total_quantity = $_SESSION['total_quantity'];
         $v_total_price_and_vat = (float)$_SESSION['sum_price_vat'];
         $v_id_t1 = $_SESSION['ticket_kid_1'];
