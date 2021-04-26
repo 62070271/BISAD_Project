@@ -43,6 +43,15 @@
             background-image: url('https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
             background-size: cover;
         } */
+
+        .zoom {
+            transition: transform .2s; /* Animation */
+            /* margin: 0 auto; */
+        }
+
+        .zoom:hover {
+            transform: scale(1.75); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
     </style>
 </head>
 
@@ -75,13 +84,13 @@
         // $QR = '<img src="https://chart.googleapis.com/chart?cht=qr&chl=Hello+World&chs=160x160&chld=L|0" class="qr-code img-thumbnail img-responsive">';
         // echo $QR;
         ?>
-
+        
         <h2 class="text-center mb-3" style="color:#FBB03B;">Prove Statement</h2>
 
-            <table class="table table-light table-bordered table-striped rounded-5" style="z-index: 1;">
+            <table class="table table-bordered table-hover" style="z-index: 1;">
 
                 <thead class="text-center" style="position: sticky;">
-                    <tr class="py-3" style="background-color: #395902; color:#FBB03B; font-size: 15px;">
+                    <tr class="py-3" style="color:#FBB03B; background-color: #395902; font-size: 15px;">
                         <th scope="col">Order ID</th>
                         <th scope="col" >Customer ID</th>
                         <th scope="col" >Total price (vat 7 %)</th>
@@ -92,8 +101,10 @@
                         <th scope="col">Deny</th>
                     </tr>
                 </thead>
+                
 
                 <tbody class="text-center text-dark">
+                
                     <?php
                     if ($check_row > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -102,13 +113,14 @@
 
                             echo "<p value='" . $row['slip_id'] . "'></p>";
                             echo "<th name='" . $row['order_id'] . "' value ='" . $row['order_id'] . "' scope='row' style='padding-top:75px;'>" . $row['order_id'] . "</th>";
-                            echo "<th scope='row' style='padding-top:75px;'>" . $row['user_id'] . "</th>";
+                            echo "<th style='padding-top:75px;' scope='row'>" . $row['user_id'] . "</th>";
                             echo "<td style='padding-top:75px;'>" . $row['total_price_and_vat'] . "</td>";
                             echo "<td style='padding-top:75px;'>" . $row['booking_date'] . "</td>";
                             echo "<td style='padding-top:75px;'>" . $row['time_stamp'] . "</td>";
-                            echo "<td>" . "<img src='images/" . $row['picture'] . "' width='200px' height='200px' alt='' class='slip'>" . "</td>";
+                            echo "<td>" . "<img class='zoom' src='images/" . $row['picture'] . "' width='200px' height='200px' alt='' class='slip'>" . "</td>";
                             echo "<td style='padding-top:75px;'>" . "<a href='' id='x" . $row['slip_id'] . "' class='header btn btn-success btn-lg' onclick='return x(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Confirm</a>" . "</td>";
                             echo "<td style='padding-top:75px;'>" . "<a href='' id='y" . $row['slip_id'] . "' class='header btn btn-danger btn-lg' onclick='return y(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Cancel</a>" . "</td>";
+                            
                             echo "</tr>";
                         }
                     }
@@ -165,7 +177,7 @@
                     $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
 
                     
-                    if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($order_id))
+                    if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id))
                     {
                         header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
                     }
@@ -207,30 +219,32 @@
     </div> -->
 
     <?php
-       
-
-            
-    
     // if (isset($_POST['submit']))
     // {
     //     $upload = $_FILES['pic']['name'];
 
     //     if($upload != "")
     //     {
+    //         // File contain pictures
     //         $path = "images/";
 
+    //         // Cut file name
     //         $type = strrchr($_FILES['pic']['name'], '.');
 
+    //         // Set date
     //         date_default_timezone_set('Asia/Bangkok');
     //         $date = date("Ymd");
 
     //         $numrand = (mt_rand());
+    //         // Set New name picture
     //         $newName =  $date . $numrand . $type;
     //         $pathCopy = $path . $newName;
     //         $pathLink = 'images/' . $newName;
 
+    //         // move file to File contain pictures
     //         move_uploaded_file($_FILES['pic']['tmp_name'], $pathCopy);
 
+    //         // Insert to db
     //         $sql = "INSERT INTO SLIP_OF_PAYMENT (picture, time_stamp, order_id)
     //                 VALUES ('$newName', '$date', '1')";
 
@@ -239,7 +253,6 @@
     //         mysqli_close($db_con);
     //     }
     // }
-
     ?>
 
 

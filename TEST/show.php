@@ -22,42 +22,53 @@
     ob_start();
     // session_start();
 
-    $sql = "SELECT O.order_id, OT.ticket_id
-            FROM ORDER_TICKET AS OT
-            INNER JOIN ORDERS AS O
+    $sql = "SELECT T.ticket_id, SUM(OT.quantity) AS countType, T.type, O.booking_date, T.price
+            FROM ORDERS AS O
+            INNER JOIN ORDER_TICKET AS OT
             USING (order_id)
-            INNER JOIN SLIP_OF_PAYMENT AS SP
-            USING (order_id)
-            INNER JOIN CONFIRM_SLIP AS CS
-            USING (slip_id)
             INNER JOIN TICKET AS T
             USING (ticket_id)
-            GROUP BY OT.order_id, OT.ticket_id
-            ORDER BY CS.confirm_id ASC;
+            GROUP BY T.ticket_id, O.booking_date
+            HAVING O.booking_date LIKE '2021-04-24'
+            ORDER BY T.ticket_id, O.booking_date
             ";
 
     $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     $check_row = mysqli_num_rows($result);
 
     
-    $quantity_thkid = 0;
-    $quantity_thad = 0;
-    $quantity_fkkid = 0;
-    $quantity_fkad = 0;
-
+    $i = 1;
     if ($check_row > 0) 
     {
         while ($row = mysqli_fetch_assoc($result)) 
         {
-            echo 'Order id: ' . $row['order_id'] . '<br/>';
-            echo 'confirm_id: ' . $row['confirm_id'] . '<br/>';
-            // echo 'totalpriceVat: ' . $totalpriceVat . '<br/>';
-            // echo 'total_quantity: ' . $countofSale . '<br/>';
-            // echo 'TH_kid: ' . $quantity_thkid . '<br/>';
-            // echo 'TH_adult: ' . $quantity_thad . '<br/>';
-            // echo 'FK_kid: ' . $quantity_fkkid . '<br/>';
-            // echo 'FK_adult: ' . $quantity_fkad . '<br/>';
-            echo '<br/><br/><br/>';
+            
+            echo "Date: " . $row["booking_date"] . "<br/>";
+            if ($i == 1)
+            {
+                
+                echo "TH KID: " . $row["countType"] . "<br/>";
+                echo "Price: " . $row["price"] . "<br/>";
+                $i ++;
+            }
+            else if ($i == 2)
+            {
+                echo "TH ADULT: " . $row["countType"] . "<br/>";
+                echo "Price: " . $row["price"] . "<br/>";
+                $i ++;
+            }
+            else if ($i == 3)
+            {
+                echo "FR KID: " . $row["countType"] . "<br/>";
+                echo "Price: " . $row["price"] . "<br/>";
+                $i ++;
+            }
+            else if ($i == 4)
+            {
+                echo "FR ADULT: " . $row["countType"] . "<br/>";
+                echo "Price: " . $row["price"] . "<br/>";
+                $i = 1 ;
+            }
         }
     }
     else {echo '0 rows';}
