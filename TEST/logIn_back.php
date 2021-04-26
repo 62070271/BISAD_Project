@@ -30,6 +30,13 @@
             
             $_SESSION['success'] = "You are now logged in.";
             header("Location: index.php?status=loggedIn");
+            // if (isset($_SESSION['type_user']) == 'Customer') {
+            //     header("Location: index.php?status=loggedIn");
+            // }
+            // if (isset($_SESSION['type_user']) == 'Financual') {
+            //     header("Location: prove.php?status=loggedIn");
+            // }
+            
         }
         else {
             // $_SESSION['error'] = "";

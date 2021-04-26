@@ -493,7 +493,7 @@
         <style>
             .picker__holder {
                 text-align: center;
-                margin-left: 6.25vw;
+                margin-left: 7.25vw;
                 line-height: 1.5;
                 display: inline-block;
                 vertical-align: middle;
@@ -504,7 +504,7 @@
                 font-family: 'Kanit', sans-serif;
             }
         </style>
-
+    </div>
 </body>
 
 </html>
