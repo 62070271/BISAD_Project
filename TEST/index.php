@@ -56,6 +56,7 @@
         } */
 
         body {
+            top: 1000px;
             background-image: url(Web_Image/lion-width4000__heal.png);
             background-repeat: no-repeat;
             background-position: center;
@@ -69,7 +70,7 @@
 
         .carousel,
         .carousel-inner {
-            height: 60vh;
+            height: 50vh;
             display: flex;
             align-items: center;
         }
@@ -79,108 +80,118 @@
 
 <body>
 
+    <div>
 
-    <?php
-    session_start();
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        unset($_SESSION['email']);
-        header("Location: logIn_front.php");
-    }
-    if (isset($_SESSION['email'])) {
-        // if ($_SESSION['user_type'] == 'Financial') {
-        //     echo '<script>alert("yess")</script>';
-        //     header("Location: prove.php?status=loggedIn.php");
-        // }
-        // if ($_SESSION['user_type'] == 'Reception') {
-        //     echo '<script>alert("yess")</script>';
-        //     header("Location: scanner.php?status=loggedIn.php");
-        // }
-        $user_name = $_SESSION['user_name'];
-        $user_image = $_SESSION['user_image'];
-    }
-    ?>
+        <?php
+        session_start();
+        if (isset($_GET['logout'])) {
+            session_destroy();
+            unset($_SESSION['email']);
+            header("Location: logIn_front.php");
+        }
+        if (isset($_SESSION['email'])) {
+            // if ($_SESSION['user_type'] == 'Financial') {
+            //     echo '<script>alert("yess")</script>';
+            //     header("Location: prove.php?status=loggedIn.php");
+            // }
+            // if ($_SESSION['user_type'] == 'Reception') {
+            //     echo '<script>alert("yess")</script>';
+            //     header("Location: scanner.php?status=loggedIn.php");
+            // }
+            $user_name = $_SESSION['user_name'];
+            $user_image = $_SESSION['user_image'];
+        }
+        ?>
 
-    <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
-                ZOO
-            </a>
-            <?php
-            if (isset($_SESSION['email'])) {
-            ?>
-                <!-- dropdown -->
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
-                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
-                        <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-                    </ul>
-                </div>
-            <?php
-            } else if (!isset($_SESSION['email'])) {
-            ?>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
-                        </li>
-                    </ul>
-                </div>
-            <?php
-            }
-            ?>
-        </div>
-    </nav>
+        <!-- Nav Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.php">
+                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
+                    ZOO
+                </a>
+                <?php
+                if (isset($_SESSION['email'])) {
+                ?>
+                    <!-- dropdown -->
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
+                            <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
+                        </ul>
+                    </div>
+                <?php
+                } else if (!isset($_SESSION['email'])) {
+                ?>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
+                            </li>
+                        </ul>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        </nav>
 
-    <!-- Carousel -->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <!-- <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+        <!-- Carousel -->
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <!-- <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
                 aria-label="Slide 3"></button> -->
-        </div>
-        <div class="carousel-inner img-fluid">
-            <div class="carousel-item active" data-bs-interval="6000">
-                <img src="https://wallpapercave.com/wp/wp4841327.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
             </div>
-            <div class="carousel-item img-fluid" data-bs-interval="6000">
-                <img src="https://d3tidaycr45ky4.cloudfront.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/planet-zoo--australia-pack.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
+            <div class="carousel-inner img-fluid">
+                <div class="carousel-item active" data-bs-interval="6000">
+                    <img src="https://wallpapercave.com/wp/wp4841327.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
                 </div>
-            </div>
-            <!-- <div class="carousel-item">
+                <div class="carousel-item img-fluid" data-bs-interval="6000">
+                    <img src="https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="d-block w-100 " alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item img-fluid" data-bs-interval="6000">
+                    <img src="https://d3tidaycr45ky4.cloudfront.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/planet-zoo--australia-pack.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+                <!-- <div class="carousel-item">
             <img src="..." class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h5>Third slide label</h5>
               <p>Some representative placeholder content for the third slide.</p>
             </div>
           </div> -->
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
     <div class="container" style="font-family: 'Kanit', sans-serif;">
         <div class="row" style="margin-top: 5vw">

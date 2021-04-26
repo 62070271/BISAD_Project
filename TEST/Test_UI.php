@@ -77,7 +77,7 @@
                 <br>
             </div>
             <div class='col-md-4 col-12 text-center'>
-                <td>" . "<img src='user_images/<?php echo "$user_image" ?>' class='rounded border border-dark' width='200px' height='200px' alt=''>" . "</td>
+                <td><img src='user_images/<?php echo "$user_image" ?>' class='rounded border border-dark' width='200px' height='200px' alt=''></td>
             </div>
             <div class='col-md-4 col-12'>
                 <h5 class='mb-3' style='line-height: 50px'>First Name:<?php echo "$fname" ?></h5>
@@ -96,55 +96,84 @@
         </div>
         <?php
         // ดึงข้อมูลรายละเอียดเกี่ยวกับ Order
-        $sql2 = "SELECT * FROM USER RIGHT JOIN ORDERS ON USER.user_id = ORDERS.user_id WHERE USER.user_id = '$id';";
+        $sql2 = "SELECT * FROM USER RIGHT JOIN ORDERS ON USER.user_id = ORDERS.user_id WHERE USER.user_id = '$id' ORDER BY ORDERS.order_id DESC;";
         $result = mysqli_query($db_con, $sql2);
         $check_row = mysqli_num_rows($result);
-
-        // แสดงข้อมูล order
-        if ($check_row > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $order_id = $row['order_id'];
-                $booking_date = $row['booking_date'];
-                $total_quantity = $row['total_quantity'];
-                $total_price = $row['total_price'];
-                $status = $row['status'];
-                // 
-                $sql3 = "SELECT * FROM SLIP_OF_PAYMENT, CONFIRM_SLIP, QR_CODE WHERE SLIP_OF_PAYMENT.order_id = 
-                    $order_id AND SLIP_OF_PAYMENT.slip_id = CONFIRM_SLIP.slip_id AND CONFIRM_SLIP.confirm_id = QR_CODE.confirm_id;";
-                $result2 = mysqli_query($db_con, $sql3);
-                $check_row2 = mysqli_num_rows($result2);
-                if ($check_row2 > 0) {
-                    while ($row = mysqli_fetch_assoc($result2)) {
-                        $qr_code = $row['qr_code'];
-                    }
-                }
-                echo "$check_row ";
         ?>
+        <div class="row">
+            <?php
+            // แสดงข้อมูล order
+            if ($check_row > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $order_id = $row['order_id'];
+                    $booking_date = $row['booking_date'];
+                    $total_quantity = $row['total_quantity'];
+                    $total_price = $row['total_price'];
+                    $status = $row['status'];
+                    // 
+                    $sql3 = "SELECT * FROM SLIP_OF_PAYMENT, CONFIRM_SLIP, QR_CODE WHERE SLIP_OF_PAYMENT.order_id = 
+                    $order_id AND SLIP_OF_PAYMENT.slip_id = CONFIRM_SLIP.slip_id AND CONFIRM_SLIP.confirm_id = QR_CODE.confirm_id;";
+                    $result2 = mysqli_query($db_con, $sql3);
+                    $check_row2 = mysqli_num_rows($result2);
+                    if ($check_row2 > 0) {
+                        while ($row = mysqli_fetch_assoc($result2)) {
+                            $qr_code = $row['qr_code'];
+                        }
+                    }
 
-                <div class="card mt-3 mb-3" style="max-width: 450px;">
-                    <div class="row g-0">
-                        <div class="col">
-                            <img src="qrcodes/<?php echo "$qr_code" ?> " width='175px' height='175px'>
-                        </div>
-                        <div class="col">
-                            <div class="card-body">
-                                <h5 class="card-title">Order ID: <?php echo "$order_id" ?></h5>
-                                <p class="card-text">
-                                    Booking date: <?php echo "$booking_date" ?><br>
-                                    Status: <?php echo "$status" ?>
+            ?>
+                    <div class="col-md-4">
+                        <div class="card mt-3 mb-3">
+                            <div class="row g-0">
+                                <div class="col">
+                                    <?php if ($status == "Not_payment_yet") { ?>
+                                        <span class='text-center' style='vertical-align: middle;'>กรุณาอัพโหลดหลักฐานการชำระเงิน</span>
+                                    <?php } elseif ($status == "In_progress") { ?>
+                                        <span class='text-info text-center' style='vertical-align: middle;'>รายการของท่านอยู่ในระหว่างการตรวจสอบ</span>
+                                    <?php } elseif ($status == "Complete") { ?>
+                                        <img src="qrcodes/<?php echo "$qr_code" ?> " width='190px' height='190px'>
+                                    <?php } else { ?>
+                                        <span class='text-danger text-center' style='vertical-align: middle;'>รายการของท่านถูกยกเลิกการตรวจสอบ <br>เนื่องจากพบปัญหา</span>
+                                    <?php
+                                    }
+                                    ?>
 
-                                </p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                                <div class="col">
+                                    <div class="card-body">
+                                        <!-- <div class="row">
+                                            <div class="col"> -->
+                                        <h5 class="card-title">Order ID: <?php echo "$order_id" ?></h5>
+                                        <p class="card-text">
+                                            Booking date: <?php echo "$booking_date" ?><br>
+                                            Status: <?php echo "$status" ?>
+                                        </p>
+                                        <!-- </div>
+                                        </div> -->
+                                        <!-- <div class="row">
+                                            <div class="col"> -->
+                                        <?php if ($status == "Not_payment_yet") { ?>
+                                            <button type='button' class='btn btn-warning' href='#uploadslip_front.php'><span style="font-size:smaller;">Upload Payment</span></button>
+                                        <?php } elseif ($status == "In_progress") { ?>
+                                            <p class='text-info text-center' style='vertical-align: middle;'>อยู่ระหว่างการตรวจสอบ</p>
+                                        <?php } elseif ($status == "Complete") { ?>
+                                            <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#QR_Modal'>View QR Code</button>
+                                        <?php } elseif ($status == "Fail") { ?>
+                                            <span class='text-danger' style='vertical-align: middle;'>ยกเลิกการตรวจสอบ</span>
+                                        <?php } ?>
+                                        <!-- </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
                     </div>
-                </div>
-
-        <?php
+            <?php
+                }
             }
-        }
-        ?>
+            ?>
+        </div>
     </div>
 </body>
 
