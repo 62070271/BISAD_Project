@@ -181,7 +181,6 @@
                     {
                         header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
                     }
-  
                 
                 }
 
