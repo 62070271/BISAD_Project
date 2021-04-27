@@ -168,57 +168,81 @@
 
 
 
-    // function addToSummary()
-    // {
-    //   // DATABASE CONNECTION
-    //   $server_name = 'freedb.tech';
-    //   $user_name = 'freedbtech_Weeravat';
-    //   $user_password = 'KLIptp17';
-    //   $db_name = 'freedbtech_BISADProject';
-    //   $db_con =  mysqli_connect($server_name, $user_name, $user_password, $db_name) or die("Unable Connect");
+    function addToSummary($db_con)
+    {
+      // FIND latest confirm_id
+      $sql = "SELECT confirm_id
+      FROM CONFIRM_SLIP
+      ORDER BY confirm_id DESC 
+      LIMIT 1;
+      ";
+      $result1 = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
+      $check_row = mysqli_num_rows($result1);
 
-    //   // GET ORDER DETAILS DATA WHEN APPROVE 
-    //   $sql = "SELECT T.ticket_id, SUM(OT.quantity) AS countType, T.type, O.booking_date
-    //           FROM ORDERS AS O
-    //           INNER JOIN ORDER_TICKET AS OT
-    //           USING (order_id)
-    //           INNER JOIN TICKET AS T
-    //           USING (ticket_id)
-    //           GROUP BY T.ticket_id, O.booking_date
-    //           HAVING O.booking_date LIKE '2021-04-24'
-    //           ";
-
-    //   $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
-    //   $check_row = mysqli_num_rows($result);
-
-    //   $quantity_thkid = 0;
-    //   $quantity_thad = 0;
-    //   $quantity_fkkid = 0;
-    //   $quantity_fkad = 0;
-
-    //   if ($check_row > 0) 
-    //   {
-    //       while ($row = mysqli_fetch_assoc($result)) 
-    //       {
-    //         $confirm_id = $row['confirm_id'];
-    //         $totalpriceVat = $row['total_price_and_vat'];
-    //         $countofSale = $row['total_quantity'];
-    //         $date = $row['booking_date'];
-
-    //         if ($row['type'] == 'Thai_kid') { $quantity_thkid = $row['quantity']; }
-    //         else if ($row['type'] == 'Thai_adult')  { $quantity_thad =  $row['quantity']; }
-    //         else if ($row['type'] == 'Foreigner_kid') { $quantity_fkkid = $row['quantity']; }
-    //         else if ($row['type'] == 'Foreigner_Adult') { $quantity_fkad = $row['quantity']; }
-    //       }
-    //   }
-    //   else {echo '0 rows';}
+      if ($check_row > 0) 
+      {
+        $row = mysqli_fetch_assoc($result1);
+        $confirm_id = $row['confirm_id'];
+      }
+      else {echo '0 rows';}
+      
 
 
-    //   $insert = "INSERT INTO SUMMARY_ACCOUNT (confirm_id, income, date_booking, count_of_sale_ticket, count_thai_kid_ticket, count_thai_adult_ticket, count_forenign_kid_ticket, count_forenign_adult_ticket)
-    //               VALUES ('$confirm_id', '$totalpriceVat', '$date', '$countofSale', '$quantity_thkid', '$quantity_thad', '$quantity_fkkid', '$quantity_fkad');";
-    //   $result2 = mysqli_query($db_con, $insert) or die("Error in query: $insert " . mysqli_error($db_con));
 
-    //   if($result && $result2){return true;}
-    //   else{return false;}
-    // }
+
+      // GET ORDER DETAILS DATA WHEN APPROVE 
+      $sql = "SELECT CS.confirm_id, O.booking_date, OT.ticket_id, SUM(OT.quantity) AS tk_type, O.total_price_and_vat, O.total_quantity
+      FROM CONFIRM_SLIP AS CS
+      INNER JOIN SLIP_OF_PAYMENT AS SP
+      USING (slip_id)
+      INNER JOIN ORDERS AS O
+      USING (order_id)
+      INNER JOIN ORDER_TICKET AS OT
+      USING (order_id)
+      GROUP BY CS.confirm_id, OT.ticket_id
+      HAVING CS.confirm_id = '$confirm_id'
+      ";
+
+      $result2 = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
+      $check_row = mysqli_num_rows($result2);
+
+      $quantity_th_kid = 0;
+      $quantity_th_ad = 0;
+      $quantity_fk_kid = 0;
+      $quantity_fk_ad = 0;
+
+      if ($check_row > 0) 
+      {
+        while($row = mysqli_fetch_assoc($result2))
+        {
+        $booking_date = $row['booking_date'];
+        $income = $row['total_price_and_vat'];
+        $t_quantity = $row['total_quantity'];
+      
+        if ($row['ticket_id'] == 1) { $quantity_th_kid = $row['tk_type']; }
+        else if ($row['ticket_id'] == 2) { $quantity_th_ad = $row['tk_type']; }
+        else if ($row['ticket_id'] == 5) { $quantity_fk_kid = $row['tk_type']; }
+        else if ($row['ticket_id'] == 6) { $quantity_fk_ad = $row['tk_type']; }
+
+        }
+      }
+      else {echo '0 rows';}
+
+
+
+
+
+      $insert = "INSERT INTO SUMMARY_ACCOUNT (confirm_id, income, date_booking, count_of_sale_ticket, count_thai_kid_ticket, count_thai_adult_ticket, count_forenign_kid_ticket, count_forenign_adult_ticket)
+                  VALUES ('$confirm_id', '$income', '$booking_date', '$t_quantity', ' $quantity_th_kid', '$quantity_th_ad', '$quantity_fk_kid', '$quantity_fk_ad');";
+      $result3 = mysqli_query($db_con, $insert) or die("Error in query: $insert " . mysqli_error($db_con));
+
+      if($result1 && $result2 && $result3) 
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
 ?>

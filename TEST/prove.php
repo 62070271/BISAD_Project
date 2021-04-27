@@ -184,7 +184,7 @@
                                 echo "<tr>";
 
                                 echo "<p value='" . $row['slip_id'] . "'></p>";
-                                echo "<th name='" . $row['order_id'] . "' value ='" . $row['order_id'] . "' scope='row' style='padding-top:75px;'>" . $row['order_id'] . "</th>";
+                                echo "<th name='" . $row['order_id'] . "' value ='" . $row['order_id'] . "' scope='row' style='padding-top:90px;'>" . $row['order_id'] . "</th>";
                                 echo "<th style='padding-top:90px;' scope='row'>" . $row['user_id'] . "</th>";
                                 echo "<td style='padding-top:90px;'>" . $row['total_price_and_vat'] . "</td>";
                                 echo "<td style='padding-top:90px;'>" . $row['booking_date'] . "</td>";
@@ -245,7 +245,7 @@
                     $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
 
                     
-                    if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id))
+                    if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($db_con))
                     {
                         header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
                     }
