@@ -108,7 +108,7 @@
 
         <!-- Nav Bar -->
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand rammeto" href="index.php">
                     <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
                     ZOO

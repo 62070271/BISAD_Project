@@ -54,7 +54,7 @@
             $year = $row['year_of_birth'];
             $type = $row['user_type'];
             $user_image = $row['user_image'];
-            $name_and_type = $fname . " " . $lname . " " . " (" . $type . ") ";
+            $user_name = $fname . " " . $lname . " ";
         }
     }
     ?>
@@ -152,7 +152,7 @@
 
             ?>
                     <div class="col-md-4">
-                        <div class="card mt-3 mb-3">
+                        <div class="card mt-3 mb-3" style="height: 12rem;">
                             <div class="row g-0">
                                 <div class="col text-center align-self-center">
                                     <?php if ($status == "Unpaid") { ?>
@@ -182,7 +182,7 @@
                                         <!-- <div class="row">
                                             <div class="col"> -->
                                         <?php if ($status == "Unpaid") { ?>
-                                            <button type='button' class='btn btn-warning' href='#uploadslip_front.php'><span style="font-size:smaller;">Upload Payment</span></button>
+                                            <a type='button' class='btn btn-warning' href='uploadslip_front.php'><span style="font-size:smaller;">Upload Payment</span></a>
                                         <?php } elseif ($status == "In_progress") { ?>
                                             <p class='text-info text-center' style='vertical-align: middle;'>อยู่ระหว่างการตรวจสอบ</p>
                                         <?php } elseif ($status == "Fail") { ?>
@@ -192,16 +192,15 @@
                                             <!-- QR Modal -->
                                             <div class="modal fade" id="QR_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">QR Code</h5>
+                                                    <div class="modal-content ">
+                                                        <div class="modal-header ">
+                                                            <h5 class="modal-title " id="exampleModalLabel">Order ID: <?php echo $order_id ?></h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
-                                                        <div class="modal-body">
+                                                        <div class="modal-body text-center">
 
-                                                            <img src='qrcodes/<?php $qr_code ?>' width='250px' height='250px' alt=''>
+                                                            <img src='qrcodes/<?php echo $qr_code ?>' width='250px' height='250px' alt=''>
                                                             <div class='modal-body'>
-                                                                <p>Order ID: <?php echo $order_id ?></p>
                                                                 <p>Booking_date: <?php echo $booking_date ?></p>
                                                                 <p>Total Quantity: <?php echo $total_quantity ?></p>
                                                                 <p>Total Price: <?php echo $total_price ?></p>
