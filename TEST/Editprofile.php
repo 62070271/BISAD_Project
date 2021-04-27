@@ -86,6 +86,7 @@
                 echo"<button type='submit' name='submit'>OK!</button>";
             echo "</form>";
 
+            $_SESSION['user_image'] = $img;
             echo "<h3><a href='index.php' style='color: blue;'>";
                 echo "Go to index.php";
             echo "</a></h3>";

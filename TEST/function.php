@@ -59,26 +59,26 @@
 
     // Register แหกยังใช้ไม่ได้
     function createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type, $user_imgdf) {
-      $sql = "INSERT INTO USER (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type, user_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
-      $prePair = mysqli_stmt_init($db_con);
 
-      if(!mysqli_stmt_prepare($prePair, $sql)) {
+      $sql = "INSERT INTO USER (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type, user_image) 
+              VALUES ('$f_name', '$l_name', '$Tel', '$email', '$password', '$gender', '$yob', '$type', '$user_imgdf');";
+
+      $result = mysqli_query($db_con, $sql) or die ("Error in query: $sql " . mysqli_error($db_con));
+
+      if($result) {
+        
+        session_start();
+        $_SESSION['email'] = $email;
+        $_SESSION['user_name'] = $f_name . ' ' . $l_name;
+        $_SESSION['user_image'] = $user_imgdf;
+
+        header("Location: index.php?status=loggedIn");
+      }
+      else{
         header("Location: reg_front.php?error=stmt_prepare_failed");
         exit();
       }
 
-      mysqli_stmt_bind_param($prePair, "sssssssss", $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type, $user_imgdf);
-      mysqli_stmt_execute($prePair);
-      mysqli_stmt_close($prePair);
-
-      session_start();
-      $_SESSION['email'] = $email;
-      $_SESSION['user_name'] = $f_name . ' ' . $l_name;
-
-
-
-      header("Location: index.php?status=loggedIn");
-      exit();
     }
 
 

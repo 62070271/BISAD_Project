@@ -35,9 +35,9 @@
         exit();
       }
 
-      if(strlen($_POST['tel']) != 10)
+      if(strlen($Tel) != 10)
       {
-        header("Location: Editprofile.php?error=wrongTelephonenumber");
+        header("Location:reg_front.php?error=wrongTelephonenumber");
         exit();
       }
 
@@ -46,6 +46,6 @@
     
     else {
       
-      header("Location:reg_front.php");
+      header("Location: reg_front.php");
     }
 ?>
