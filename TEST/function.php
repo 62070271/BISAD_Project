@@ -57,6 +57,7 @@
       mysqli_stmt_close($prePair);
     }
 
+    // Register แหกยังใช้ไม่ได้
     function createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type) {
       $sql = "INSERT INTO USER (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
       $prePair = mysqli_stmt_init($db_con);
@@ -175,15 +176,15 @@
     //   $db_con =  mysqli_connect($server_name, $user_name, $user_password, $db_name) or die("Unable Connect");
 
     //   // GET ORDER DETAILS DATA WHEN APPROVE 
-      // $sql = "SELECT T.ticket_id, SUM(OT.quantity) AS countType, T.type, O.booking_date
-      //         FROM ORDERS AS O
-      //         INNER JOIN ORDER_TICKET AS OT
-      //         USING (order_id)
-      //         INNER JOIN TICKET AS T
-      //         USING (ticket_id)
-      //         GROUP BY T.ticket_id, O.booking_date
-      //         HAVING O.booking_date LIKE '2021-04-24'
-      //         ";
+    //   $sql = "SELECT T.ticket_id, SUM(OT.quantity) AS countType, T.type, O.booking_date
+    //           FROM ORDERS AS O
+    //           INNER JOIN ORDER_TICKET AS OT
+    //           USING (order_id)
+    //           INNER JOIN TICKET AS T
+    //           USING (ticket_id)
+    //           GROUP BY T.ticket_id, O.booking_date
+    //           HAVING O.booking_date LIKE '2021-04-24'
+    //           ";
 
     //   $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     //   $check_row = mysqli_num_rows($result);
