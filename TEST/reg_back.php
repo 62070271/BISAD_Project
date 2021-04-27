@@ -13,6 +13,7 @@
       $gender = $_POST['gender'];
       $yob = $_POST['yfb'];
       $type = 'Customer';
+      $user_imgdf = 'user_default.png';
 
       if (emtyInput($f_name, $l_name, $Tel, $email, $password, $Repassword, $yob) !== false) {
         header("Location:reg_front.php?error=emptyInput");
@@ -40,7 +41,7 @@
         exit();
       }
 
-      createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type);
+      createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type, $user_imgdf);
     }
     
     else {

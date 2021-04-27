@@ -58,8 +58,8 @@
     }
 
     // Register แหกยังใช้ไม่ได้
-    function createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type) {
-      $sql = "INSERT INTO USER (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    function createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type, $user_imgdf) {
+      $sql = "INSERT INTO USER (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type, user_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
       $prePair = mysqli_stmt_init($db_con);
 
       if(!mysqli_stmt_prepare($prePair, $sql)) {
@@ -67,13 +67,15 @@
         exit();
       }
 
-      mysqli_stmt_bind_param($prePair, "ssssssss", $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type);
+      mysqli_stmt_bind_param($prePair, "sssssssss", $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type, $user_imgdf);
       mysqli_stmt_execute($prePair);
       mysqli_stmt_close($prePair);
 
       session_start();
       $_SESSION['email'] = $email;
       $_SESSION['user_name'] = $f_name . ' ' . $l_name;
+
+
 
       header("Location: index.php?status=loggedIn");
       exit();
