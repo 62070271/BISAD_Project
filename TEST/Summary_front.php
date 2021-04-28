@@ -19,6 +19,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="main_css.css">
+    <!-- Font Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+    <!-- Font Rammetto -->
+    <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
     <style>
         /* body {
             background-image: url('https://images.pexels.com/photos/33045/lion-wild-africa-african.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
@@ -32,70 +37,35 @@
 
 <body>
     <?php
-        session_start();
-        if (isset($_SESSION['email'])) {
-            // if ($_SESSION['user_type'] == 'Financial') {
-            //     echo '<script>alert("yess")</script>';
-            //     header("Location: prove.php?status=loggedIn.php");
-            // }
-            // if ($_SESSION['user_type'] == 'Reception') {
-            //     echo '<script>alert("yess")</script>';
-            //     header("Location: scanner.php?status=loggedIn.php");
-            // }
-            $user_name = $_SESSION['user_name'];
-            $user_image = $_SESSION['user_image'];
-        }
+    session_start();
+    if (isset($_SESSION['email'])) {
+        // if ($_SESSION['user_type'] == 'Financial') {
+        //     echo '<script>alert("yess")</script>';
+        //     header("Location: prove.php?status=loggedIn.php");
+        // }
+        // if ($_SESSION['user_type'] == 'Reception') {
+        //     echo '<script>alert("yess")</script>';
+        //     header("Location: scanner.php?status=loggedIn.php");
+        // }
+        $user_name = $_SESSION['user_name'];
+        $user_image = $_SESSION['user_image'];
+    }
     ?>
 
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
             <div class="container">
-                <a class="navbar-brand" href="index.php?status=loggedIn">
-                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
+                <a class="navbar-brand rammeto" href="index.php">
+                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
                     ZOO
                 </a>
-                <?php
-                if (isset($_SESSION['email'])) {
-                ?>
-                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item" class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only"></span></a>
-                            </li>
-                            <li class="nav-item text-white">
-                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only"></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- dropdown -->
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
-                            <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-                        </ul>
-                    </div>
-                <?php
-                } else if (!isset($_SESSION['email'])) {
-                ?>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
-                            </li>
-                        </ul>
-                    </div>
-                <?php
-                     header("Location: login_front.php?pleaseLogin");
-                }
-                ?>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link rounded text-dark rammeto" href="index.php?logout=1" style="background-color: #FBB03B;">Log out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
@@ -132,13 +102,13 @@
             <div class="row">
 
                 <div class="col-sm-8">
-                    <h1>Daily Account Summary</h1>
-                    <?php echo "<h5>Date: " . "<span class='text-success'>" . $booking_date . "</span></h5>"; ?>
+                    <h1 class="rammeto ptyellow">Daily Account Summary</h1>
+                    <?php echo "<h5 class='rammeto'>Date: " . "<span class='text-success'>" . $booking_date . "</span></h5>"; ?>
                 </div>
 
 
                 <div class="col-sm-1">
-                    <p class="text-center">Year</p>
+                    <p class="text-center rammeto">Year</p>
                     <div class="input-group mb-3">
                         <input name="year" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo $current_year ?>" disabled>
                     </div>
@@ -147,9 +117,13 @@
 
                 <div class="col-sm-1">
 
-                    <p class="text-center">Month</p>
+                    <p class="text-center rammeto">Month</p>
                     <select class="form-select" aria-label="Default select example" name="month">
-                        <option selected><?php if(isset($_GET['month'])){ echo $_GET['month']; } else{ echo 'Select month'; } ?></option>
+                        <option selected><?php if (isset($_GET['month'])) {
+                                                echo $_GET['month'];
+                                            } else {
+                                                echo 'Select month';
+                                            } ?></option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -166,10 +140,14 @@
                 </div>
                 <div class="col-sm-1">
 
-                    <p class="text-center">Date</p>
+                    <p class="text-center rammeto">Date</p>
 
                     <select class="form-select" aria-label="Default select example" name="date">
-                        <option selected><?php if(isset($_GET['date'])){ echo $_GET['date']; } else{ echo 'Select Date'; } ?></option>
+                        <option selected><?php if (isset($_GET['date'])) {
+                                                echo $_GET['date'];
+                                            } else {
+                                                echo 'Select Date';
+                                            } ?></option>
                         <option value="01">01</option>
                         <option value="02">02</option>
                         <option value="03">03</option>
@@ -206,7 +184,7 @@
 
                 <div class="col-sm-1">
                     <br>
-                    <button name="changeBtn" type="submit" class="btn btn-success mt-3">Change</button>
+                    <button name="changeBtn" type="submit" class="btn btn-success mt-3 rammeto">Change</button>
                 </div>
 
 
@@ -216,15 +194,15 @@
 
         <div class="row text-center">
             <div class="col-md-4">
-                <h6>Number of bookings per day</h6>
-                <?php echo "<h2>" . $totalQuantity . "</h2>"; ?>
+                <h6 class="rammeto ptlightgreen">Number of bookings per day</h6>
+                <h2 class="ptyellow"><?php echo $totalQuantity; ?></h2>
             </div>
             <div class="col-md-4">
 
             </div>
             <div class="col-md-4">
-                <h6>booking income</h6>
-                <h2><?php echo $totalPrice; ?></h2>
+                <h6 class="rammeto ptlightgreen">booking income</h6>
+                <h2 class="ptyellow"><?php echo $totalPrice; ?></h2>
             </div>
         </div>
 
@@ -236,7 +214,7 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-10">
-                                        <h5>Today's customer booking list</h5>
+                                        <h5 class="rammeto ptlightgreen">Customer booking list</h5>
                                     </div>
                                     <div class="col-md-2">
 
@@ -245,10 +223,10 @@
 
                                 <table class="table">
                                     <thead>
-                                        <tr>
-                                            <th class="w-50" scope="col">Type card</th>
-                                            <th class="w-25 text-center" scope="col">Number of people</th>
-                                            <th class="w-25 text-center" scope="col">Booking price</th>
+                                        <tr class="bglightgreen kanit text-white">
+                                            <th class="w-50 " scope="col">Ticket type</th>
+                                            <th class="w-25 text-center " scope="col">Number of people</th>
+                                            <th class="w-25 text-center " scope="col">Booking price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -273,28 +251,28 @@
 
                                                 if ($i == 1) {
                                                     echo "<tr>";
-                                                    echo '<th scope="row">Thai Kid</th>';
+                                                    echo '<th scope="row" class="kanit">เด็กชาวไทย</th>';
                                                     echo '<td class="text-center">' . $row['countType'] . '</td>';
                                                     echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
                                                     echo "</tr>";
                                                     $i++;
                                                 } else if ($i == 2) {
                                                     echo "<tr>";
-                                                    echo '<th scope="row">Thai Adult</th>';
+                                                    echo '<th scope="row" class="kanit">ผู้ใหญ่ชาวไทย</th>';
                                                     echo '<td class="text-center">' . $row['countType'] . '</td>';
                                                     echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
                                                     echo "</tr>";
                                                     $i++;
                                                 } else if ($i == 3) {
                                                     echo "<tr>";
-                                                    echo '<th scope="row">Foreigner Kid</th>';
+                                                    echo '<th scope="row" class="kanit">เด็กชาวต่างชาติ</th>';
                                                     echo '<td class="text-center">' . $row['countType'] . '</td>';
                                                     echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
                                                     $i++;
                                                     echo "</tr>";
                                                 } else if ($i == 4) {
                                                     echo "<tr>";
-                                                    echo '<th scope="row">Foreigner Adult</th>';
+                                                    echo '<th scope="row" class="kanit">ผู้ใหญ่ชาวต่างชาติ</th>';
                                                     echo '<td class="text-center">' . $row['countType'] . '</td>';
                                                     echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
                                                     echo "</tr>";
