@@ -22,59 +22,80 @@
     ob_start();
     // session_start();
 
-    $sql = "SELECT T.ticket_id, SUM(OT.quantity) AS countType, T.type, O.booking_date, T.price
-            FROM ORDERS AS O
-            INNER JOIN ORDER_TICKET AS OT
-            USING (order_id)
-            INNER JOIN TICKET AS T
-            USING (ticket_id)
-            GROUP BY T.ticket_id, O.booking_date
-            HAVING O.booking_date LIKE '2021-04-24'
-            ORDER BY T.ticket_id, O.booking_date
+    // FIND latest confirm_id
+    $sql = "SELECT date_booking, SUM(income) AS income, SUM(count_of_sale_ticket) AS t_ticket, SUM(count_thai_kid_ticket) AS t_thkid, SUM(count_thai_adult_ticket) AS t_thad, SUM(count_foreigner_kid_ticket) AS t_frkid, SUM(count_foreigner_adult_ticket) AS t_frad
+            FROM SUMMARY_ACCOUNT AS SA
+            GROUP BY date_booking
+            HAVING date_booking LIKE '2021-05-01'
             ";
 
-    $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
-    $check_row = mysqli_num_rows($result);
-
-    
-    $i = 1;
-    if ($check_row > 0) 
-    {
-        while ($row = mysqli_fetch_assoc($result)) 
-        {
+            $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
+            $check_row = mysqli_num_rows($result);
             
-            echo "Date: " . $row["booking_date"] . "<br/>";
-            if ($i == 1)
+            if ($check_row > 0)
             {
-                
-                echo "TH KID: " . $row["countType"] . "<br/>";
-                echo "Price: " . $row["price"] . "<br/>";
-                $i ++;
-            }
-            else if ($i == 2)
-            {
-                echo "TH ADULT: " . $row["countType"] . "<br/>";
-                echo "Price: " . $row["price"] . "<br/>";
-                $i ++;
-            }
-            else if ($i == 3)
-            {
-                echo "FR KID: " . $row["countType"] . "<br/>";
-                echo "Price: " . $row["price"] . "<br/>";
-                $i ++;
-            }
-            else if ($i == 4)
-            {
-                echo "FR ADULT: " . $row["countType"] . "<br/>";
-                echo "Price: " . $row["price"] . "<br/>";
-                $i = 1 ;
-            }
-        }
-    }
-    else {echo '0 rows';}
+                while ($row = mysqli_fetch_assoc($result))
+                {
+                    // $summary_id = $row['summary_id'];
+                    // $confirm_id = $row['confirm_id'];
+                    // $date_booking = $row['date_booking'];
+                    // $income = $row['income'];
+                    // $all_ticket = $row['count_of_sale_ticket'];
+                    // $th_kid = $row['count_thai_kid_ticket'];
+                    // $th_adult = $row['count_thai_adult_ticket'];
+                    // $fr_kid = $row['count_foreigner_kid_ticket'];
+                    // $fr_adult = $row['count_foreigner_adult_ticket'];
 
+                    // echo "summary_id: " . $row['summary_id'] . "<br>";
+                    // echo "confirm_id" . $row['confirm_id'] . "<br>";
+                    // echo "date_booking" . $row['date_booking'] . "<br>";
+                    echo "income: " . $row['income'] . "<br>";
+                    echo "all_ticket: " . $row['t_ticket'] . "<br>";
+                    echo "th_kid: " . $row['t_thkid'] . "<br>";
+                    echo "th_adult: " . $row['t_thad'] . "<br>";
+                    echo "fr_kid: " . $row['t_frkid'] . "<br>";
+                    echo "fr_adult: " . $row['t_frad']. "<br>";
+                    echo "<br><br><br>";
+                }
+            }
     
-
+    
+    // $i = 1;
+    // if ($check_row > 0) 
+    // {
+    //     while ($row = mysqli_fetch_assoc($result)) 
+    //     {
+            
+    //         echo "Date: " . $row["booking_date"] . "<br/>";
+    //         if ($i == 1)
+    //         {
+                
+    //             echo "TH KID: " . $row["countType"] . "<br/>";
+    //             echo "Price: " . $row["price"] . "<br/>";
+    //             $i ++;
+    //         }
+    //         else if ($i == 2)
+    //         {
+    //             echo "TH ADULT: " . $row["countType"] . "<br/>";
+    //             echo "Price: " . $row["price"] . "<br/>";
+    //             $i ++;
+    //         }
+    //         else if ($i == 3)
+    //         {
+    //             echo "FR KID: " . $row["countType"] . "<br/>";
+    //             echo "Price: " . $row["price"] . "<br/>";
+    //             $i ++;
+    //         }
+    //         else if ($i == 4)
+    //         {
+    //             echo "FR ADULT: " . $row["countType"] . "<br/>";
+    //             echo "Price: " . $row["price"] . "<br/>";
+    //             $i = 1 ;
+    //         }
+    //     }
+    // }
+    // else {echo '0 rows';}
+ // GET ORDER DETAILS DATA WHEN APPROVE 
     ?>
 </body>
 </html>
