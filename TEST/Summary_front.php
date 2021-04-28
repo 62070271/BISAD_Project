@@ -81,20 +81,19 @@
         $date = $current_year . "-" . $_GET['month'] . "-" . $_GET['date'];
     }
 
-    $sql = "SELECT SUM(total_quantity) AS totalQuantity, SUM(total_price_and_vat) AS totalPrice, booking_date 
-            FROM ORDERS 
-            GROUP BY booking_date 
-            HAVING booking_date 
-            LIKE '$date';
+    $sql = "SELECT date_booking, SUM(income) AS income, SUM(count_of_sale_ticket) AS t_ticket, SUM(count_thai_kid_ticket) AS t_thkid, SUM(count_thai_adult_ticket) AS t_thad, SUM(count_foreigner_kid_ticket) AS t_frkid, SUM(count_foreigner_adult_ticket) AS t_frad
+            FROM SUMMARY_ACCOUNT AS SA
+            GROUP BY date_booking
+            HAVING date_booking LIKE '$date'
             ";
     $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     $row = mysqli_fetch_assoc($result);
     $check_row1 = mysqli_num_rows($result);
 
     if ($check_row1 != 0) {
-        $booking_date = $row['booking_date'];
-        $totalQuantity = $row['totalQuantity'];
-        $totalPrice = $row['totalPrice'];
+        $booking_date = $row['date_booking'];
+        $totalQuantity = $row['t_ticket'];
+        $totalPrice = $row['income'];
     } else {
         $booking_date = $date;
         $totalQuantity = 0;
@@ -238,56 +237,108 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                            <!-- SHOW SUMMARY DATA BY DATE -->
                                         <?php
-                                        $sql = "SELECT T.ticket_id, SUM(OT.quantity) AS countType, T.type, O.booking_date, T.price
-                                                FROM ORDERS AS O
-                                                INNER JOIN ORDER_TICKET AS OT
-                                                USING (order_id)
-                                                INNER JOIN TICKET AS T
-                                                USING (ticket_id)
-                                                GROUP BY T.ticket_id, O.booking_date
-                                                HAVING O.booking_date LIKE '$date'
-                                                ORDER BY T.ticket_id, O.booking_date
-                                            ";
+                                        $sql = "SELECT SUM(income) AS income, SUM(count_of_sale_ticket) AS t_ticket, SUM(count_thai_kid_ticket) AS t_thkid, SUM(count_thai_adult_ticket) AS t_thad, SUM(count_foreigner_kid_ticket) AS t_frkid, SUM(count_foreigner_adult_ticket) AS t_frad
+                                                FROM SUMMARY_ACCOUNT AS SA
+                                                GROUP BY date_booking
+                                                HAVING date_booking LIKE '$date'
+                                                ";
 
                                         $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
                                         $check_row = mysqli_num_rows($result);
-                                        $i = 1;
-                                        if ($check_row > 0) {
-                                            while ($row = mysqli_fetch_assoc($result)) {
 
+                                        if ($check_row > 0) 
+                                        {
+                                            while ($row = mysqli_fetch_assoc($result)) 
+                                            {
+                                                echo "<tr>";
+                                                    echo '<th scope="row" class="kanit">Thai Kid</th>';
+                                                    echo '<td class="text-center">' . $row['t_thkid'] . '</td>';
+                                                    echo '<td class="text-center">' . $row['t_thkid'] * 30 * 1.07 . '</td>';
+                                                echo "</tr>";
 
-                                                if ($i == 1) {
-                                                    echo "<tr>";
-                                                    echo '<th scope="row" class="kanit">เด็กชาวไทย</th>';
-                                                    echo '<td class="text-center">' . $row['countType'] . '</td>';
-                                                    echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
-                                                    echo "</tr>";
-                                                    $i++;
-                                                } else if ($i == 2) {
-                                                    echo "<tr>";
-                                                    echo '<th scope="row" class="kanit">ผู้ใหญ่ชาวไทย</th>';
-                                                    echo '<td class="text-center">' . $row['countType'] . '</td>';
-                                                    echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
-                                                    echo "</tr>";
-                                                    $i++;
-                                                } else if ($i == 3) {
-                                                    echo "<tr>";
-                                                    echo '<th scope="row" class="kanit">เด็กชาวต่างชาติ</th>';
-                                                    echo '<td class="text-center">' . $row['countType'] . '</td>';
-                                                    echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
-                                                    $i++;
-                                                    echo "</tr>";
-                                                } else if ($i == 4) {
-                                                    echo "<tr>";
-                                                    echo '<th scope="row" class="kanit">ผู้ใหญ่ชาวต่างชาติ</th>';
-                                                    echo '<td class="text-center">' . $row['countType'] . '</td>';
-                                                    echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
-                                                    echo "</tr>";
-                                                    $i = 1;
-                                                }
+                                                echo "<tr>";
+                                                    echo '<th scope="row" class="kanit">Thai Adult</th>';
+                                                    echo '<td class="text-center">' . $row['t_thad'] . '</td>';
+                                                    echo '<td class="text-center">' . $row['t_thad'] * 150 * 1.07 . '</td>';
+                                                echo "</tr>";
+
+                                                echo "<tr>";
+                                                    echo '<th scope="row" class="kanit">Foreigner Kid</th>';
+                                                    echo '<td class="text-center">' . $row['t_frkid'] . '</td>';
+                                                    echo '<td class="text-center">' . $row['t_frkid'] * 150 * 1.07 . '</td>';
+                                                echo "</tr>";
+
+                                                echo "<tr>";
+                                                    echo '<th scope="row" class="kanit">Foreigner Adult</th>';
+                                                    echo '<td class="text-center">' . $row['t_frad'] . '</td>';
+                                                    echo '<td class="text-center">' . $row['t_frad'] * 250 * 1.07 . '</td>';
+                                                echo "</tr>";
                                             }
                                         }
+                                        else
+                                        {
+                                            echo "<tr>";
+                                                    echo '<th scope="row" class="kanit">Thai Kid</th>';
+                                                    echo '<td class="text-center">' . 0 . '</td>';
+                                                    echo '<td class="text-center">' . 0 . '</td>';
+                                                echo "</tr>";
+
+                                                echo "<tr>";
+                                                    echo '<th scope="row" class="kanit">Thai Adult</th>';
+                                                    echo '<td class="text-center">' . 0 . '</td>';
+                                                    echo '<td class="text-center">' . 0 . '</td>';
+                                                echo "</tr>";
+
+                                                echo "<tr>";
+                                                    echo '<th scope="row" class="kanit">Foreigner Kid</th>';
+                                                    echo '<td class="text-center">' . 0 . '</td>';
+                                                    echo '<td class="text-center">' . 0 . '</td>';
+                                                echo "</tr>";
+
+                                                echo "<tr>";
+                                                    echo '<th scope="row" class="kanit">Foreigner Adult</th>';
+                                                    echo '<td class="text-center">' . 0 . '</td>';
+                                                    echo '<td class="text-center">' . 0 . '</td>';
+                                                echo "</tr>";
+                                        }
+                                        // $i = 1;
+                                        // if ($check_row > 0) {
+                                        //     while ($row = mysqli_fetch_assoc($result)) {
+
+
+                                        //         if ($i == 1) {
+                                        //             echo "<tr>";
+                                        //             echo '<th scope="row" class="kanit">เด็กชาวไทย</th>';
+                                        //             echo '<td class="text-center">' . $row['countType'] . '</td>';
+                                        //             echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
+                                        //             echo "</tr>";
+                                        //             $i++;
+                                        //         } else if ($i == 2) {
+                                        //             echo "<tr>";
+                                        //             echo '<th scope="row" class="kanit">ผู้ใหญ่ชาวไทย</th>';
+                                        //             echo '<td class="text-center">' . $row['countType'] . '</td>';
+                                        //             echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
+                                        //             echo "</tr>";
+                                        //             $i++;
+                                        //         } else if ($i == 3) {
+                                        //             echo "<tr>";
+                                        //             echo '<th scope="row" class="kanit">เด็กชาวต่างชาติ</th>';
+                                        //             echo '<td class="text-center">' . $row['countType'] . '</td>';
+                                        //             echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
+                                        //             $i++;
+                                        //             echo "</tr>";
+                                        //         } else if ($i == 4) {
+                                        //             echo "<tr>";
+                                        //             echo '<th scope="row" class="kanit">ผู้ใหญ่ชาวต่างชาติ</th>';
+                                        //             echo '<td class="text-center">' . $row['countType'] . '</td>';
+                                        //             echo '<td class="text-center">' . $row['countType'] * $row['price'] * 1.07 . '</td>';
+                                        //             echo "</tr>";
+                                        //             $i = 1;
+                                        //         }
+                                        //     }
+                                        // }
                                         ?>
                                     </tbody>
                                 </table>
