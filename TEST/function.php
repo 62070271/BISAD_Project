@@ -71,7 +71,7 @@
         $_SESSION['email'] = $email;
         $_SESSION['user_name'] = $f_name . ' ' . $l_name;
         $_SESSION['user_image'] = $user_imgdf;
-
+        $_SESSION['user_type'] = $type;
         header("Location: index.php?status=loggedIn");
       }
       else{

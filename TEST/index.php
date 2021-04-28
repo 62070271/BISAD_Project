@@ -103,6 +103,14 @@
             $user_name = $_SESSION['user_name'];
             $user_image = $_SESSION['user_image'];
         }
+
+        if (isset($_GET['msg']))
+        {
+            if ($_GET['msg'] == 'yourSlipHasBeenUpLoad')
+            {
+                echo "<script>" . "alert('Your Slip Has Been Up Load. :)')" . "</script>";
+            }
+        }
         ?>
 
         <!-- Nav Bar -->
