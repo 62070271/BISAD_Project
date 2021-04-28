@@ -76,7 +76,7 @@
                 <div class="card mx-auto" style="width: 25rem;">
                     <img src="user_images\user_default.png" class="card-img-top w-50 mx-auto pt-5 pb-2">
                     <div class="card-body px-4">
-                        <h2 class="card-title rammeto ptlightgreen">Sign Up</h2>
+                        <h2 class="card-title rammeto ptyellow">Sign Up</h2>
                         <div>
                             <form action="reg_back.php" method="POST" name="reg" onsubmit="return validateForm()">
                                 <br>
@@ -113,7 +113,7 @@
                                 </div>
                                 <br><br>
                                 <div class="d-grid gap-2 pb-4">
-                                    <button class="btn btn btn-warning rammeto" type="submit" name="submit">Sign Up!</button>
+                                    <button class="btn btn btn-primary rammeto" type="submit" name="submit">Sign Up!</button>
                                 </div>
                                 <div class="pb-3">
                                     <a href="logIn_front.php">Log In</a>

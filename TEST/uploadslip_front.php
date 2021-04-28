@@ -17,6 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
+    
+    
     <style>
         body {
             background-image: url('https://images.pexels.com/photos/1633746/pexels-photo-1633746.jpeg?cs=srgb&dl=pexels-bezalel-thilojan-1633746.jpg&fm=jpg');
@@ -35,28 +37,59 @@
 </head>
 
 <body>
-    <nav class="navbar mb-3" style="background-color: #395902;">
-        <div class="container-fluid">
-            <a class="navbar-brand text-light" href="#">
-                <img src="images\20210413885810631.jpg" alt="" width=" 30" height="24" class="d-inline-block align-text-top">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+        <div class="container">
+            <a class="navbar-brand rammeto" href="index.php">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
                 ZOO
             </a>
+            <?php
+            if (isset($_SESSION['email'])) {
+            ?>
+                <!-- dropdown -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
+                        <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
+                    </ul>
+                </div>
+            <?php
+            } else if (!isset($_SESSION['email'])) {
+            ?>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
+                        </li>
+                    </ul>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </nav>
     <div class="container py-5">
         <div class="row">
             <div class="col-md-12">
                 <h1 class="text-center rammeto" style="color: #fbb03b;">UPLOAD PAYMENT</h1>
-                <div class="card mx-auto text-white" style="width: 18rem; background-color: #395902;">
+                <div class="card mx-auto" style="width: 18rem;">
                     <img class="card-img-top w-75 mx-auto mt-3" id="previewImg" src="https://workwiththebest.intraway.com/wp-content/uploads/sites/4/2016/10/upload-1118929_960_720.png">
                     <div class="card-body">
                         <h5 class="card-title text-center rammeto">Upload Your Picture</h5>
                         <hr>
                         <form action="uploadslip_back.php" method="post" enctype="multipart/form-data">
                             <p>Select image to upload:</p>
-                            <input onchange="previewFile(this)" type="file" name="pic" id="pic" require accept="image/*" required><br><br>
+                            <input class="form-control" onchange="previewFile(this)" type="file" name="pic" id="pic" require accept="image/*" required><br><br>
                             <div class="text-center rammeto">
-                                <button onclick="changepic()" class="btn text-light btn-right" type="submit" value="Upload" name="submit" style="background-color: #fbb03b;">Submit Upload</button>
+                                <button onclick="changepic()" class="btn btn-primary text-light btn-right" type="submit" value="Upload" name="submit">Submit Upload</button>
                             </div>
                         </form>
                     </div>

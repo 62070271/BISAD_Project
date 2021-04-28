@@ -8,13 +8,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="main_css.css">
+    <!-- jquery for preview image -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Font Kanit -->
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
+
     <title>Edit Profile Test</title>
     <style>
         .homepage_name {
             font-family: 'Rammetto One', cursive;
+        }
+
+        body {
+            background-image: url('https://ae01.alicdn.com/kf/HTB1ttqNbv5TBuNjSspmq6yDRVXa0/Home-decoration-deer-antler-white-wild-life-animal-black-background-Silk-Fabric-Poster-Print-DW335.jpg');
+            background-repeat: no-repeat;
+            /* background-position: center; */
+            background-size: 120% 120%;
+            background-attachment: fixed;
+            background-position-x: -40vh;
+            background-position-y: -20vh;
         }
     </style>
     <?php
@@ -112,33 +128,49 @@
             <div class='col-6'>
                 <div class="card p-4 mx-auto" style="width: 80%">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Edit Your Profile</h3>
-                        
+                        <h3 class="card-title text-center rammeto ptyellow">Edit Your Profile</h3>
+
                         <form action='' method='POST' onsubmit='' name='edit' enctype='multipart/form-data'>
 
-                            <img class="mt-4" src="user_images/<?php echo $img ?>" width='200' name='pic' height='200' style='margin-left: auto; display: block; margin-right: auto; border-radius: 50%;'>
+                            <img class="mt-4" id="previewImg" src="user_images/<?php echo $img ?>" width='200' name='pic' height='200' style='margin-left: auto; display: block; margin-right: auto; border-radius: 50%;'>
                             <br><br>
-                            
+
                             <label class="form-label">Upload Profile Picture: </label><br>
                             <input class="form-control" type="file" name="user_img" require accept="image/*">
-                            <input class="form-control" type='text' name='user_currentimg' value='<?php echo $img ?>' style='display:none;'>
+                            <input onchange="previewFile(this)" type="file" class="form-control" type='text' name='user_currentimg' value='<?php echo $img ?>' style='display:none;'>
                             <br>
+                            
+                            <!-- เดี๋ยวมาแก้ต่อยังอ่านรูปมาโชว์หลังจากเลือกไฟล์ไม่ได้ -->
+                            <script>
+                                function previewFile(input) {
+                                    var file = $("input[type=file]").get(0).files[0];
 
+                                    if (file) {
+                                        var reader = new FileReader();
+
+                                        reader.onload = function() {
+                                            $("#previewImg").attr("src", reader.result);
+                                        }
+
+                                        reader.readAsDataURL(file);
+                                    }
+                                }
+                            </script>
 
                             <label class="form-label">First Name: </label><br>
-                            <input class="form-control" type='text' name='fname' value='<?php echo $fname?>'>
+                            <input class="form-control" type='text' name='fname' value='<?php echo $fname ?>'>
                             <br>
 
                             <label class="form-label">Last Name: </label><br>
-                            <input class="form-control" type='text' name='lname' value='<?php echo $lname?>'>
+                            <input class="form-control" type='text' name='lname' value='<?php echo $lname ?>'>
                             <br>
-                            <label class="text-center mb-1 form-label">Year Of Birth:&nbsp<?php echo $year?></label><br><br>
+                            <label class="text-center mb-1 form-label">Year Of Birth:&nbsp<?php echo $year ?></label><br><br>
                             <label class="form-label">Telephone Number: </label><br>
-                            <input class="form-control" type='text' name='tel' value='<?php echo $tel?>'>
+                            <input class="form-control" type='text' name='tel' value='<?php echo $tel ?>'>
                             <br>
 
                             <label class="form-label">E-mail: </label><br>
-                            <input class="form-control" type='text' name='mail' value='<?php echo $mail?>' disabled>
+                            <input class="form-control" type='text' name='mail' value='<?php echo $mail ?>' disabled>
                             <br>
 
                             <label class="form-label">New Password: </label><br>
@@ -148,10 +180,8 @@
                             <input class="form-control" type='password' name='pass2'>
                             <br>
                             <div class="row">
-                                <div class="col-9">
-                                </div>
-                                <div class='col-3'>
-                                    <button class="btn btn-success"  type="submit" name='submit' style="margin-left: 30px;">Save</button>
+                                <div class="col-sm-12 d-flex justify-content-center align-items-center">
+                                    <button class="btn btn-primary rammeto px-3" type="submit" name='submit'>Save</button>
                                 </div>
                             </div>
                         </form>
@@ -162,7 +192,7 @@
             </div>
             <div class="col-3"></div>
         </div>
-        
+
     </div>
     </div>
     <?php
@@ -320,6 +350,7 @@
         }
     }
     ?>
+
 </body>
 <footer class="text-center text-lg-start text-light mt-5" style="background-color: #395902;">
     <!-- Grid container -->
