@@ -232,7 +232,7 @@
 
 
 
-      $insert = "INSERT INTO SUMMARY_ACCOUNT (confirm_id, income, date_booking, count_of_sale_ticket, count_thai_kid_ticket, count_thai_adult_ticket, count_forenign_kid_ticket, count_forenign_adult_ticket)
+      $insert = "INSERT INTO SUMMARY_ACCOUNT (confirm_id, income, date_booking, count_of_sale_ticket, count_thai_kid_ticket, count_thai_adult_ticket, count_foreigner_kid_ticket, count_foreigner_adult_ticket)
                   VALUES ('$confirm_id', '$income', '$booking_date', '$t_quantity', ' $quantity_th_kid', '$quantity_th_ad', '$quantity_fk_kid', '$quantity_fk_ad');";
       $result3 = mysqli_query($db_con, $insert) or die("Error in query: $insert " . mysqli_error($db_con));
 

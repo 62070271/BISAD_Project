@@ -31,9 +31,12 @@ include('dbserver.php');
 
             $sql = "INSERT INTO SLIP_OF_PAYMENT (picture, time_stamp, order_id)
                     VALUES ('$newName', '$date', '$soderid')";
-            $up_tk_st = "UPDATE ORDERS SET status='In_progress' WHERE order_id=$soderid";
 
-            $result = mysqli_query($db_con, $sql, $up_tk_st) or die ("Error in query: $sql " . mysqli_error($db_con));
+
+            $result = mysqli_query($db_con, $sql) or die ("Error in query: $sql " . mysqli_error($db_con));
+
+            $up_tk_st = "UPDATE ORDERS SET status='In_progress' WHERE order_id=$soderid";
+            $result2 = mysqli_query($db_con, $up_tk_st) or die ("Error in query: $sql " . mysqli_error($db_con));
 
             mysqli_close($db_con);
         }
