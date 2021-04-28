@@ -74,11 +74,19 @@
     date_default_timezone_set('Asia/Bangkok');
     $date = date("Y-m-d");
     $current_year = date("Y");
+
     // echo $date;
-    if (isset($_GET['month']) && isset($_GET['date'])) {
+    if (isset($_GET['month']) && isset($_GET['date'])) 
+    {
         $date = $current_year . "-" . $_GET['month'] . "-" . $_GET['date'];
     }
-    $sql = "SELECT SUM(total_quantity) AS totalQuantity, SUM(total_price_and_vat) AS totalPrice, booking_date FROM ORDERS GROUP BY booking_date HAVING booking_date LIKE '$date';";
+
+    $sql = "SELECT SUM(total_quantity) AS totalQuantity, SUM(total_price_and_vat) AS totalPrice, booking_date 
+            FROM ORDERS 
+            GROUP BY booking_date 
+            HAVING booking_date 
+            LIKE '$date';
+            ";
     $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     $row = mysqli_fetch_assoc($result);
     $check_row1 = mysqli_num_rows($result);
@@ -232,14 +240,14 @@
                                     <tbody>
                                         <?php
                                         $sql = "SELECT T.ticket_id, SUM(OT.quantity) AS countType, T.type, O.booking_date, T.price
-                                                    FROM ORDERS AS O
-                                                    INNER JOIN ORDER_TICKET AS OT
-                                                    USING (order_id)
-                                                    INNER JOIN TICKET AS T
-                                                    USING (ticket_id)
-                                                    GROUP BY T.ticket_id, O.booking_date
-                                                    HAVING O.booking_date LIKE '$date'
-                                                    ORDER BY T.ticket_id, O.booking_date
+                                                FROM ORDERS AS O
+                                                INNER JOIN ORDER_TICKET AS OT
+                                                USING (order_id)
+                                                INNER JOIN TICKET AS T
+                                                USING (ticket_id)
+                                                GROUP BY T.ticket_id, O.booking_date
+                                                HAVING O.booking_date LIKE '$date'
+                                                ORDER BY T.ticket_id, O.booking_date
                                             ";
 
                                         $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
