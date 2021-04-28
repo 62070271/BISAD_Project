@@ -4,7 +4,7 @@ include('dbserver.php');
     if (isset($_POST['submit'])){
         $upload = $_FILES['pic']['name'];
 
-        if ($_POST['order_id']){
+        if (isset($_POST['order_id'])){
             $soderid = $_POST['order_id'];
         }
         else{
