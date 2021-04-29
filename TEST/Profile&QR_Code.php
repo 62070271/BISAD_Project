@@ -1,3 +1,20 @@
+<?php
+
+include('dbserver.php');
+require_once('function.php');
+
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("Location: logIn_front.php");
+}
+// แก้ไข Status เป็น Fail
+if (isset($_POST['cp'])) {
+    $order_id_set_status = $_POST['order_id'];
+    $set_status_fail = "UPDATE ORDERS SET status='Fail' WHERE order_id=$order_id_set_status";
+    $result2 = mysqli_query($db_con, $set_status_fail) or die("Error in query: $sql " . mysqli_error($db_con));
+    header("refresh: 0");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,20 +35,11 @@
 
     <link rel="stylesheet" href="main_css.css">
 
-    <?php
 
-    include('dbserver.php');
-    require_once('function.php');
-
-    session_start();
-    if (!isset($_SESSION['email'])) {
-        header("Location: logIn_front.php");
-    }
-    ?>
     <style>
         .text-profile {
             display: block;
-            width: 77%;
+            width: 90%;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -157,7 +165,6 @@
                             $qr_code = $row['qr_code'];
                         }
                     }
-
             ?>
                     <div class="col-md-4">
                         <div class="card mt-3 mb-3" style="height: 12rem;">
@@ -176,12 +183,9 @@
                                     <?php
                                     }
                                     ?>
-
                                 </div>
                                 <div class="col-6" style="height: 176px;">
                                     <div class="card-body">
-                                        <!-- <div class="row">
-                                            <div class="col"> -->
                                         <h5 class="card-title">Order ID: <?php echo $order_id ?></h5>
                                         <p class="card-text">
                                             Booking date:
@@ -189,10 +193,6 @@
                                             <?php echo "$booking_date" ?><br>
                                             Status: <?php echo "$status" ?>
                                         </p>
-                                        <!-- </div>
-                                        </div> -->
-                                        <!-- <div class="row">
-                                            <div class="col"> -->
                                         <?php if ($status == "Unpaid") { ?>
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <button type='button' class='btn btn-warning ' data-bs-toggle='modal' data-bs-target='#QR_Modal_<?= $order_id ?>'>
@@ -239,7 +239,6 @@
                                                                                     <td><?php echo "$ticket_type" ?></td>
                                                                                     <td class="text-center"><?php echo "$ticket_quantity" ?> </td>
                                                                                     <td class="text-center"><?php echo "$ticket_quantity_price" ?> </td>
-
                                                                                 </tr>
                                                                             <?php
                                                                             }
@@ -256,7 +255,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer <div d-flex justify-content-center align-items-center">
-                                                            <button type="button" class="btn btn-danger">Cancle Purchase</button>
+                                                            <!-- ส่งค่าไปแก้ไข Status เป็น Fail -->
+                                                            <form action="Profile&QR_Code.php" method="POST">
+                                                                <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
+                                                                <button name="cp" type='submit' class="btn btn-danger">Cancle Purchase</button>
+                                                            </form>
+
+                                                            <!-- ส่งค่าไปยังหน้า Upload Slip -->
                                                             <form action="uploadslip_back.php" method="POST">
                                                                 <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
                                                                 <button name="cf" type='submit' class='btn btn-primary'>Confirm Purchase</button>
@@ -265,8 +270,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         <?php } elseif ($status == "In_progress") { ?>
                                             <p class='text-primary text-center' style='vertical-align: middle;'>Please Wait</p>
                                         <?php } elseif ($status == "Fail") { ?>
@@ -328,10 +331,7 @@
                                                 </div>
                                             </div>
                                         <?php }
-
                                         ?>
-
-
                                     </div>
                                 </div>
 
@@ -340,7 +340,6 @@
                     </div>
                 <?php
                 }
-                echo $order_id;
             } else { ?>
                 <hr>
                 <h5 class="mt-3" style='text-align:center;' mb-3>ไม่พบประวัติการสั่งซื้อ QR Code</h5>
@@ -359,7 +358,6 @@
             <!--Grid column-->
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
                 <h5 class="text-uppercase">Footer Content</h5>
-
                 <p>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
                     molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
@@ -367,7 +365,6 @@
                 </p>
             </div>
             <!--Grid column-->
-
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                 <h5 class="text-uppercase">Links</h5>
@@ -385,7 +382,6 @@
                 </ul>
             </div>
             <!--Grid column-->
-
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                 <h5 class="text-uppercase mb-0">ติดต่อเรา</h5>
@@ -418,7 +414,6 @@
         <!--Grid row-->
     </div>
     <!-- Grid container -->
-
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: #284001;">
         © 2020 Copyright:

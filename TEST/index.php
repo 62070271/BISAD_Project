@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="Datepicka_Fong.S.W/lib/themes/classic.date.css">
     <link rel="stylesheet" href="Datepicka_Fong.S.W/lib/themes/classic.time.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    
+
     <!-- Font Kanit -->
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
@@ -25,7 +25,6 @@
     <!-- CSS Style -->
     <link rel="stylesheet" href="main_css.css">
     <style>
-        
         .box-input-type-card {
             display: flex;
             flex-flow: row wrap;
@@ -100,10 +99,8 @@
             $user_image = $_SESSION['user_image'];
         }
 
-        if (isset($_GET['msg']))
-        {
-            if ($_GET['msg'] == 'yourSlipHasBeenUpLoad')
-            {
+        if (isset($_GET['msg'])) {
+            if ($_GET['msg'] == 'yourSlipHasBeenUpLoad') {
                 echo "<script>" . "alert('Your Slip Has Been Up Load. :)')" . "</script>";
             }
         }
@@ -121,7 +118,7 @@
                 ?>
                     <!-- dropdown -->
                     <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
+                        <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>&nbsp<?php echo $_SESSION['user_name']; ?></a>
                         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
                             <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
@@ -447,10 +444,10 @@
                 <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                สวนสัตว์คนพันธุ์เสือ เปิดให้บริการ เมื่อวันที่ 11 มกราคม 2564 หนึ่งในสวนสัตว์ชั้นนำทั่วโลกและเป็นสวนสัตว์บริการสาธารณะ 
-                โดยสถานที่เริ่มต้นโดยเริ่มเปิดเป็นสวนสัตว์เล็กๆ โดยมีเพื่อนร่วมงานมาช่วยดูแลเนื่องจากการสะสมสัตว์ชนิดต่างๆของ
-                นาย ปณัย เกตุแก้ว จนสามารถจัดเป็นสวนสัตว์เอกชนขึ้นได้ และเนื่องด้วยความรักเมตตาต่อสัตว์เป็นพื้นฐาน 
-                และเพื่อศึกษานิสัยอากัปกิริยาต่างๆของสัตว์ชนิดต่างๆ อย่างใกล้ชิดด้วยเพื่อประโยชน์ในการประกอบอาชีพเป็นอาสาสมัครสอนการยังชีพในป่า ซึ่งต้องผจญกับสัตว์ป่านานาชนิดเสมอ
+                    สวนสัตว์คนพันธุ์เสือ เปิดให้บริการ เมื่อวันที่ 11 มกราคม 2564 หนึ่งในสวนสัตว์ชั้นนำทั่วโลกและเป็นสวนสัตว์บริการสาธารณะ
+                    โดยสถานที่เริ่มต้นโดยเริ่มเปิดเป็นสวนสัตว์เล็กๆ โดยมีเพื่อนร่วมงานมาช่วยดูแลเนื่องจากการสะสมสัตว์ชนิดต่างๆของ
+                    นาย ปณัย เกตุแก้ว จนสามารถจัดเป็นสวนสัตว์เอกชนขึ้นได้ และเนื่องด้วยความรักเมตตาต่อสัตว์เป็นพื้นฐาน
+                    และเพื่อศึกษานิสัยอากัปกิริยาต่างๆของสัตว์ชนิดต่างๆ อย่างใกล้ชิดด้วยเพื่อประโยชน์ในการประกอบอาชีพเป็นอาสาสมัครสอนการยังชีพในป่า ซึ่งต้องผจญกับสัตว์ป่านานาชนิดเสมอ
                 </p>
             </div>
             <!--Grid column-->
