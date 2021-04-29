@@ -12,6 +12,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <!-- Font Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+    <!-- Font Rammetto -->
+    <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main_css.css">
     <?php
 
     include('dbserver.php');
@@ -98,7 +103,7 @@
             <div class="container">
                 <a class="navbar-brand" href="index.php?status=loggedIn">
                     <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
-                    ZOO
+                    <span class="rammeto">ZOO</span>
                 </a>
                 <?php
                 if (isset($_SESSION['email'])) {
@@ -117,7 +122,6 @@
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
                         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
                             <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -156,7 +160,7 @@
         ?>
         <div class="row mb-5" style="min-height: 750px;">
             <div class="col">
-                <h2 class="text-center my-4" style="color:#395902;">Prove Statement</h2>
+                <h2 class="text-center my-4 rammeto ptyellow">Prove Statement</h2>
 
                 <table class="table table table-striped table-hover mb-5" style="z-index: 1; border-radius: 25px;">
 
@@ -316,26 +320,27 @@
 
 
 </body>
-<footer class="text-center text-lg-start text-light" style="background-color: #395902;">
+<!-- Footer -->
+<footer class="text-center text-lg-start text-light mt-5" style="background-color: #395902;">
     <!-- Grid container -->
     <div class="container p-4">
         <!--Grid row-->
         <div class="row">
             <!--Grid column-->
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Footer Content</h5>
+                <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                    voluptatem veniam, est atque cumque eum delectus sint!
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
             <!--Grid column-->
 
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-uppercase">ข้อมูลเพิ่มเติม</h5>
 
                 <ul class="list-unstyled mb-0">
                     <li>
@@ -386,10 +391,10 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: #284001;">
-        © 2020 Copyright:
+        © 2021 Copyright:
         <a class="text-light" href="#!">คนพันธุ์เสือ</a>
     </div>
     <!-- Copyright -->
 </footer>
-
+<!-- Footer -->
 </html>

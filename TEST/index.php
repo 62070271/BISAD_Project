@@ -399,13 +399,14 @@
             var $input = $('.datepicker').pickadate({
                 format: 'yyyy-mm-dd',
                 // An integer (positive/negative) sets it relative to today.
-                min: 0,
+                min: 1,
                 // `true` sets it to today. `false` removes any limits.
                 // max: 15
                 inline: true,
                 sideBySide: true,
                 closeOnSelect: false,
                 closeOnClear: false,
+                today: ''
                 // close: false
             });
             var picker = $input.pickadate('picker');
@@ -441,17 +442,16 @@
                 <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    สวนสัตว์คนพันธุ์เสือ เปิดให้บริการ เมื่อวันที่ 11 มกราคม 2564 หนึ่งในสวนสัตว์ชั้นนำทั่วโลกและเป็นสวนสัตว์บริการสาธารณะ
-                    โดยสถานที่เริ่มต้นโดยเริ่มเปิดเป็นสวนสัตว์เล็กๆ โดยมีเพื่อนร่วมงานมาช่วยดูแลเนื่องจากการสะสมสัตว์ชนิดต่างๆของ
-                    นาย ปณัย เกตุแก้ว จนสามารถจัดเป็นสวนสัตว์เอกชนขึ้นได้ และเนื่องด้วยความรักเมตตาต่อสัตว์เป็นพื้นฐาน
-                    และเพื่อศึกษานิสัยอากัปกิริยาต่างๆของสัตว์ชนิดต่างๆ อย่างใกล้ชิดด้วยเพื่อประโยชน์ในการประกอบอาชีพเป็นอาสาสมัครสอนการยังชีพในป่า ซึ่งต้องผจญกับสัตว์ป่านานาชนิดเสมอ
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
             <!--Grid column-->
 
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-uppercase">ข้อมูลเพิ่มเติม</h5>
 
                 <ul class="list-unstyled mb-0">
                     <li>
@@ -502,7 +502,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: #284001;">
-        © 2020 Copyright:
+        © 2021 Copyright:
         <a class="text-light" href="#!">คนพันธุ์เสือ</a>
     </div>
     <!-- Copyright -->
