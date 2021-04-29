@@ -136,11 +136,11 @@
                             <br><br>
 
                             <label class="form-label">Upload Profile Picture: </label><br>
-                            <input class="form-control" type="file" name="user_img" require accept="image/*">
-                            <input onchange="previewFile(this)" type="file" class="form-control" type='text' name='user_currentimg' value='<?php echo $img ?>' style='display:none;'>
+                            <input onchange="previewFile(this)" class="form-control" type="file" name="user_img" require accept="image/*">
+                            <input type="file" class="form-control" type='text' name='user_currentimg' value='<?php echo $img ?>' style='display:none;'>
                             <br>
                             
-                            <!-- เดี๋ยวมาแก้ต่อยังอ่านรูปมาโชว์หลังจากเลือกไฟล์ไม่ได้ -->
+                            <!-- Preview image before submit -->
                             <script>
                                 function previewFile(input) {
                                     var file = $("input[type=file]").get(0).files[0];
