@@ -251,20 +251,22 @@
                     }
                 
                 }
-            } elseif ($status == 'ConfirmDeny') {
-                $slip_id = $_GET['slipID'];
-                $order_id = $_GET['orderID'];
-
-                $sql1 = "UPDATE SLIP_OF_PAYMENT SET is_check='1' WHERE slip_id='$slip_id'";
-                $result = mysqli_query($db_con, $sql1) or die("Error in query: $sql1 " . mysqli_error($db_con));
-
-                $sql2 = "UPDATE ORDERS SET status='Fail' WHERE order_id='$order_id';";
-                $result2 = mysqli_query($db_con, $sql2) or die("Error in query: $sql2 " . mysqli_error($db_con));
-
-                if ($result && $result2) {
-                    header("Location: prove.php?DenySuccess.");
+                elseif ($status == 'ConfirmDeny') 
+                {
+                    $slip_id = $_GET['slipID'];
+                    $order_id = $_GET['orderID'];
+    
+                    $sql1 = "UPDATE SLIP_OF_PAYMENT SET is_check='1' WHERE slip_id='$slip_id'";
+                    $result = mysqli_query($db_con, $sql1) or die("Error in query: $sql1 " . mysqli_error($db_con));
+    
+                    $sql2 = "UPDATE ORDERS SET status='Fail' WHERE order_id='$order_id';";
+                    $result2 = mysqli_query($db_con, $sql2) or die("Error in query: $sql2 " . mysqli_error($db_con));
+    
+                    if ($result && $result2) {
+                        header("Location: prove.php?DenySuccess.");
+                    }
                 }
-            }
+            } 
     
         ?>
 

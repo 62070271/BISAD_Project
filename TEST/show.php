@@ -21,12 +21,16 @@
     
     ob_start();
     // session_start();
+    date_default_timezone_set('Asia/Bangkok');
+    // $date = date("Y-m-d");
+    $date = '2021-04-29';
 
     // FIND latest confirm_id
-    $sql = "SELECT date_booking, SUM(income) AS income, SUM(count_of_sale_ticket) AS t_ticket, SUM(count_thai_kid_ticket) AS t_thkid, SUM(count_thai_adult_ticket) AS t_thad, SUM(count_foreigner_kid_ticket) AS t_frkid, SUM(count_foreigner_adult_ticket) AS t_frad
-            FROM SUMMARY_ACCOUNT AS SA
-            GROUP BY date_booking
-            HAVING date_booking LIKE '2021-05-01'
+    $sql = "SELECT SP.time_stamp AS Upload_date, O.booking_date AS Booking_date, O.status AS status, SP.slip_id AS slip_id, O.order_id AS order_id
+            FROM SLIP_OF_PAYMENT AS SP
+            RIGHT JOIN ORDERS AS O
+            USING (order_id) 
+            WHERE SP.time_stamp >= O.booking_date OR (SP.time_stamp IS NULL AND O.booking_date = '$date')
             ";
 
             $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
@@ -49,12 +53,11 @@
                     // echo "summary_id: " . $row['summary_id'] . "<br>";
                     // echo "confirm_id" . $row['confirm_id'] . "<br>";
                     // echo "date_booking" . $row['date_booking'] . "<br>";
-                    echo "income: " . $row['income'] . "<br>";
-                    echo "all_ticket: " . $row['t_ticket'] . "<br>";
-                    echo "th_kid: " . $row['t_thkid'] . "<br>";
-                    echo "th_adult: " . $row['t_thad'] . "<br>";
-                    echo "fr_kid: " . $row['t_frkid'] . "<br>";
-                    echo "fr_adult: " . $row['t_frad']. "<br>";
+                    echo "order_id: " . $row['order_id'] . "<br>";
+                    echo "slip_id: " . $row['slip_id'] . "<br>";
+                    echo "Upload_date: " . $row['Upload_date'] . "<br>";
+                    echo "Booking_date: " . $row['Booking_date'] . "<br>";
+                    echo "status: " . $row['status'] . "<br>";
                     echo "<br><br><br>";
                 }
             }
