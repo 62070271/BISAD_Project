@@ -402,13 +402,14 @@
             var $input = $('.datepicker').pickadate({
                 format: 'yyyy-mm-dd',
                 // An integer (positive/negative) sets it relative to today.
-                min: 0,
+                min: 1,
                 // `true` sets it to today. `false` removes any limits.
                 // max: 15
                 inline: true,
                 sideBySide: true,
                 closeOnSelect: false,
                 closeOnClear: false,
+                today: ''
                 // close: false
             });
             var picker = $input.pickadate('picker');
