@@ -26,10 +26,9 @@
     session_start();
 
     // UPDATE ORDER STATUS BY DATE (IN FUNCTION FILE).
-    update_order_status($db_con);
+    auto_update_order_stutus($db_con);
 
     $sql = "SELECT *
-<<<<<<< Updated upstream
                 FROM CONFIRM_SLIP AS CS
                 RIGHT OUTER JOIN SLIP_OF_PAYMENT AS SP
                 ON CS.slip_id = SP.slip_id
@@ -39,17 +38,6 @@
                 AND SP.is_check <> '1'
                 AND O.status <> 'Fail';
                 ";
-=======
-            FROM CONFIRM_SLIP AS CS
-            RIGHT OUTER JOIN SLIP_OF_PAYMENT AS SP
-            ON CS.slip_id = SP.slip_id
-            INNER JOIN ORDERS AS O
-            ON O.order_id = SP.order_id
-            WHERE CS.slip_id IS NULL
-            AND SP.is_check <> '1'
-            AND O.status <> 'Fail';
-            ";
->>>>>>> Stashed changes
 
     $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     $check_row = mysqli_num_rows($result);
@@ -93,7 +81,6 @@
             margin-left: 40px;
         } */
 
-<<<<<<< Updated upstream
         .container_table {
             width: 1200px;
             height: 700px;
@@ -103,26 +90,6 @@
             position: sticky;
             top:0;
         }
-=======
-        /* .header {
-            position: sticky;
-            top:0;
-        }
-
-        .contain_table {
-            width: 1200px;
-            height: 750px;
-            overflow: auto;
-        }
-
-        .sticky-top{
-            z-index: 3;
-        }
-
-        .t_body {
-            z-index: 1;
-        } */
->>>>>>> Stashed changes
     </style>
 </head>
 
@@ -159,10 +126,10 @@
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item" class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only">(current)</span></a>
+                                <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item text-white">
-                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only">(current)</span></a>
+                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only"></span></a>
                             </li>
                         </ul>
                     </div>
@@ -206,14 +173,13 @@
         // $QR = '<img src="https://chart.googleapis.com/chart?cht=qr&chl=Hello+World&chs=160x160&chld=L|0" class="qr-code img-thumbnail img-responsive">';
         // echo $QR;
         ?>
-<<<<<<< Updated upstream
         <div class="row mb-5" style="min-height: 750px;">
             <h2 class="text-center my-4 rammeto ptyellow">Prove Statement</h2>
             <div class="col container_table">
 
                 <table class="table table table-striped table-hover mb-5" style="z-index: 1; border-radius: 25px;">
 
-                    <thead class="text-center thead-dark" style="position: sticky;top: 0">
+                    <thead class="text-center table-dark" style="position: sticky;top: 0">
                         <!-- <tr class="py-3" style="color:#FBB03B; background-color: #395902; font-size: 15px;"> -->
                         <tr class="py-3" style="font-size: 20px;">
                             <th class="t_header" scope="col">Order ID</th>
@@ -229,32 +195,6 @@
 
 
                     <tbody class="text-center text-dark">
-=======
-        <div class="row mb-5  ">
-            <h2 class="text-center my-4" style="color:#395902;">Prove Statement</h2>
-            <div class="col contain_table">
-                
-                <table class="table table table-striped table-hover mb-5" style="z-index: 1; border-radius: 25px;">
-
-                    <div class="sticky-top">
-                        <thead class="text-center table-dark">
-                            <!-- <tr class="py-3" style="color:#FBB03B; background-color: #395902; font-size: 15px;"> -->
-                            <tr class="py-3" style="font-size: 20px;">
-                                <th class="header" scope="col">Order ID</th>
-                                <th class="header" scope="col">Customer ID</th>
-                                <th class="header" scope="col">Total price (vat 7 %)</th>
-                                <th class="header" scope="col">Booking Date</th>
-                                <th class="header" scope="col">Slip TimeStamp</th>
-                                <th class="header" scope="col">Slip of Payment</th>
-                                <th class="header" scope="col">Confirm</th>
-                                <th class="header" scope="col">Deny</th>
-                            </tr>
-                        </thead>
-                    </div>
-
-
-                    <tbody class="text-center text-dark t_body">
->>>>>>> Stashed changes
 
                         <?php
                         if ($check_row > 0) {

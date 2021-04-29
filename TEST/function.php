@@ -244,7 +244,6 @@
     }
 
 
-<<<<<<< Updated upstream
     // UPDATE ORDER STATUS BY DATE
     function auto_update_order_stutus($db_con)
     {
@@ -262,24 +261,5 @@
               WHERE SP.time_stamp >= O.booking_date OR (SP.slip_id IS NULL AND O.booking_date = '$current_date');
               ";
       mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
-=======
-    function update_order_status($db_con)
-    {
-      // UPDATE ORDER STATUS BY DATE.
-      date_default_timezone_set('Asia/Bangkok');
-      $date = date("Y-m-d");
-
-      // SET FAIL ORDER_STATUS WHEN UPLOAD SLIP IN SAME DAY BOOKING_DATE (You should upload your slip at least 1 day before the reserved date.) 
-      // AND SET FAIL ORDER_STATUS WHEN CUSTOMER HAVE ORDERS, BUT DIDN'T UPLOAD SLIP (WHEN BOOKING DATE HAS ARRIVED.)
-
-      $sql_update = "UPDATE ORDERS AS O
-              LEFT JOIN SLIP_OF_PAYMENT AS SP
-              USING (order_id)
-              SET O.status = 'Fail'
-              WHERE SP.time_stamp >= O.booking_date OR (SP.time_stamp IS NULL AND O.booking_date = '$date');
-              ";
-      $result = mysqli_query($db_con, $sql_update) or die("Error in query: $sql_update " . mysqli_error($db_con));
-      // ---
->>>>>>> Stashed changes
     }
 ?>

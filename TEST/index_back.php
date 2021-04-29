@@ -3,8 +3,6 @@ session_start();
 include('dbserver.php');
 require_once('function.php');
 
-// UPDATE ORDER STATUS BY DATE (IN FUNCTION FILE).
-update_order_status($db_con);
 
 /*payment*/
 if (isset($_POST['payment'])) {

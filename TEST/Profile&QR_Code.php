@@ -55,10 +55,6 @@ if (isset($_POST['cp'])) {
 
 <body>
     <?php
-
-    // UPDATE ORDER STATUS BY DATE (IN FUNCTION FILE).
-    update_order_status($db_con);
-
     // ใช้ session จาก Email
     $email = $_SESSION['email'];
     // Query ข้อมูล Profile จาก email 
