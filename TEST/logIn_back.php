@@ -25,6 +25,7 @@
                 $_SESSION['user_name'] = $row['first_name'] . ' ' . $row['last_name'];
                 $_SESSION['user_image'] = $row['user_image'];
                 $_SESSION['user_type'] = $row['user_type'];
+                
             }
             
             
