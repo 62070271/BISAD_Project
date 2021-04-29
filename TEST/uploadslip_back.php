@@ -1,16 +1,13 @@
 <?php
 session_start();
 include('dbserver.php');
+    if (isset($_POST['cf'])){
+        $_SESSION['order_id']=$_POST['order_id'];
+        header("Location:uploadslip_front.php");
+    }
     if (isset($_POST['submit'])){
         $upload = $_FILES['pic']['name'];
-
-        if (isset($_POST['order_id'])){
-            $soderid = $_POST['order_id'];
-        }
-        else{
-            $soderid = $_SESSION['order_id'];
-        }
-
+        $soderid = $_SESSION['order_id'];
         if($upload != "")
         {
             $path = "images/";
@@ -26,8 +23,6 @@ include('dbserver.php');
             $pathLink = 'images/' . $newName;
 
             move_uploaded_file($_FILES['pic']['tmp_name'], $pathCopy);
-
-            $tkstatus = "SELECT qrcode_status FROM QR_CODE WHERE qr_id=$accidsql";
 
             $sql = "INSERT INTO SLIP_OF_PAYMENT (picture, time_stamp, order_id)
                     VALUES ('$newName', '$date', '$soderid')";
@@ -47,4 +42,3 @@ include('dbserver.php');
 
     
     // header('Location: uploadslip_front.php');
-?>

@@ -227,47 +227,41 @@
         </script>
 
         <?php
-        
-            if (isset($_GET['status'])) 
-            {
-                $status = $_GET['status'];
-                if ($status == 'Confirm') 
-                {
+
+        if (isset($_GET['status'])) {
+            $status = $_GET['status'];
+            if ($status == 'Confirm') {
+                $slip_id = $_GET['slipID'];
+                $order_id = $_GET['orderID'];
+                $user_id = $_GET['userID'];
+
+
+                $sql1 = "UPDATE SLIP_OF_PAYMENT SET is_check='1' WHERE slip_id='$slip_id'";
+                $res1 = mysqli_query($db_con, $sql1) or die("Error in query: $sql1 " . mysqli_error($db_con));
+
+                $sql = "INSERT INTO CONFIRM_SLIP (slip_id) VALUES ('$slip_id')";
+                $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
+
+
+                if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($db_con)) {
+                    header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
+                } elseif ($status == 'ConfirmDeny') {
                     $slip_id = $_GET['slipID'];
                     $order_id = $_GET['orderID'];
-                    $user_id = $_GET['userID'];
-                   
 
-                    $sql1 = "UPDATE SLIP_OF_PAYMENT SET is_check='1' WHERE slip_id='$slip_id'";
-                    $res1 = mysqli_query($db_con, $sql1) or die("Error in query: $sql1 " . mysqli_error($db_con));
-
-                    $sql = "INSERT INTO CONFIRM_SLIP (slip_id) VALUES ('$slip_id')";
-                    $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
-
-                    
-                    if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($db_con))
-                    {
-                        header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
-                    }
-                
-                }
-                elseif ($status == 'ConfirmDeny') 
-                {
-                    $slip_id = $_GET['slipID'];
-                    $order_id = $_GET['orderID'];
-    
                     $sql1 = "UPDATE SLIP_OF_PAYMENT SET is_check='1' WHERE slip_id='$slip_id'";
                     $result = mysqli_query($db_con, $sql1) or die("Error in query: $sql1 " . mysqli_error($db_con));
-    
+
                     $sql2 = "UPDATE ORDERS SET status='Fail' WHERE order_id='$order_id';";
                     $result2 = mysqli_query($db_con, $sql2) or die("Error in query: $sql2 " . mysqli_error($db_con));
-    
+
                     if ($result && $result2) {
                         header("Location: prove.php?DenySuccess.");
                     }
                 }
-            } 
-    
+            }
+        }
+
         ?>
 
     </div>

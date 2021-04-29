@@ -200,7 +200,7 @@
 
         <div class="detail_payment pt-5">
             <?php
-            session_start();
+            // session_start();
             $_SESSION['sum_price'] = 0;
             $_SESSION['total_quantity'] = 0;
             ?>
