@@ -76,7 +76,7 @@
                                     <div class="d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary homepage_name" name="submit">Log In!</button>
                                     </div>
-                                    <div>
+                                </div>
                             </form>
                             <br>
                             <div class="d-flex justify-content-end my-2">
@@ -88,21 +88,18 @@
                     </div>
                 </div>
             </div>
-
-            <!-- </div> -->
-            <!-- <div class='col-2'></div> -->
-            <!-- </div> -->
         </div>
-        <?php
-        if (isset($_GET["error"])) {
-            if (($_GET["error"]) == "Wrongemailorpassword!") {
-                echo "<script>alert('Wrong email or password')</script>";
-            }
-            if (($_GET["error"]) == "emty_input_login") {
-                echo "<script>alert('Please input  email and password for login')</script>";
-            }
+    </div>
+    <?php
+    if (isset($_GET["error"])) {
+        if (($_GET["error"]) == "Wrongemailorpassword!") {
+            echo "<script>alert('Wrong email or password')</script>";
         }
-        ?>
+        if (($_GET["error"]) == "emty_input_login") {
+            echo "<script>alert('Please input  email and password for login')</script>";
+        }
+    }
+    ?>
 </body>
 <!-- Footer -->
 <footer class="text-center text-lg-start text-light mt-5" style="background-color: #395902;">
@@ -115,8 +112,8 @@
                 <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
-                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ
                     ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
@@ -181,4 +178,5 @@
     <!-- Copyright -->
 </footer>
 <!-- Footer -->
+
 </html>
