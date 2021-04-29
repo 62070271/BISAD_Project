@@ -74,7 +74,7 @@
             align-items: center;
         }
     </style>
-    <title>Document</title>
+    <title>Homepage</title>
 </head>
 
 <body>
@@ -90,15 +90,22 @@
         }
         if (isset($_SESSION['email'])) {
             if ($_SESSION['user_type'] == 'Financial') {
-                echo '<script>alert("yess")</script>';
                 header("Location: prove.php?status=loggedIn.php");
             }
-            // if ($_SESSION['user_type'] == 'Reception') {
-            //     echo '<script>alert("yess")</script>';
-            //     header("Location: scanner.php?status=loggedIn.php");
-            // }
+            if ($_SESSION['user_type'] == 'Reception') {
+                echo '<script>alert("yess")</script>';
+                header("Location: scanner.php?status=loggedIn.php");
+            }
             $user_name = $_SESSION['user_name'];
             $user_image = $_SESSION['user_image'];
+        }
+
+        if (isset($_GET['msg']))
+        {
+            if ($_GET['msg'] == 'yourSlipHasBeenUpLoad')
+            {
+                echo "<script>" . "alert('Your Slip Has Been Up Load. :)')" . "</script>";
+            }
         }
         ?>
 
@@ -195,7 +202,7 @@
     <div class="container" style="font-family: 'Kanit', sans-serif;">
         <div class="row" style="margin-top: 5vw">
             <div class="col" style="text-align: center;">
-                <h2 style="text-align: center;" class="homepage_name1 text-warning">เลือกวันที่ต้องการจองบัตร</h2>
+                <h2 style="text-align: center;" class="homepage_name1 text-warning rammeto ptyellow">Book Tickets</h2>
                 <!-- <h2 style="text-align: center;" class="homepage_name2 text-warning">เลือกบัตร</h2> -->
             </div>
         </div>
@@ -229,13 +236,13 @@
                 <div class="col-cnt">
                     <div class='card justify-content-md-end' style="width: 50rem; height: 12rem; margin : auto;">
                         <div class="card-body card-body-date">
-                            <h2 style="text-align: center;">Book Tickets</h2>
+                            <h2 style="text-align: center;">เลือกวันที่ต้องการจองบัตร</h2>
                             <label for="datepicker">Enter Date :</label>
                             <input class="datepicker form-control" name="date" id="date" aria-owns="date_1_root" aria-hidden='false' placeholder="pick date">
                             <div class="row">
                                 <div class="col-10">
                                 </div>
-                                <div class="col-2 pl-2"><button class="btn btn-success mt-3 flex-row-reverse" type="submit" name="pick_date">Choose</button></div>
+                                <div class="col-2 pl-2"><button class="btn btn-primary mt-3 flex-row-reverse" type="submit" name="pick_date">Choose</button></div>
                             </div>
                         </div>
                     </div>
