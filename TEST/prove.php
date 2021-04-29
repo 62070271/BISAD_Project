@@ -117,7 +117,6 @@
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
                         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
                             <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
