@@ -5,14 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test_UI.php</title>
+    <title>Profile&QR_Code</title>
     <!-- Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <!-- Sperate -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <!-- Font Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+    <!-- Font Rammetto -->
+    <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="main_css.css">
 
     <?php
+
     include('dbserver.php');
     require_once('function.php');
 
@@ -61,7 +68,7 @@
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
+            <a class="navbar-brand rammeto" href="index.php">
                 <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
                 ZOO
             </a>
@@ -72,7 +79,7 @@
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
                     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
+                        <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
                         <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -102,7 +109,7 @@
         <div class="row mb-3">
             <!-- แสดงข้อมูล Profile -->
             <div class='row mb-3 mt-4'>
-                <h2 class='text-center'>Profile</h2>
+                <h2 class='text-center rammeto'>Profile</h2>
                 <br>
             </div>
             <div class='col-md-4 col-12 text-center'>
@@ -121,7 +128,7 @@
         </div>
         <br>
         <div class="row mb-3 mt-4">
-            <h2 class='text-center'>History & QR Code</h2>
+            <h2 class='text-center rammeto'>History & QR Code</h2>
         </div>
         <?php
         // ดึงข้อมูลรายละเอียดเกี่ยวกับ Order
@@ -133,11 +140,12 @@
             <?php
             // แสดงข้อมูล order
             if ($check_row > 0) {
+                $count = 0;
                 while ($row = mysqli_fetch_assoc($result)) {
                     $order_id = $row['order_id'];
                     $booking_date = $row['booking_date'];
                     $total_quantity = $row['total_quantity'];
-                    $total_price = $row['total_price'];
+                    $total_price_and_vat = $row['total_price_and_vat'];
                     $status = $row['status'];
                     // 
                     $sql3 = "SELECT * FROM SLIP_OF_PAYMENT, CONFIRM_SLIP, QR_CODE WHERE SLIP_OF_PAYMENT.order_id = 
@@ -154,27 +162,31 @@
                     <div class="col-md-4">
                         <div class="card mt-3 mb-3" style="height: 12rem;">
                             <div class="row g-0">
-                                <div class="col text-center align-self-center">
+                                <div class="col-6 d-flex justify-content-center align-items-center" style="height: 176px;">
                                     <?php if ($status == "Unpaid") { ?>
-                                        <span class='text-center' style='vertical-align: middle;'>กรุณาอัพโหลดหลักฐานการชำระเงิน</span>
+                                        <span class='text-warning' style='vertical-align: middle;'>กรุณาชำระเงิน</span>
                                     <?php } elseif ($status == "In_progress") { ?>
-                                        <span class='text-info text-center' style='vertical-align: middle;'>รายการของท่านอยู่ในระหว่างการตรวจสอบ</span>
+                                        <span class='text-primary' style='vertical-align: middle;'>อยู่ระหว่างการตรวจสอบ</span>
                                     <?php } elseif ($status == "Complete") { ?>
-                                        <img src="qrcodes/<?php echo "$qr_code" ?> " width='190px' height='190px'>
+                                        <div class='d-flex justify-content-center align-items-center'>
+                                            <img src="qrcodes/<?php echo "$qr_code" ?> " width='160px' height='160px'>
+                                        </div>
                                     <?php } else { ?>
-                                        <span class='text-danger' style='vertical-align: middle;'>รายการของท่านถูกยกเลิกการตรวจสอบเนื่องจากพบปัญหา</span>
+                                        <span class='text-danger' style='vertical-align: middle;'>ยกเลิกการตรวจสอบ</span>
                                     <?php
                                     }
                                     ?>
 
                                 </div>
-                                <div class="col">
+                                <div class="col-6" style="height: 176px;">
                                     <div class="card-body">
                                         <!-- <div class="row">
                                             <div class="col"> -->
-                                        <h5 class="card-title">Order ID: <?php echo "$order_id" ?></h5>
+                                        <h5 class="card-title">Order ID: <?php echo $order_id ?></h5>
                                         <p class="card-text">
-                                            Booking date: <?php echo "$booking_date" ?><br>
+                                            Booking date:
+                                            <br>
+                                            <?php echo "$booking_date" ?><br>
                                             Status: <?php echo "$status" ?>
                                         </p>
                                         <!-- </div>
@@ -182,15 +194,90 @@
                                         <!-- <div class="row">
                                             <div class="col"> -->
                                         <?php if ($status == "Unpaid") { ?>
-                                            <a type='button' class='btn btn-warning' href='uploadslip_front.php'><span style="font-size:smaller;">Upload Payment</span></a>
-                                        <?php } elseif ($status == "In_progress") { ?>
-                                            <p class='text-info text-center' style='vertical-align: middle;'>อยู่ระหว่างการตรวจสอบ</p>
-                                        <?php } elseif ($status == "Fail") { ?>
-                                            <span class='text-danger text-center' style='vertical-align: middle;'>ยกเลิกการตรวจสอบ</span>
-                                        <?php } elseif ($status == "Complete") { ?>
-                                            <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#QR_Modal'>View QR Code</button>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <button type='button' class='btn btn-warning ' data-bs-toggle='modal' data-bs-target='#QR_Modal_<?= $order_id ?>'>
+                                                    <span>Purchase</span>
+                                                </button><br>
+                                            </div>
                                             <!-- QR Modal -->
-                                            <div class="modal fade" id="QR_Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="QR_Modal_<?= $order_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content ">
+                                                        <div class="modal-header ">
+                                                            <h5 class="modal-title " id="exampleModalLabel">Order ID: <?php echo $order_id ?></h5><br>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4 class="text-center">Confirm Purchase</h4>
+                                                            <div class="text-center">
+                                                                <img class=" mb-2" src='qrcodes/<?php echo $qr_code ?>' width='250px' height='250px' alt=''>
+                                                            </div>
+                                                            <h6 class="text-center">ธนาคาร: xxxxxxxx</h6>
+                                                            <h6 class="text-center">เลขที่บัญชี: xxx-xxxxxx-x</h6>
+                                                            <h6 class="text-center">สวนสัตว์คนพันธุ์เสือ</h6>
+                                                            <div class='modal-body'>
+                                                                <div class="table-responsive">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="w-33 text-center" scope="col">Ticket</th>
+                                                                                <th class="w-33 text-center" scope="col">Quantity</th>
+                                                                                <th class="w-33 text-center" scope="col">Price</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <?php
+                                                                            $q_ticket = "SELECT * FROM ORDER_TICKET JOIN TICKET ON ORDER_TICKET.ticket_id = TICKET.ticket_id WHERE ORDER_TICKET.order_id = '$order_id';";
+                                                                            $ticket_detail = mysqli_query($db_con, $q_ticket);
+                                                                            $check_row_ticket = mysqli_num_rows($ticket_detail);
+                                                                            while ($row = mysqli_fetch_assoc($ticket_detail)) {
+                                                                                $ticket_type = $row['type'];
+                                                                                $ticket_quantity = $row['quantity'];
+                                                                                $ticket_quantity_price = $row['quantity'] * $row['price'];
+                                                                            ?>
+                                                                                <tr>
+                                                                                    <td><?php echo "$ticket_type" ?></td>
+                                                                                    <td class="text-center"><?php echo "$ticket_quantity" ?> </td>
+                                                                                    <td class="text-center"><?php echo "$ticket_quantity_price" ?> </td>
+
+                                                                                </tr>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <th style="font-size:small;">Total price+vat 7%</th>
+                                                                            <th class="text-center"><?php echo $total_quantity ?></th>
+                                                                            <th class="text-center"><?php echo $total_price_and_vat ?></th>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                                <span class="d-flex justify-content-center align-items-center mb-8"><b>Booking date: </b>&nbsp;<?php echo $booking_date ?></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer <div d-flex justify-content-center align-items-center">
+                                                            <button type="button" class="btn btn-danger">Cancle Purchase</button>
+                                                            <form style="display: iline;" action="uploadslip_back.php" method="POST" name="order_id" value="<?php echo $order_id ?>" onsubmit="return validateForm()">
+                                                                <a id='order_id_<?= $order_id ?>' type='submit' class='btn btn-primary' href='uploadslip_front.php'>
+                                                                    <span>Confirm Purchase</span>
+                                                                </a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        <?php } elseif ($status == "In_progress") { ?>
+                                            <p class='text-primary text-center' style='vertical-align: middle;'>Please Wait</p>
+                                        <?php } elseif ($status == "Fail") { ?>
+                                            <p class='text-danger text-center' style='vertical-align: middle;'>Cancelled</p>
+                                        <?php } elseif ($status == "Complete") { ?>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#QR_Modal_<?= $order_id ?>' style="float: right;">View Details</button>
+                                            </div>
+                                            <!-- QR Modal -->
+                                            <div class="modal fade" id="QR_Modal_<?= $order_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content ">
                                                         <div class="modal-header ">
@@ -201,29 +288,60 @@
 
                                                             <img src='qrcodes/<?php echo $qr_code ?>' width='250px' height='250px' alt=''>
                                                             <div class='modal-body'>
-                                                                <p>Booking_date: <?php echo $booking_date ?></p>
-                                                                <p>Total Quantity: <?php echo $total_quantity ?></p>
-                                                                <p>Total Price: <?php echo $total_price ?></p>
-                                                                <p>Status: <?php echo $status ?></p>
+                                                                <div class="table-responsive">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="w-50 text-center" scope="col">Ticket</th>
+                                                                                <th class="w-50 text-center" scope="col">Quantity</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <?php
+                                                                            $q_ticket = "SELECT * FROM ORDER_TICKET JOIN TICKET ON ORDER_TICKET.ticket_id = TICKET.ticket_id WHERE ORDER_TICKET.order_id = '$order_id';";
+                                                                            $ticket_detail = mysqli_query($db_con, $q_ticket);
+                                                                            $check_row_ticket = mysqli_num_rows($ticket_detail);
+                                                                            while ($row = mysqli_fetch_assoc($ticket_detail)) {
+                                                                                $ticket_type = $row['type'];
+                                                                                $ticket_quantity = $row['quantity'];
+                                                                            ?>
+                                                                                <tr>
+                                                                                    <td><?php echo "$ticket_type" ?></td>
+                                                                                    <td class="text-center"><?php echo "$ticket_quantity" ?> </td>
+                                                                                </tr>
+                                                                            <?php
+                                                                            }
+                                                                            ?>
+                                                                        </tbody>
+                                                                        <tfoot>
+                                                                            <th>Total Quantity</th>
+                                                                            <th class="text-center"><?php echo $total_quantity ?></th>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                                <span class="d-flex justify-content-center align-items-center mb-8"><b>Booking date: </b>&nbsp;<?php echo $booking_date ?></span>
                                                             </div>
 
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <?php } ?>
-                                        <!-- </div>
-                                        </div> -->
+                                        <?php }
+
+                                        ?>
+
+
                                     </div>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                <?php }
+                <?php
+                }
+                echo $order_id;
             } else { ?>
                 <hr>
                 <h5 class="mt-3" style='text-align:center;' mb-3>ไม่พบประวัติการสั่งซื้อ QR Code</h5>
