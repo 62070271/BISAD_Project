@@ -444,12 +444,13 @@
         <div class="row">
             <!--Grid column-->
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Footer Content</h5>
+                <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                    voluptatem veniam, est atque cumque eum delectus sint!
+                สวนสัตว์คนพันธุ์เสือ เปิดให้บริการ เมื่อวันที่ 11 มกราคม 2564 หนึ่งในสวนสัตว์ชั้นนำทั่วโลกและเป็นสวนสัตว์บริการสาธารณะ 
+                โดยสถานที่เริ่มต้นโดยเริ่มเปิดเป็นสวนสัตว์เล็กๆ โดยมีเพื่อนร่วมงานมาช่วยดูแลเนื่องจากการสะสมสัตว์ชนิดต่างๆของ
+                นาย ปณัย เกตุแก้ว จนสามารถจัดเป็นสวนสัตว์เอกชนขึ้นได้ และเนื่องด้วยความรักเมตตาต่อสัตว์เป็นพื้นฐาน 
+                และเพื่อศึกษานิสัยอากัปกิริยาต่างๆของสัตว์ชนิดต่างๆ อย่างใกล้ชิดด้วยเพื่อประโยชน์ในการประกอบอาชีพเป็นอาสาสมัครสอนการยังชีพในป่า ซึ่งต้องผจญกับสัตว์ป่านานาชนิดเสมอ
                 </p>
             </div>
             <!--Grid column-->
