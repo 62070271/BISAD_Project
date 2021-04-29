@@ -12,6 +12,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    <!-- Font Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+    <!-- Font Rammetto -->
+    <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main_css.css">
     <?php
 
     include('dbserver.php');
@@ -98,7 +103,7 @@
             <div class="container">
                 <a class="navbar-brand" href="index.php?status=loggedIn">
                     <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
-                    ZOO
+                    <span class="rammeto">ZOO</span>
                 </a>
                 <?php
                 if (isset($_SESSION['email'])) {
@@ -155,7 +160,7 @@
         ?>
         <div class="row mb-5" style="min-height: 750px;">
             <div class="col">
-                <h2 class="text-center my-4" style="color:#395902;">Prove Statement</h2>
+                <h2 class="text-center my-4 rammeto ptyellow">Prove Statement</h2>
 
                 <table class="table table table-striped table-hover mb-5" style="z-index: 1; border-radius: 25px;">
 
