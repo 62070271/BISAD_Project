@@ -47,6 +47,9 @@ if (isset($_POST['cp'])) {
             white-space: nowrap;
             text-overflow: ellipsis;
         }
+        .w-33{
+            width: 33%;
+        }
     </style>
 </head>
 
@@ -211,7 +214,7 @@ if (isset($_POST['cp'])) {
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <h4 class="text-center">Confirm Purchase</h4>
+                                                            <h4 class="text-center rammeto">Confirm Purchase</h4>
                                                             <div class="text-center">
                                                                 <img class=" mb-2" src='qrcodes/<?php echo $qr_code ?>' width='250px' height='250px' alt=''>
                                                             </div>
@@ -261,13 +264,13 @@ if (isset($_POST['cp'])) {
                                                             <!-- ส่งค่าไปแก้ไข Status เป็น Fail -->
                                                             <form action="Profile&QR_Code.php" method="POST">
                                                                 <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
-                                                                <button name="cp" type='submit' class="btn btn-danger">Cancle Purchase</button>
+                                                                <button name="cp" type='submit' class="btn btn-danger rammeto">Cancle Purchase</button>
                                                             </form>
 
                                                             <!-- ส่งค่าไปยังหน้า Upload Slip -->
                                                             <form action="uploadslip_back.php" method="POST">
                                                                 <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
-                                                                <button name="cf" type='submit' class='btn btn-primary'>Confirm Purchase</button>
+                                                                <button name="cf" type='submit' class='btn btn-primary rammeto'>Confirm Purchase</button>
                                                             </form>
                                                         </div>
                                                     </div>
