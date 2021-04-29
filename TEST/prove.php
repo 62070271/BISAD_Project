@@ -75,6 +75,16 @@
         /* #nav-link2 {
             margin-left: 40px;
         } */
+
+        .container_table {
+            width: 1200px;
+            height: 700px;
+            overflow: auto;
+        }
+        .t_header {
+            position: sticky;
+            top:0;
+        }
     </style>
 </head>
 
@@ -159,22 +169,22 @@
         // echo $QR;
         ?>
         <div class="row mb-5" style="min-height: 750px;">
-            <div class="col">
-                <h2 class="text-center my-4 rammeto ptyellow">Prove Statement</h2>
+            <h2 class="text-center my-4 rammeto ptyellow">Prove Statement</h2>
+            <div class="col container_table">
 
                 <table class="table table table-striped table-hover mb-5" style="z-index: 1; border-radius: 25px;">
 
-                    <thead class="text-center" style="position: sticky;">
+                    <thead class="text-center thead-dark" style="position: sticky;top: 0">
                         <!-- <tr class="py-3" style="color:#FBB03B; background-color: #395902; font-size: 15px;"> -->
                         <tr class="py-3" style="font-size: 20px;">
-                            <th scope="col">Order ID</th>
-                            <th scope="col">Customer ID</th>
-                            <th scope="col">Total price (vat 7 %)</th>
-                            <th scope="col">Booking Date</th>
-                            <th scope="col">Slip TimeStamp</th>
-                            <th scope="col">Slip of Payment</th>
-                            <th scope="col">Confirm</th>
-                            <th scope="col">Deny</th>
+                            <th class="t_header" scope="col">Order ID</th>
+                            <th class="t_header" scope="col">Customer ID</th>
+                            <th class="t_header" scope="col">Total price (vat 7 %)</th>
+                            <th class="t_header" scope="col">Booking Date</th>
+                            <th class="t_header" scope="col">Slip TimeStamp</th>
+                            <th class="t_header" scope="col">Slip of Payment</th>
+                            <th class="t_header" scope="col">Confirm</th>
+                            <th class="t_header" scope="col">Deny</th>
                         </tr>
                     </thead>
 
