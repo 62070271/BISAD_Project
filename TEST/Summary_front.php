@@ -4,6 +4,7 @@
 <head>
     <?php
     ob_start();
+    session_start();
     include('dbserver.php');
     require('function.php');
     ?>
@@ -36,7 +37,7 @@
 </head>
 
 <body>
-    <?php
+<?php
     if (isset($_GET['logout'])) {
         session_destroy();
         unset($_SESSION['email']);
@@ -89,7 +90,16 @@
                 <?php
                 } else if (!isset($_SESSION['email'])) {
                 ?>
-                    
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
+                            </li>
+                        </ul>
+                    </div>
                 <?php
                     header("Location: login_front.php?pleaseLogin");
                 }
@@ -127,10 +137,10 @@
         $totalQuantity = 0;
         $totalPrice = 0;
     }
-    if (isset($_GET['logout'])) {
-        unset($_SESSION['email']);
-        header("Location: logIn_front.php");
-    }
+    // if (isset($_GET['logout'])) {
+    //     unset($_SESSION['email']);
+    //     header("Location: logIn_front.php");
+    // }
     ?>
     <div class="container py-5 my-3">
         <form action="summary_back.php" method="GET">
@@ -384,26 +394,27 @@
         </div>
     </div>
 </body>
-<footer class="text-center text-lg-start text-light" style="background-color: #395902;">
+<!-- Footer -->
+<footer class="text-center text-lg-start text-light mt-5" style="background-color: #395902;">
     <!-- Grid container -->
     <div class="container p-4">
         <!--Grid row-->
         <div class="row">
             <!--Grid column-->
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Footer Content</h5>
+                <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                    voluptatem veniam, est atque cumque eum delectus sint!
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
             <!--Grid column-->
 
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-uppercase">ข้อมูลเพิ่มเติม</h5>
 
                 <ul class="list-unstyled mb-0">
                     <li>
@@ -454,10 +465,11 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: #284001;">
-        © 2020 Copyright:
+        © 2021 Copyright:
         <a class="text-light" href="#!">คนพันธุ์เสือ</a>
     </div>
     <!-- Copyright -->
 </footer>
+<!-- Footer -->
 
 </html>
