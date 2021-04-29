@@ -44,8 +44,18 @@ if (isset($_POST['cp'])) {
             white-space: nowrap;
             text-overflow: ellipsis;
         }
-        .w-33{
+
+        .w-33 {
             width: 33%;
+        }
+
+        body {
+            background-image: url(Web_Image/GeorgeWheelhouse_D88_1590-5eb6c27cce9d2__880.jpg);
+            background-color: black;
+            background-repeat: no-repeat;
+            background-position: top 40px right -440px;
+            /* background-size: cover; */
+            background-attachment: fixed;
         }
     </style>
 </head>
@@ -120,26 +130,33 @@ if (isset($_POST['cp'])) {
         <div class="row mb-3">
             <!-- แสดงข้อมูล Profile -->
             <div class='row mb-3 mt-4'>
-                <h2 class='text-center rammeto'>Profile</h2>
+                <h2 class='text-center rammeto' style="color: #FBB03B;">Profile</h2>
                 <br>
             </div>
-            <div class='col-md-4 col-12 text-center'>
-                <td><img src='user_images/<?php echo "$user_image" ?>' class='rounded border border-dark' width='200px' height='200px' alt=''></td>
-            </div>
-            <div class='col-md-4 col-12'>
-                <h5 class='mb-3 text-profile' style='line-height: 50px'>First Name:<?php echo " $fname" ?></h5>
-                <h5 class='mb-3 text-profile' style='line-height: 50px'>Last Name:<?php echo " $lname" ?></h5>
-                <h5 class='mb-3 text-profile' style='line-height: 50px'>Phone Number:<?php echo " $tel" ?></h5>
-            </div>
-            <div class='col-md-4 col-12'>
-                <h5 class='mb-3 text-profile' style='line-height: 50px'>E-mail:<?php echo " $mail" ?></h5>
-                <h5 class='mb-3 text-profile' style='line-height: 50px'>Gender:<?php echo " $gender" ?></h5>
-                <h5 class='mb-3 text-profile' style='line-height: 50px'>Year of Birth:<?php echo " $year" ?></h5>
+            <div class="card">
+                <div class="card-body">
+                    <div class='row'>
+
+                        <div class='col-md-4 col-12 text-center'>
+                            <td><img src='user_images/<?php echo "$user_image" ?>' class='rounded' width='200px' height='200px' alt=''></td>
+                        </div>
+                        <div class='col-md-4 col-12'>
+                            <h5 class='mb-3 text-profile' style='line-height: 50px'><b>First Name:</b><?php echo " $fname" ?></h5>
+                            <h5 class='mb-3 text-profile' style='line-height: 50px'><b>Last Name:</b><?php echo " $lname" ?></h5>
+                            <h5 class='mb-3 text-profile' style='line-height: 50px'><b>Phone Number:</b><?php echo " $tel" ?></h5>
+                        </div>
+                        <div class='col-md-4 col-12'>
+                            <h5 class='mb-3 text-profile' style='line-height: 50px'><b>E-mail:</b><?php echo " $mail" ?></h5>
+                            <h5 class='mb-3 text-profile' style='line-height: 50px'><b>Gender:</b><?php echo " $gender" ?></h5>
+                            <h5 class='mb-3 text-profile' style='line-height: 50px'><b>Year of Birth:</b><?php echo " $year" ?></h5>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <br>
         <div class="row mb-3 mt-4">
-            <h2 class='text-center rammeto'>History & QR Code</h2>
+            <h2 class='text-center rammeto' style="color: #FBB03B;">History & QR Code</h2>
         </div>
         <?php
         // ดึงข้อมูลรายละเอียดเกี่ยวกับ Order
@@ -363,8 +380,8 @@ if (isset($_POST['cp'])) {
                 <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
-                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ
                     ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
