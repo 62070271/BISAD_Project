@@ -17,8 +17,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
-    
-    
+    <?php
+    session_start();
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION['email']);
+        header("Location: logIn_front.php");
+    }
+    ?>
+
     <style>
         body {
             background-image: url('https://images.pexels.com/photos/1633746/pexels-photo-1633746.jpeg?cs=srgb&dl=pexels-bezalel-thilojan-1633746.jpg&fm=jpg');
@@ -43,7 +50,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
                 ZOO
             </a>
             <?php
@@ -51,7 +58,7 @@
             ?>
                 <!-- dropdown -->
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
+                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>&nbsp<?php echo $_SESSION['user_name']; ?></a>
                     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
                         <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
