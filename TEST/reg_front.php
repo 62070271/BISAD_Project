@@ -116,7 +116,7 @@
                                     <button class="btn btn btn-primary rammeto" type="submit" name="submit">Sign Up!</button>
                                 </div>
                                 <div class="pb-3">
-                                    <a href="logIn_front.php">Log In</a>
+                                    <p>Already have an account? Sign in <a href="logIn_front.php">Log In</a></p>
                                 </div>
                             </form>
 
