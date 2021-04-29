@@ -37,7 +37,11 @@
 
 <body>
     <?php
-    session_start();
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION['email']);
+        header("Location: logIn_front.php");
+    }
     if (isset($_SESSION['email'])) {
         // if ($_SESSION['user_type'] == 'Financial') {
         //     echo '<script>alert("yess")</script>';
@@ -51,21 +55,45 @@
         $user_image = $_SESSION['user_image'];
     }
     ?>
-
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
             <div class="container">
-                <a class="navbar-brand rammeto" href="index.php">
-                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
+                <a class="navbar-brand" href="index.php?status=loggedIn">
+                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
                     ZOO
                 </a>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link rounded text-dark rammeto" href="index.php?logout=1" style="background-color: #FBB03B;">Log out</a>
-                        </li>
-                    </ul>
-                </div>
+                <?php
+                if (isset($_SESSION['email'])) {
+                ?>
+                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item" class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item text-white">
+                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only">(current)</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- dropdown -->
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
+                        </ul>
+                    </div>
+                <?php
+                } else if (!isset($_SESSION['email'])) {
+                ?>
+                    
+                <?php
+                    header("Location: login_front.php?pleaseLogin");
+                }
+                ?>
             </div>
         </nav>
     </div>
