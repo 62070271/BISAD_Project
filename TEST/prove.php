@@ -22,6 +22,9 @@
     include('dbserver.php');
     require_once('function.php');
 
+    // UPDATE ORDER STATUS BY DATE
+    auto_update_order_stutus($db_con);
+
     ob_start();
     session_start();
 
@@ -32,7 +35,9 @@
                 INNER JOIN ORDERS AS O
                 ON O.order_id = SP.order_id
                 WHERE CS.slip_id IS NULL
-                AND SP.is_check <> '1';";
+                AND SP.is_check <> '1'
+                AND O.status <> 'Fail';
+                ";
 
     $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     $check_row = mysqli_num_rows($result);
