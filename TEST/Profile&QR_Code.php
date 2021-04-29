@@ -3,6 +3,9 @@
 include('dbserver.php');
 require_once('function.php');
 
+// UPDATE ORDER STATUS BY DATE (IN FUNCTION FILE.)
+auto_update_order_stutus($db_con);
+
 session_start();
 if (!isset($_SESSION['email'])) {
     header("Location: logIn_front.php");

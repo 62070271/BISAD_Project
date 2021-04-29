@@ -22,42 +22,57 @@
     ob_start();
     // session_start();
 
-    // FIND latest confirm_id
-    $sql = "SELECT date_booking, SUM(income) AS income, SUM(count_of_sale_ticket) AS t_ticket, SUM(count_thai_kid_ticket) AS t_thkid, SUM(count_thai_adult_ticket) AS t_thad, SUM(count_foreigner_kid_ticket) AS t_frkid, SUM(count_foreigner_adult_ticket) AS t_frad
-            FROM SUMMARY_ACCOUNT AS SA
-            GROUP BY date_booking
-            HAVING date_booking LIKE '2021-05-01'
-            ";
+    // UPDATE ORDER STATUS BY DATE
 
-            $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
-            $check_row = mysqli_num_rows($result);
+    // date_default_timezone_set('Asia/Bangkok');
+    // $date = date("Y-m-d");
+
+    // // SET FAIL ORDER_STATUS WHEN UPLOAD SLIP IN SAME DAY BOOKING_DATE (You should upload your slip at least 1 day before the reserved date.) 
+    // // AND SET FAIL ORDER_STATUS WHEN CUSTOMER HAVE ORDERS, BUT DIDN'T UPLOAD SLIP (WHEN BOOKING DATE HAS ARRIVED.)
+
+    // $sql_update = "UPDATE ORDERS AS O
+    //         LEFT JOIN SLIP_OF_PAYMENT AS SP
+    //         USING (order_id)
+    //         SET O.status = 'Fail'
+    //         WHERE SP.time_stamp >= O.booking_date OR (SP.time_stamp IS NULL AND O.booking_date = '$date');
+    //         ";
+    // $result = mysqli_query($db_con, $sql_update) or die("Error in query: $sql_update " . mysqli_error($db_con));
+    
+
+
+    // $qurey = "SELECT * 
+    //         FROM ORDERS AS O
+    //         LEFT JOIN SLIP_OF_PAYMENT AS SP
+    //         USING (order_id)
+    //             ";
+    // $result = mysqli_query($db_con, $qurey) or die("Error in query: $qurey " . mysqli_error($db_con));
+    // $check_row = mysqli_num_rows($result);
             
-            if ($check_row > 0)
-            {
-                while ($row = mysqli_fetch_assoc($result))
-                {
-                    // $summary_id = $row['summary_id'];
-                    // $confirm_id = $row['confirm_id'];
-                    // $date_booking = $row['date_booking'];
-                    // $income = $row['income'];
-                    // $all_ticket = $row['count_of_sale_ticket'];
-                    // $th_kid = $row['count_thai_kid_ticket'];
-                    // $th_adult = $row['count_thai_adult_ticket'];
-                    // $fr_kid = $row['count_foreigner_kid_ticket'];
-                    // $fr_adult = $row['count_foreigner_adult_ticket'];
+    // if ($check_row > 0)
+    // {
+    //     while ($row = mysqli_fetch_assoc($result))
+    //     {
+    //                 // $summary_id = $row['summary_id'];
+    //                 // $confirm_id = $row['confirm_id'];
+    //                 // $date_booking = $row['date_booking'];
+    //                 // $income = $row['income'];
+    //                 // $all_ticket = $row['count_of_sale_ticket'];
+    //                 // $th_kid = $row['count_thai_kid_ticket'];
+    //                 // $th_adult = $row['count_thai_adult_ticket'];
+    //                 // $fr_kid = $row['count_foreigner_kid_ticket'];
+    //                 // $fr_adult = $row['count_foreigner_adult_ticket'];
 
-                    // echo "summary_id: " . $row['summary_id'] . "<br>";
-                    // echo "confirm_id" . $row['confirm_id'] . "<br>";
-                    // echo "date_booking" . $row['date_booking'] . "<br>";
-                    echo "income: " . $row['income'] . "<br>";
-                    echo "all_ticket: " . $row['t_ticket'] . "<br>";
-                    echo "th_kid: " . $row['t_thkid'] . "<br>";
-                    echo "th_adult: " . $row['t_thad'] . "<br>";
-                    echo "fr_kid: " . $row['t_frkid'] . "<br>";
-                    echo "fr_adult: " . $row['t_frad']. "<br>";
-                    echo "<br><br><br>";
-                }
-            }
+    //                 // echo "summary_id: " . $row['summary_id'] . "<br>";
+    //                 // echo "confirm_id" . $row['confirm_id'] . "<br>";
+    //                 // echo "date_booking" . $row['date_booking'] . "<br>";
+    //         echo "order_id: " . $row['order_id'] . "<br>";
+    //         echo "slip_id: " . $row['slip_id'] . "<br>";
+    //         echo "Upload_date: " . $row['time_stamp'] . "<br>";
+    //         echo "Booking_date: " . $row['booking_date'] . "<br>";
+    //         echo "status: " . $row['status'] . "<br>";
+    //         echo "<br><br><br>";
+    //     }
+    // }
     
     
     // $i = 1;

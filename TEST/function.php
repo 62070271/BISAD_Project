@@ -229,9 +229,6 @@
       else {echo '0 rows';}
 
 
-
-
-
       $insert = "INSERT INTO SUMMARY_ACCOUNT (confirm_id, income, date_booking, count_of_sale_ticket, count_thai_kid_ticket, count_thai_adult_ticket, count_foreigner_kid_ticket, count_foreigner_adult_ticket)
                   VALUES ('$confirm_id', '$income', '$booking_date', '$t_quantity', ' $quantity_th_kid', '$quantity_th_ad', '$quantity_fk_kid', '$quantity_fk_ad');";
       $result3 = mysqli_query($db_con, $insert) or die("Error in query: $insert " . mysqli_error($db_con));
@@ -244,5 +241,25 @@
       {
         return false;
       }
+    }
+
+
+    // UPDATE ORDER STATUS BY DATE
+    function auto_update_order_stutus($db_con)
+    {
+      // FIND CURRENT DATE
+      date_default_timezone_set('Asia/Bangkok');
+      $current_date = date("Y-m-d");
+
+      // UPDATE ORDER STATUS WHEN UPLOAD SLIP IN SAME DATE BOOKING DATE OR UPLOAD SLIP AFTER BOOKING DATE.
+      // UPDATE ORDER STATUS WHEN DIDN'T UPLOAD SLIP UNTIL BOOKING DATE ARRIVED.
+      // YOU SHOULD UPLOAD YOUR SLIP OF PAYMENT AS LATE 1 DAY BEFORE THE RESERVATION DATE.
+      $sql = "UPDATE ORDERS AS O
+              LEFT JOIN SLIP_OF_PAYMENT AS SP
+              USING (order_id)
+              SET O.status = 'Fail'
+              WHERE SP.time_stamp >= O.booking_date OR (SP.slip_id IS NULL AND O.booking_date = '$current_date');
+              ";
+      mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     }
 ?>

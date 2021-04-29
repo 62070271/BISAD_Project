@@ -1,6 +1,9 @@
 <?php
 session_start();
 include('dbserver.php');
+require_once('function.php');
+
+
 /*payment*/
 if (isset($_POST['payment'])) {
     $num_card_1 = $_POST['type-card-1'];
@@ -43,7 +46,7 @@ if (isset($_POST['payment'])) {
             $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_4'];
             $_SESSION['total_quantity'] = $_SESSION['total_quantity'] + (int)$_SESSION['$num_type_4'];
         }else {
-            unset($_SESSION['$num_type4']);
+            unset($_SESSION['$num_type_4']);
         }
         $_SESSION['sum_price_vat'] = (float)($_SESSION['sum_price'] *1.07);
         $v_booking_date = $_SESSION['$date'];

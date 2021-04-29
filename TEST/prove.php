@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
@@ -22,8 +19,14 @@
     include('dbserver.php');
     require_once('function.php');
 
+    // UPDATE ORDER STATUS BY DATE
+    auto_update_order_stutus($db_con);
+
     ob_start();
     session_start();
+
+    // UPDATE ORDER STATUS BY DATE (IN FUNCTION FILE).
+    auto_update_order_stutus($db_con);
 
     $sql = "SELECT *
                 FROM CONFIRM_SLIP AS CS
@@ -32,7 +35,9 @@
                 INNER JOIN ORDERS AS O
                 ON O.order_id = SP.order_id
                 WHERE CS.slip_id IS NULL
-                AND SP.is_check <> '1';";
+                AND SP.is_check <> '1'
+                AND O.status <> 'Fail';
+                ";
 
     $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     $check_row = mysqli_num_rows($result);
@@ -75,6 +80,16 @@
         /* #nav-link2 {
             margin-left: 40px;
         } */
+
+        .container_table {
+            width: 1200px;
+            height: 700px;
+            overflow: auto;
+        }
+        .t_header {
+            position: sticky;
+            top:0;
+        }
     </style>
 </head>
 
@@ -111,10 +126,10 @@
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item" class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only">(current)</span></a>
+                                <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item text-white">
-                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only">(current)</span></a>
+                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only"></span></a>
                             </li>
                         </ul>
                     </div>
@@ -159,22 +174,22 @@
         // echo $QR;
         ?>
         <div class="row mb-5" style="min-height: 750px;">
-            <div class="col">
-                <h2 class="text-center my-4 rammeto ptyellow">Prove Statement</h2>
+            <h2 class="text-center my-4 rammeto ptyellow">Prove Statement</h2>
+            <div class="col container_table">
 
                 <table class="table table table-striped table-hover mb-5" style="z-index: 1; border-radius: 25px;">
 
-                    <thead class="text-center" style="position: sticky;">
+                    <thead class="text-center table-dark" style="position: sticky;top: 0">
                         <!-- <tr class="py-3" style="color:#FBB03B; background-color: #395902; font-size: 15px;"> -->
                         <tr class="py-3" style="font-size: 20px;">
-                            <th scope="col">Order ID</th>
-                            <th scope="col">Customer ID</th>
-                            <th scope="col">Total price (vat 7 %)</th>
-                            <th scope="col">Booking Date</th>
-                            <th scope="col">Slip TimeStamp</th>
-                            <th scope="col">Slip of Payment</th>
-                            <th scope="col">Confirm</th>
-                            <th scope="col">Deny</th>
+                            <th class="t_header" scope="col">Order ID</th>
+                            <th class="t_header" scope="col">Customer ID</th>
+                            <th class="t_header" scope="col">Total price (vat 7 %)</th>
+                            <th class="t_header" scope="col">Booking Date</th>
+                            <th class="t_header" scope="col">Slip TimeStamp</th>
+                            <th class="t_header" scope="col">Slip of Payment</th>
+                            <th class="t_header" scope="col">Confirm</th>
+                            <th class="t_header" scope="col">Deny</th>
                         </tr>
                     </thead>
 
