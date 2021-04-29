@@ -78,123 +78,120 @@
 
 <body>
 
-    <div>
-
-        <?php
-        session_start();
-        if (isset($_GET['logout'])) {
-            session_destroy();
-            unset($_SESSION['email']);
-            header("Location: logIn_front.php");
+    <?php
+    session_start();
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION['email']);
+        header("Location: logIn_front.php");
+    }
+    if (isset($_SESSION['email'])) {
+        if ($_SESSION['user_type'] == 'Financial') {
+            header("Location: prove.php?status=loggedIn.php");
         }
-        if (isset($_SESSION['email'])) {
-            if ($_SESSION['user_type'] == 'Financial') {
-                header("Location: prove.php?status=loggedIn.php");
-            }
-            if ($_SESSION['user_type'] == 'Reception') {
-                echo '<script>alert("yess")</script>';
-                header("Location: scanner.php?status=loggedIn.php");
-            }
-            $user_name = $_SESSION['user_name'];
-            $user_image = $_SESSION['user_image'];
+        if ($_SESSION['user_type'] == 'Reception') {
+            echo '<script>alert("yess")</script>';
+            header("Location: scanner.php?status=loggedIn.php");
         }
+        $user_name = $_SESSION['user_name'];
+        $user_image = $_SESSION['user_image'];
+    }
 
-        if (isset($_GET['msg'])) {
-            if ($_GET['msg'] == 'yourSlipHasBeenUpLoad') {
-                echo "<script>" . "alert('Your Slip Has Been Up Load. :)')" . "</script>";
-            }
+    if (isset($_GET['msg'])) {
+        if ($_GET['msg'] == 'yourSlipHasBeenUpLoad') {
+            echo "<script>" . "alert('Your Slip Has Been Up Load. :)')" . "</script>";
         }
-        ?>
+    }
+    ?>
 
-        <!-- Nav Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
-            <div class="container">
-                <a class="navbar-brand rammeto" href="index.php">
-                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
-                    ZOO
-                </a>
-                <?php
-                if (isset($_SESSION['email'])) {
-                ?>
-                    <!-- dropdown -->
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>&nbsp<?php echo $_SESSION['user_name']; ?></a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
-                            <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-                        </ul>
-                    </div>
-                <?php
-                } else if (!isset($_SESSION['email'])) {
-                ?>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
-                            </li>
-                        </ul>
-                    </div>
-                <?php
-                }
-                ?>
-            </div>
-        </nav>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+        <div class="container">
+            <a class="navbar-brand rammeto" href="index.php">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
+                ZOO
+            </a>
+            <?php
+            if (isset($_SESSION['email'])) {
+            ?>
+                <!-- dropdown -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>&nbsp<?php echo $_SESSION['user_name']; ?></a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
+                        <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
+                    </ul>
+                </div>
+            <?php
+            } else if (!isset($_SESSION['email'])) {
+            ?>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
+                        </li>
+                    </ul>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+    </nav>
 
-        <!-- Carousel -->
-        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <!-- <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+    <!-- Carousel -->
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <!-- <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
                 aria-label="Slide 3"></button> -->
+        </div>
+        <div class="carousel-inner img-fluid">
+            <div class="carousel-item active" data-bs-interval="6000">
+                <img src="Web_Image/pexels-magda-ehlers-1599452.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
             </div>
-            <div class="carousel-inner img-fluid">
-                <div class="carousel-item active" data-bs-interval="6000">
-                    <img src="Web_Image/pexels-magda-ehlers-1599452.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
+            <div class="carousel-item img-fluid" data-bs-interval="6000">
+                <img src="https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="d-block w-100 " alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>Some representative placeholder content for the second slide.</p>
                 </div>
-                <div class="carousel-item img-fluid" data-bs-interval="6000">
-                    <img src="https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="d-block w-100 " alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
+            </div>
+            <div class="carousel-item img-fluid" data-bs-interval="6000">
+                <img src="Web_Image\pexels-diego-madrigal-2062314.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>Some representative placeholder content for the third slide.</p>
                 </div>
-                <div class="carousel-item img-fluid" data-bs-interval="6000">
-                    <img src="Web_Image\pexels-diego-madrigal-2062314.jpg" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
-                    </div>
-                </div>
-                <!-- <div class="carousel-item">
+            </div>
+            <!-- <div class="carousel-item">
             <img src="..." class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h5>Third slide label</h5>
               <p>Some representative placeholder content for the third slide.</p>
             </div>
           </div> -->
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
     <div class="container" style="font-family: 'Kanit', sans-serif;">
         <div class="row" style="margin-top: 5vw">
