@@ -124,23 +124,24 @@
         </div>
     </nav>
     <div class="container my-5">
+    <div class="my-4">
+        <h1 class="card-title text-center rammeto ptyellow">Edit Your Profile</h1>
+    </div>
         <div class='row'>
             <div class="col-3"></div>
             <div class='col-6'>
                 <div class="card p-4 mx-auto" style="width: 80%">
                     <div class="card-body">
-                        <h3 class="card-title text-center rammeto ptyellow">Edit Your Profile</h3>
-
                         <form action='' method='POST' onsubmit='' name='edit' enctype='multipart/form-data'>
 
-                            <img class="mt-4" id="previewImg" src="user_images/<?php echo $img ?>" width='200' name='pic' height='200' style='margin-left: auto; display: block; margin-right: auto; border-radius: 50%;'>
+                            <img id="previewImg" src="user_images/<?php echo $img ?>" width='200' name='pic' height='200' style='margin-left: auto; display: block; margin-right: auto; border-radius: 50%;'>
                             <br><br>
 
                             <label class="form-label">Upload Profile Picture: </label><br>
                             <input onchange="previewFile(this)" class="form-control" type="file" name="user_img" require accept="image/*">
                             <input type="file" class="form-control" type='text' name='user_currentimg' value='<?php echo $img ?>' style='display:none;'>
                             <br>
-                            
+
                             <!-- Preview image before submit -->
                             <script>
                                 function previewFile(input) {
@@ -364,8 +365,8 @@
                 <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
-                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ
                     ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
@@ -430,4 +431,5 @@
     <!-- Copyright -->
 </footer>
 <!-- Footer -->
+
 </html>

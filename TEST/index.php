@@ -196,7 +196,7 @@
     <div class="container" style="font-family: 'Kanit', sans-serif;">
         <div class="row" style="margin-top: 5vw">
             <div class="col" style="text-align: center;">
-                <h2 style="text-align: center;" class="homepage_name1 text-warning rammeto ptyellow">Book Tickets</h2>
+                <h1 style="text-align: center;" class="homepage_name1 text-warning rammeto ptyellow">Book Tickets</h1>
                 <!-- <h2 style="text-align: center;" class="homepage_name2 text-warning">เลือกบัตร</h2> -->
             </div>
         </div>
@@ -236,7 +236,9 @@
                             <div class="row">
                                 <div class="col-10">
                                 </div>
-                                <div class="col-2 pl-2"><button class="btn btn-primary mt-3 flex-row-reverse" type="submit" name="pick_date">Choose</button></div>
+                                <div class="col-2 pl-2 d-flex justify-content-center">
+                                    <button class="btn btn-primary flex-row-reverse mt-3" type="submit" name="pick_date">Choose</button>
+                                </div>
                             </div>
                         </div>
                     </div>

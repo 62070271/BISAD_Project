@@ -133,7 +133,7 @@ if (isset($_POST['cp'])) {
         <div class="row mb-3">
             <!-- แสดงข้อมูล Profile -->
             <div class='row mb-3 mt-4'>
-                <h2 class='text-center rammeto' style="color: #FBB03B;">Profile</h2>
+                <h1 class='text-center rammeto' style="color: #FBB03B;">Profile</h1>
                 <br>
             </div>
             <div class="card">
@@ -159,7 +159,7 @@ if (isset($_POST['cp'])) {
         </div>
         <br>
         <div class="row mb-3 mt-4">
-            <h2 class='text-center rammeto' style="color: #FBB03B;">History & QR Code</h2>
+            <h1 class='text-center rammeto' style="color: #FBB03B;">History & QR Code</h1>
         </div>
         <?php
         // ดึงข้อมูลรายละเอียดเกี่ยวกับ Order
