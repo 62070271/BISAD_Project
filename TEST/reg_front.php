@@ -149,6 +149,7 @@
     </div>
 
 </body>
+<!-- Footer -->
 <footer class="text-center text-lg-start text-light mt-5" style="background-color: #395902;">
     <!-- Grid container -->
     <div class="container p-4">
@@ -156,19 +157,19 @@
         <div class="row">
             <!--Grid column-->
             <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Footer Content</h5>
+                <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                    molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                    voluptatem veniam, est atque cumque eum delectus sint!
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
             <!--Grid column-->
 
             <!--Grid column-->
             <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-uppercase">ข้อมูลเพิ่มเติม</h5>
 
                 <ul class="list-unstyled mb-0">
                     <li>
@@ -219,7 +220,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: #284001;">
-        © 2020 Copyright:
+        © 2021 Copyright:
         <a class="text-light" href="#!">คนพันธุ์เสือ</a>
     </div>
     <!-- Copyright -->
