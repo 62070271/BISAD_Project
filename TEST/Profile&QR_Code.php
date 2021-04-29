@@ -257,10 +257,9 @@
                                                         </div>
                                                         <div class="modal-footer <div d-flex justify-content-center align-items-center">
                                                             <button type="button" class="btn btn-danger">Cancle Purchase</button>
-                                                            <form style="display: iline;" action="uploadslip_back.php" method="POST" name="order_id" value="<?php echo $order_id ?>" onsubmit="return validateForm()">
-                                                                <a id='order_id_<?= $order_id ?>' type='submit' class='btn btn-primary' href='uploadslip_front.php'>
-                                                                    <span>Confirm Purchase</span>
-                                                                </a>
+                                                            <form action="uploadslip_back.php" method="POST">
+                                                                <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
+                                                                <input type='submit' class='btn btn-primary' href='uploadslip_front.php'>
                                                             </form>
                                                         </div>
                                                     </div>
