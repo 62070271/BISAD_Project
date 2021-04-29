@@ -259,7 +259,7 @@
                                                             <button type="button" class="btn btn-danger">Cancle Purchase</button>
                                                             <form action="uploadslip_back.php" method="POST">
                                                                 <input type="hidden" name="order_id" value="<?php echo $order_id ?>">
-                                                                <input type='submit' class='btn btn-primary' href='uploadslip_front.php'>
+                                                                <button name="cf" type='submit' class='btn btn-primary'>Confirm Purchase</button>
                                                             </form>
                                                         </div>
                                                     </div>
