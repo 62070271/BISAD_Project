@@ -1,28 +1,3 @@
-<?php
-session_start();
-if (isset($_GET['logout'])) {
-    session_destroy();
-    unset($_SESSION['email']);
-    header("Location: logIn_front.php");
-}
-if (isset($_SESSION['email'])) {
-    if ($_SESSION['user_type'] == 'Financial') {
-        header("Location: prove.php?status=loggedIn.php");
-    }
-    if ($_SESSION['user_type'] == 'Reception') {
-        echo '<script>alert("yess")</script>';
-        header("Location: scanner.php?status=loggedIn.php");
-    }
-    $user_name = $_SESSION['user_name'];
-    $user_image = $_SESSION['user_image'];
-}
-
-if (isset($_GET['msg'])) {
-    if ($_GET['msg'] == 'yourSlipHasBeenUpLoad') {
-        echo "<script>" . "alert('Your Slip Has Been Up Load. :)')" . "</script>";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,9 +18,11 @@ if (isset($_GET['msg'])) {
     <link rel="stylesheet" href="Datepicka_Fong.S.W/lib/themes/classic.time.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
+    <!-- Font Kanit -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
-    <!-- main css -->
+    <!-- CSS Style -->
     <link rel="stylesheet" href="main_css.css">
     <style>
         .box-input-type-card {
@@ -88,6 +65,9 @@ if (isset($_GET['msg'])) {
             background-size: cover;
             background-attachment: fixed;
         }
+        .sticky-top {
+            z-index: 10001;
+        }
 
         .carousel,
         .carousel-inner {
@@ -95,19 +75,41 @@ if (isset($_GET['msg'])) {
             display: flex;
             align-items: center;
         }
-
-        .row {
-            --bs-gutter-x: 0rem;
-            --bs-gutter-y: 0rem;
-        }
     </style>
     <title>Homepage</title>
 </head>
 
 <body>
+
+    <?php
+    session_start();
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION['email']);
+        header("Location: logIn_front.php");
+    }
+    if (isset($_SESSION['email'])) {
+        if ($_SESSION['user_type'] == 'Financial') {
+            header("Location: prove.php?status=loggedIn.php");
+        }
+        if ($_SESSION['user_type'] == 'Reception') {
+            echo '<script>alert("yess")</script>';
+            header("Location: scanner.php?status=loggedIn.php");
+        }
+        $user_name = $_SESSION['user_name'];
+        $user_image = $_SESSION['user_image'];
+    }
+
+    if (isset($_GET['msg'])) {
+        if ($_GET['msg'] == 'yourSlipHasBeenUpLoad') {
+            echo "<script>" . "alert('Your Slip Has Been Up Load. :)')" . "</script>";
+        }
+    }
+    ?>
+
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
-        <div class="container">
+        <div class="container" style="z-index: -1;">
             <a class="navbar-brand rammeto" href="index.php">
                 <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
                 ZOO
@@ -194,10 +196,12 @@ if (isset($_GET['msg'])) {
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="container" style="font-family: sans-serif;">
+    <div class="container" style="font-family: 'Kanit', sans-serif;">
+        <div id='card-zoo'>
+        </div>
         <div class="row" style="margin-top: 5vw">
             <div class="col" style="text-align: center;">
-                <h1 style="text-align: center;" class="homepage_name1 text-warning rammeto ptyellow">Book Tickets</h1>
+                <h2 style="text-align: center;" class="homepage_name1 text-warning rammeto ptyellow">Book Tickets</h2>
                 <!-- <h2 style="text-align: center;" class="homepage_name2 text-warning">เลือกบัตร</h2> -->
             </div>
         </div>
@@ -237,9 +241,7 @@ if (isset($_GET['msg'])) {
                             <div class="row">
                                 <div class="col-10">
                                 </div>
-                                <div class="col-2 pl-2 d-flex justify-content-center">
-                                    <button class="btn btn-primary flex-row-reverse mt-3" type="submit" name="pick_date">Choose</button>
-                                </div>
+                                <div class="col-2 pl-2"><button class="btn btn-primary mt-3 flex-row-reverse" type="submit" name="pick_date">Choose</button></div>
                             </div>
                         </div>
                     </div>
@@ -391,58 +393,74 @@ if (isset($_GET['msg'])) {
 
                 </div>
             </div>
+        </div>
 
-            <!-- Our ZOO -->
-            <div class="container d-flex justify-content-center align-items-center">
-                <div class="row  w-75">
-                    <div class="col-sm-6 ">
-                        <div class="row ">
-                            <div class="col-sm-12 " style="width: 100%; height: 20vh;">
-                                <h3 class="rammeto ptyellow">Our animals</h3>
-                                <p class="text-white">ภาพตัวอย่างของสัตว์แสนน่ารักในสวนสัตว์ของเรา</p>
-                                <button class="btn rammeto border-2 border-warning ptyellow"> See all animales</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <img class="img-fluid" style="width: 100%; height: 60vh;" src="https://images.pexels.com/photos/4577132/pexels-photo-4577132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                            </div>
-                            <div class="col-sm-6 ">
-                                <div class="row ">
-                                    <div class="col-sm-12 ">
-                                        <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/3712289/pexels-photo-3712289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+        <div id='intro' class="row mt-5">
+            <div class="col-8">
+                <h1 class=" m-4 rammeto ptyellow lh-base">Introducing</h1>
+                <p class="fs-5 text-white">         สวนสัตว์คนพันธุ์เสือประเทศไทยที่มีมานานกว่า 60 ปีแล้ว บนเนื้อที่กว่า 5,000 ไร่อันกว้างขวางของจังหวัดชลบุรี นอกจากเหล่าสัตว์น้อยใหญ่นานาพันธุ์กว่า 300 ชนิด กิจกรรมและการแสดงโชว์สัตว์แสนรู้อีกหลายการแสดงในพื้นที่สวนสัตว์เปิดเขาเขียวแห่งนี้
+                    ภายในบริเวณ สวนสัตว์ประกอบไปด้วยส่วนต่างๆ เช่น Orange zone, Blue zone, Green zone
+                </p>
+            </div>
+        </div>
+        <div id='card-zone' class="row">
+            <div class='col'>
+                <div class="card-group m-0 p-0">
+                    <div class="card bg-black" style="height: 40rem; background-color: #000;">
+                        <div class="card-body p-0">
+                            <div class="row">
+                                <div class='col-6 p-0 m-0' style="font-size: 1.25rem">
+                                    <div class="row p-0 m-0" style="height: 50%;">
+                                        <div class='col p-0 m-0'>
+                                            <h3 class=" m-4 rammeto ptyellow lh-base">Orange zone</h1>
+                                                <p class="card-text text-white">โซนนี้ประกอบไปด้วย
+                                                    <br>- สัตว์ป่า เช่น ยีราฟ ม้าลาย นกกระจอกเทศ เสือโคร่ง สิงโต ลิงและค่างชนิดต่างๆ
+                                                    <br>- สัตว์เลื้อยคลาน เช่น เต่า งู กิ้งก่า กบยักษ์แอฟริกัน สีสันแปลกตา
+                                                    <br>- สัตว์ป่าสงวนของไทย เช่น เก้งหม้อเผือก ที่หาดูได้ยาก
+                                                </p>
+                                        </div>
+                                    </div>
+                                    <div class="row p-0 m-0" style="height: 70%;">
+                                        <div class='col p-0 m-0'>
+                                            <img src="https://images.pexels.com/photos/2263936/pexels-photo-2263936.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" style=" object-fit: none; display: inline-block; overflow: hidden; position: relative; width: 100%; height: 20rem;" class="card-img-bottom img-fluid" alt="...">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row ">
-                                    <div class="col-sm-12 ">
-                                        <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/704434/pexels-photo-704434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                                    </div>
+                                <div class='col-6 p-0 m-0'>
+                                    <img src="https://images.pexels.com/photos/922519/pexels-photo-922519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=350" style=" object-fit: none; display: inline-block; overflow: hidden; position: relative; width: 98.5%; height: 20rem;" class="card-img img-fluid" alt="...">
+                                    <img src="https://static.thainationalparks.com/img/species/2013/11/25/7976/indian-muntjac-w-900.jpg" style=" object-fit: none; display: inline-block; overflow: hidden; position: relative; width: 98.5%; height: 20rem;" class="card-img-right img-fluid" alt="...">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 ">
-                        <div class="row ">
-                            <div class="col-sm-12 ">
-                                <img class="img-fluid" style="width: 100%; height: 50vh;" src="https://images.pexels.com/photos/4751260/pexels-photo-4751260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 ">
-                                <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/735174/pexels-photo-735174.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                            </div>
-                            <div class="col-sm-6 ">
-                                <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://cdn.pixabay.com/photo/2018/04/08/16/46/caiman-3301709_960_720.jpg">
-                            </div>
+                    
                         </div>
                     </div>
                 </div>
+
             </div>
-
-
-
         </div>
-
+        <div class="row">
+            <h3 class=" m-5 text-center rammeto ptyellow lh-base">Blue zone</h1>
+            <div class="col-4">
+                <h3 class=" m-5 text-center rammeto ptyellow lh-base">Blue zone</h1>
+                    <p class="card-text text-white">โซนนี้ประกอบไปด้วย
+                        <br>- สัตว์ป่า เช่น ยีราฟ ม้าลาย นกกระจอกเทศ เสือโคร่ง สิงโต ลิงและค่างชนิดต่างๆ
+                        <br>- สัตว์เลื้อยคลาน เช่น เต่า งู กิ้งก่า กบยักษ์แอฟริกัน สีสันแปลกตา
+                        <br>- สัตว์ป่าสงวนของไทย เช่น เก้งหม้อเผือก ที่หาดูได้ยาก
+                    </p>
+            </div>
+            <div class="col-4">
+              <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+              <h2>Heading</h2>
+              <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+              <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+            <div class="col-4">
+              <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+              <h2>Heading</h2>
+              <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+              <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            </div>
+        </div>
         <script>
             // PICKADATE FORMATTING
             var $input = $('.datepicker').pickadate({
@@ -475,7 +493,7 @@ if (isset($_GET['msg'])) {
             }
 
             .card-body-date {
-                font-family: sans-serif;
+                font-family: 'Kanit', sans-serif;
             }
         </style>
     </div>
