@@ -203,14 +203,14 @@
                                 echo "<tr>";
 
                                 echo "<p value='" . $row['slip_id'] . "'></p>";
-                                echo "<th name='" . $row['order_id'] . "' value ='" . $row['order_id'] . "' scope='row' style='padding-top:90px;'>" . $row['order_id'] . "</th>";
-                                echo "<th style='padding-top:90px;' scope='row'>" . $row['user_id'] . "</th>";
-                                echo "<td style='padding-top:90px;'>" . $row['total_price_and_vat'] . "</td>";
-                                echo "<td style='padding-top:90px;'>" . $row['booking_date'] . "</td>";
-                                echo "<td style='padding-top:90px;'>" . $row['time_stamp'] . "</td>";
-                                echo "<td>" . "<img class='zoom' src='images/" . $row['picture'] . "' width='200px' height='200px' alt='' class='slip'>" . "</td>";
-                                echo "<td style='padding-top:90px;'>" . "<a href='' id='x" . $row['slip_id'] . "' class='header btn btn-success btn-lg' onclick='return x(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Confirm</a>" . "</td>";
-                                echo "<td style='padding-top:90px;'>" . "<a href='' id='y" . $row['slip_id'] . "' class='header btn btn-danger btn-lg' onclick='return y(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Cancel</a>" . "</td>";
+                                echo "<th name='" . $row['order_id'] . "' value ='" . $row['order_id'] . "' scope='row' style='padding-top:150px;'>" . $row['order_id'] . "</th>";
+                                echo "<th style='padding-top:150px;' scope='row'>" . $row['user_id'] . "</th>";
+                                echo "<td style='padding-top:150px;'>" . $row['total_price_and_vat'] . "</td>";
+                                echo "<td style='padding-top:150px;'>" . $row['booking_date'] . "</td>";
+                                echo "<td style='padding-top:150px;'>" . $row['time_stamp'] . "</td>";
+                                echo "<td>" . "<img class='zoom' src='images/" . $row['picture'] . "' width='200px' height='300px' alt='' class='slip'>" . "</td>";
+                                echo "<td style='padding-top:150px;'>" . "<a href='' id='x" . $row['slip_id'] . "' class='header btn btn-success btn-lg' onclick='return x(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Confirm</a>" . "</td>";
+                                echo "<td style='padding-top:150px;'>" . "<a href='' id='y" . $row['slip_id'] . "' class='header btn btn-danger btn-lg' onclick='return y(" .  $row['slip_id'] . "," . $row['order_id'] . "," .  $row['user_id']  . ")'>Cancel</a>" . "</td>";
 
                                 echo "</tr>";
                             }
