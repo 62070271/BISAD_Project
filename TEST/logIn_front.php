@@ -1,3 +1,13 @@
+<?php
+if (isset($_GET["error"])) {
+    if (($_GET["error"]) == "Wrongemailorpassword!") {
+        echo "<script>alert('Wrong email or password')</script>";
+    }
+    if (($_GET["error"]) == "emty_input_login") {
+        echo "<script>alert('Please input  email and password for login')</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,16 +100,6 @@
             </div>
         </div>
     </div>
-    <?php
-    if (isset($_GET["error"])) {
-        if (($_GET["error"]) == "Wrongemailorpassword!") {
-            echo "<script>alert('Wrong email or password')</script>";
-        }
-        if (($_GET["error"]) == "emty_input_login") {
-            echo "<script>alert('Please input  email and password for login')</script>";
-        }
-    }
-    ?>
 </body>
 <!-- Footer -->
 <footer class="text-center text-lg-start text-light mt-5" style="background-color: #395902;">
