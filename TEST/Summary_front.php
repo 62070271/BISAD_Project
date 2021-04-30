@@ -69,10 +69,10 @@
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item" class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only">(current)</span></a>
+                                <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only"></span></a>
                             </li>
                             <li class="nav-item text-white">
-                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only">(current)</span></a>
+                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only"></span></a>
                             </li>
                         </ul>
                     </div>
