@@ -17,6 +17,29 @@ if (isset($_POST['cp'])) {
     $result2 = mysqli_query($db_con, $set_status_fail) or die("Error in query: $sql " . mysqli_error($db_con));
     header("refresh: 0");
 }
+// ใช้ session จาก Email
+$email = $_SESSION['email'];
+// Query ข้อมูล Profile จาก email 
+$sql = "SELECT * FROM USER WHERE email = '$email';";
+
+$result = mysqli_query($db_con, $sql);
+$check_row = mysqli_num_rows($result);
+
+if ($check_row > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $id = $row['user_id'];
+        $fname = $row['first_name'];
+        $lname = $row['last_name'];
+        $tel = $row['Tel'];
+        $mail = $row['email'];
+        $pass = $row['user_password'];
+        $gender = $row['gender'];
+        $year = $row['year_of_birth'];
+        $type = $row['user_type'];
+        $user_image = $row['user_image'];
+        $user_name = $fname . " " . $lname . " ";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,14 +54,10 @@ if (isset($_POST['cp'])) {
     <!-- Sperate -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
-    <!-- Font Kanit -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
-
+    <!-- main css -->
     <link rel="stylesheet" href="main_css.css">
-
-
     <style>
         .text-profile {
             display: block;
@@ -47,50 +66,22 @@ if (isset($_POST['cp'])) {
             white-space: nowrap;
             text-overflow: ellipsis;
         }
-
         .w-33 {
             width: 33%;
         }
-
         body {
             background-image: url(Web_Image/GeorgeWheelhouse_D88_1590-5eb6c27cce9d2__880.jpg);
             background-color: black;
             background-repeat: no-repeat;
-            background-position: top 40px right -440px;
+            background-position: top 140px right -440px;
             /* background-size: cover; */
             background-attachment: fixed;
         }
     </style>
 </head>
-
 <body>
-    <?php
-    // ใช้ session จาก Email
-    $email = $_SESSION['email'];
-    // Query ข้อมูล Profile จาก email 
-    $sql = "SELECT * FROM USER WHERE email = '$email';";
-
-    $result = mysqli_query($db_con, $sql);
-    $check_row = mysqli_num_rows($result);
-
-    if ($check_row > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $id = $row['user_id'];
-            $fname = $row['first_name'];
-            $lname = $row['last_name'];
-            $tel = $row['Tel'];
-            $mail = $row['email'];
-            $pass = $row['user_password'];
-            $gender = $row['gender'];
-            $year = $row['year_of_birth'];
-            $type = $row['user_type'];
-            $user_image = $row['user_image'];
-            $user_name = $fname . " " . $lname . " ";
-        }
-    }
-    ?>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
                 <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
@@ -101,7 +92,7 @@ if (isset($_POST['cp'])) {
             ?>
                 <!-- dropdown -->
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
+                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
                     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
                         <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
@@ -130,16 +121,15 @@ if (isset($_POST['cp'])) {
         </div>
     </nav>
     <div class="container">
-        <div class="row mb-3">
+        <div class="row">
             <!-- แสดงข้อมูล Profile -->
-            <div class='row mb-3 mt-4'>
+            <div class='row my-5'>
                 <h1 class='text-center rammeto' style="color: #FBB03B;">Profile</h1>
                 <br>
             </div>
             <div class="card">
                 <div class="card-body">
                     <div class='row'>
-
                         <div class='col-md-4 col-12 text-center'>
                             <td><img src='user_images/<?php echo "$user_image" ?>' class='rounded' width='200px' height='200px' alt=''></td>
                         </div>
@@ -158,7 +148,7 @@ if (isset($_POST['cp'])) {
             </div>
         </div>
         <br>
-        <div class="row mb-3 mt-4">
+        <div class="row my-5">
             <h1 class='text-center rammeto' style="color: #FBB03B;">History & QR Code</h1>
         </div>
         <?php
@@ -190,7 +180,7 @@ if (isset($_POST['cp'])) {
                     }
             ?>
                     <div class="col-md-4">
-                        <div class="card mt-3 mb-3" style="height: 12rem;">
+                        <div class="card my-3" style="height: 12rem;">
                             <div class="row g-0">
                                 <div class="col-6 d-flex justify-content-center align-items-center" style="height: 176px;">
                                     <?php if ($status == "Unpaid") { ?>
@@ -365,7 +355,7 @@ if (isset($_POST['cp'])) {
                 }
             } else { ?>
                 <hr>
-                <h5 class="mt-3" style='text-align:center;' mb-3>ไม่พบประวัติการสั่งซื้อ QR Code</h5>
+                <h5 class="my-3" style='text-align:center;'>ไม่พบประวัติการสั่งซื้อ QR Code</h5>
             <?php
             }
             ?>

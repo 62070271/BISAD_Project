@@ -80,7 +80,7 @@ if (!isset($_SESSION['email'])) {
     }
     ?>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
                 <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
@@ -120,7 +120,7 @@ if (!isset($_SESSION['email'])) {
         </div>
     </nav>
     <div class="container my-5">
-        <div class="my-4">
+        <div class="my-5">
             <h1 class="card-title text-center rammeto ptyellow">Edit Your Profile</h1>
         </div>
         <div class='row'>
