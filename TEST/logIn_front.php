@@ -63,40 +63,19 @@ if (isset($_GET["error"])) {
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle ">
                 ZOO
             </a>
-            <?php
-            if (isset($_SESSION['email'])) {
-            ?>
-                <!-- dropdown -->
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
-                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
-                        <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-                    </ul>
-                </div>
-            <?php
-            } else if (!isset($_SESSION['email'])) {
-            ?>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
-                        </li>
-                    </ul>
-                </div>
-            <?php
-            }
-            ?>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     <div class="container">

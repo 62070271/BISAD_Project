@@ -37,6 +37,7 @@ if ($check_row > 0) {
         $year = $row['year_of_birth'];
         $type = $row['user_type'];
         $user_image = $row['user_image'];
+
         $user_name = $fname . " " . $lname . " ";
     }
 }
@@ -66,9 +67,11 @@ if ($check_row > 0) {
             white-space: nowrap;
             text-overflow: ellipsis;
         }
+
         .w-33 {
             width: 33%;
         }
+
         body {
             background-image: url(Web_Image/GeorgeWheelhouse_D88_1590-5eb6c27cce9d2__880.jpg);
             background-color: black;
@@ -79,45 +82,27 @@ if ($check_row > 0) {
         }
     </style>
 </head>
+
 <body>
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle ">
                 ZOO
             </a>
-            <?php
-            if (isset($_SESSION['email'])) {
-            ?>
-                <!-- dropdown -->
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
-                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
-                        <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-                    </ul>
-                </div>
-            <?php
-            } else if (!isset($_SESSION['email'])) {
-            ?>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
-                        </li>
-                    </ul>
-                </div>
-            <?php
-            }
-            ?>
+            <!-- dropdown -->
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?></a>
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
+                    <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     <div class="container">
@@ -223,7 +208,7 @@ if ($check_row > 0) {
                                                         <div class="modal-body">
                                                             <h4 class="text-center rammeto">Confirm Purchase</h4>
                                                             <div class="text-center">
-                                                                <img class=" mb-2" src='qrcodes/<?php echo $qr_code ?>' width='250px' height='250px' alt=''>
+                                                                <img class=" mb-2" src='qrcodes/MEI_QR.png' width='250px' height='250px' alt=''>
                                                             </div>
                                                             <h6 class="text-center">ธนาคาร: xxxxxxxx</h6>
                                                             <h6 class="text-center">เลขที่บัญชี: xxx-xxxxxx-x</h6>
