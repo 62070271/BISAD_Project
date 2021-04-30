@@ -174,7 +174,7 @@
         // echo $QR;
         ?>
         <div class="row mb-5" style="min-height: 750px;">
-            <h2 class="text-center my-4 rammeto ptyellow">Prove Statement</h2>
+            <h1 class="text-center my-4 rammeto ptyellow">Prove Statement</h1>
             <div class="col container_table">
 
                 <table class="table table table-striped table-hover mb-5" style="z-index: 1; border-radius: 25px;">

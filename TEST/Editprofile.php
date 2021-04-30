@@ -1,3 +1,12 @@
+<?php
+include('dbserver.php');
+require_once('function.php');
+ob_start();
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("Location: logIn_front.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,10 +28,6 @@
 
     <title>Edit Profile Test</title>
     <style>
-        .homepage_name {
-            font-family: 'Rammetto One', cursive;
-        }
-
         body {
             background-image: url('https://ae01.alicdn.com/kf/HTB1ttqNbv5TBuNjSspmq6yDRVXa0/Home-decoration-deer-antler-white-wild-life-animal-black-background-Silk-Fabric-Poster-Print-DW335.jpg');
             background-repeat: no-repeat;
@@ -33,15 +38,6 @@
             background-position-y: -20vh;
         }
     </style>
-    <?php
-    include('dbserver.php');
-    require_once('function.php');
-    ob_start();
-    session_start();
-    if (!isset($_SESSION['email'])) {
-        header("Location: logIn_front.php");
-    }
-    ?>
 </head>
 
 <body>
@@ -124,9 +120,9 @@
         </div>
     </nav>
     <div class="container my-5">
-    <div class="my-4">
-        <h1 class="card-title text-center rammeto ptyellow">Edit Your Profile</h1>
-    </div>
+        <div class="my-4">
+            <h1 class="card-title text-center rammeto ptyellow">Edit Your Profile</h1>
+        </div>
         <div class='row'>
             <div class="col-3"></div>
             <div class='col-6'>

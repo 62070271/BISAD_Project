@@ -1,3 +1,13 @@
+<?php
+if (isset($_GET["error"])) {
+    if (($_GET["error"]) == "Wrongemailorpassword!") {
+        echo "<script>alert('Wrong email or password')</script>";
+    }
+    if (($_GET["error"]) == "emty_input_login") {
+        echo "<script>alert('Please input  email and password for login')</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +18,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
+
+    <!-- main css -->
+    <link href="main_css.css" rel="stylesheet">
     <title>Log in</title>
     <style>
         html {
@@ -41,10 +55,6 @@
             margin-right: auto;
             width: 50%;
         } */
-
-        .homepage_name {
-            font-family: 'Rammetto One', cursive;
-        }
     </style>
 </head>
 
@@ -66,7 +76,7 @@
                             </div>
                             <form action="logIn_back.php" method="POST" onsubmit="" name="logIn">
                                 <div class="d-flex justify-content-start">
-                                    <h2 class='my-2 homepage_name'>Log In</h2>
+                                    <h2 class='my-2 rammeto'>Log In</h2>
                                 </div>
                                 <div class="my-3">
                                     <input type="text" class="form-control" name="email" placeholder="E-mail">
@@ -74,7 +84,7 @@
                                     <input type="password" class="form-control" name='password' placeholder="Password">
                                     <br>
                                     <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary homepage_name" name="submit">Log In!</button>
+                                        <button type="submit" class="btn btn-primary rammeto" name="submit">Log In!</button>
                                     </div>
                                 </div>
                             </form>
@@ -90,16 +100,6 @@
             </div>
         </div>
     </div>
-    <?php
-    if (isset($_GET["error"])) {
-        if (($_GET["error"]) == "Wrongemailorpassword!") {
-            echo "<script>alert('Wrong email or password')</script>";
-        }
-        if (($_GET["error"]) == "emty_input_login") {
-            echo "<script>alert('Please input  email and password for login')</script>";
-        }
-    }
-    ?>
 </body>
 <!-- Footer -->
 <footer class="text-center text-lg-start text-light mt-5" style="background-color: #395902;">

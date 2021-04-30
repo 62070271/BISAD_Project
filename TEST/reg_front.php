@@ -72,11 +72,13 @@
 
     <div class="container">
         <div class="row py-5">
+            <div class="d-flex justify-content-center">
+                <h1 class="card-title rammeto ptyellow">Sign Up</h1>
+            </div>
             <div class="col-sm-12">
                 <div class="card mx-auto" style="width: 25rem;">
                     <img src="user_images\user_default.png" class="card-img-top w-50 mx-auto pt-5 pb-2">
                     <div class="card-body px-4">
-                        <h2 class="card-title rammeto ptyellow">Sign Up</h2>
                         <div>
                             <form action="reg_back.php" method="POST" name="reg" onsubmit="return validateForm()">
                                 <br>
@@ -160,8 +162,8 @@
                 <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
-                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ
                     ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
