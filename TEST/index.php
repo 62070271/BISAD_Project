@@ -72,6 +72,11 @@
             display: flex;
             align-items: center;
         }
+
+        .row {
+            --bs-gutter-x: 0rem;
+            --bs-gutter-y: 0rem;
+        }
     </style>
     <title>Homepage</title>
 </head>
@@ -391,6 +396,52 @@
                 </div>
             </div>
 
+            <!-- Our ZOO -->
+            <div class="container d-flex justify-content-center align-items-center">
+                <div class="row  w-75">
+                    <div class="col-sm-6 ">
+                        <div class="row ">
+                            <div class="col-sm-12 " style="width: 100%; height: 20vh;">
+                                <h3 class="rammeto ptyellow">Our animals</h3>
+                                <p class="text-white">ภาพตัวอย่างของสัตว์แสนน่ารักในสวนสัตว์ของเรา</p>
+                                <button class="btn rammeto border-2 border-warning ptyellow"> See all animales</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <img class="img-fluid" style="width: 100%; height: 60vh;" src="https://images.pexels.com/photos/4577132/pexels-photo-4577132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                            </div>
+                            <div class="col-sm-6 ">
+                                <div class="row ">
+                                    <div class="col-sm-12 ">
+                                        <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/3712289/pexels-photo-3712289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-sm-12 ">
+                                        <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/704434/pexels-photo-704434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="row ">
+                            <div class="col-sm-12 ">
+                                <img class="img-fluid" style="width: 100%; height: 50vh;" src="https://images.pexels.com/photos/4751260/pexels-photo-4751260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 ">
+                                <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/735174/pexels-photo-735174.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                            </div>
+                            <div class="col-sm-6 ">
+                                <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://cdn.pixabay.com/photo/2018/04/08/16/46/caiman-3301709_960_720.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -444,8 +495,8 @@
                 <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
-                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ
                     ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
