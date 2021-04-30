@@ -73,8 +73,8 @@ if ($check_row > 0) {
             background-image: url(Web_Image/GeorgeWheelhouse_D88_1590-5eb6c27cce9d2__880.jpg);
             background-color: black;
             background-repeat: no-repeat;
-            background-position: top 140px right -440px;
-            /* background-size: cover; */
+            background-position: top 0px right -790px;
+            background-size: cover;
             background-attachment: fixed;
         }
     </style>

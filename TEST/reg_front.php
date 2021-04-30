@@ -14,8 +14,6 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main_css.css">
-    <!-- Font Kanit -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
     <style>
@@ -30,7 +28,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+<!-- nav bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
                 <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
@@ -71,12 +70,12 @@
     </nav>
 
     <div class="container">
-        <div class="row py-5">
-            <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="d-flex justify-content-center my-5">
                 <h1 class="card-title rammeto ptyellow">Sign Up</h1>
             </div>
             <div class="col-sm-12">
-                <div class="card mx-auto" style="width: 25rem;">
+                <div class="card mx-auto mb-3" style="width: 25rem;">
                     <img src="user_images\user_default.png" class="card-img-top w-50 mx-auto pt-5 pb-2">
                     <div class="card-body px-4">
                         <div>
