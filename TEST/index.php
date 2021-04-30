@@ -1,3 +1,28 @@
+<?php
+session_start();
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['email']);
+    header("Location: logIn_front.php");
+}
+if (isset($_SESSION['email'])) {
+    if ($_SESSION['user_type'] == 'Financial') {
+        header("Location: prove.php?status=loggedIn.php");
+    }
+    if ($_SESSION['user_type'] == 'Reception') {
+        echo '<script>alert("yess")</script>';
+        header("Location: scanner.php?status=loggedIn.php");
+    }
+    $user_name = $_SESSION['user_name'];
+    $user_image = $_SESSION['user_image'];
+}
+
+if (isset($_GET['msg'])) {
+    if ($_GET['msg'] == 'yourSlipHasBeenUpLoad') {
+        echo "<script>" . "alert('Your Slip Has Been Up Load. :)')" . "</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,11 +43,9 @@
     <link rel="stylesheet" href="Datepicka_Fong.S.W/lib/themes/classic.time.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
-    <!-- Font Kanit -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
-    <!-- CSS Style -->
+    <!-- main css -->
     <link rel="stylesheet" href="main_css.css">
     <style>
         .box-input-type-card {
@@ -77,33 +100,6 @@
 </head>
 
 <body>
-
-    <?php
-    session_start();
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        unset($_SESSION['email']);
-        header("Location: logIn_front.php");
-    }
-    if (isset($_SESSION['email'])) {
-        if ($_SESSION['user_type'] == 'Financial') {
-            header("Location: prove.php?status=loggedIn.php");
-        }
-        if ($_SESSION['user_type'] == 'Reception') {
-            echo '<script>alert("yess")</script>';
-            header("Location: scanner.php?status=loggedIn.php");
-        }
-        $user_name = $_SESSION['user_name'];
-        $user_image = $_SESSION['user_image'];
-    }
-
-    if (isset($_GET['msg'])) {
-        if ($_GET['msg'] == 'yourSlipHasBeenUpLoad') {
-            echo "<script>" . "alert('Your Slip Has Been Up Load. :)')" . "</script>";
-        }
-    }
-    ?>
-
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
         <div class="container">
@@ -193,7 +189,7 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <div class="container" style="font-family: 'Kanit', sans-serif;">
+    <div class="container" style="font-family: sans-serif;">
         <div class="row" style="margin-top: 5vw">
             <div class="col" style="text-align: center;">
                 <h1 style="text-align: center;" class="homepage_name1 text-warning rammeto ptyellow">Book Tickets</h1>
@@ -428,7 +424,7 @@
             }
 
             .card-body-date {
-                font-family: 'Kanit', sans-serif;
+                font-family: sans-serif;
             }
         </style>
     </div>
@@ -444,8 +440,8 @@
                 <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
-                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ
                     ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
