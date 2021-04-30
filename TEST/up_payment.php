@@ -22,7 +22,7 @@
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
     <!-- CSS Style -->
-    <title>Hello, world!</title>
+    <title>Upload Payment</title>
     <style>
         .box-input-type-card {
             display: flex;
@@ -192,7 +192,7 @@
                         <h1>123456789</h5>
                     </div>
                     <div class="col-3">
-                        <img src="https://www.pngfind.com/pngs/b/40-401545_caras-memes-png-you-fucking-kidding-me-transparent.png" class="img-fluid p-4" alt="">
+                        <img src="qrcodes/MEI'S_QR.png" class="img-fluid p-4" alt="">
                     </div>
                 </div>
             </div>
