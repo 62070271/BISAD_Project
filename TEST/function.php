@@ -114,7 +114,7 @@
         {
             while($row = mysqli_fetch_assoc($result))
             {
-                $confirm_id = $row['confirm_id'];
+                $confirm_id = $row['confirm_id'] . ',';
                 $order_id = $row['order_id'] . ',';
                 $user_fname = $row['first_name'] . ',';
                 $user_lname = $row['last_name'] . ',';
