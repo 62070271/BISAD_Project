@@ -144,9 +144,11 @@ session_start();
 
               date_default_timezone_set('Asia/Bangkok');
               $current_date = date("Y-m-d");
+              $date1   =   $_POST['booking_date'];
+              $date2   =   $current_date;
 
               if (mysqli_num_rows($querystatus) == 1) {
-                if ($_POST['booking_date'] < $current_date)
+                if (strtotime($date1) > strtotime($date2))
                 {
                   echo "<script>";
                   echo "alert('You came before the reserved date!');";
