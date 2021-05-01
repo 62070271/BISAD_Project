@@ -122,7 +122,7 @@ if (!isset($_SESSION['email'])) {
             ?>
         </div>
     </nav>
-    <div class="container my-5">
+    <div class="container mb-5">
         <div class="my-5">
             <h1 class="card-title text-center rammeto ptyellow">Edit Your Profile</h1>
         </div>
@@ -257,24 +257,37 @@ if (!isset($_SESSION['email'])) {
 
     if (isset($_POST['submit'])) {
         $current_img = $_POST['user_currentimg'];
+
+        // NEW USER IMG (POST METHOD)
         $new_img = $_FILES['user_img']['name'];
 
+        // HAVE NEW USER IMG
         if ($new_img != "") {
+
+            // PATH FOR CONTAIN USER IMG FILES
             $path = "user_images/";
 
+            // CUT IMG NAME KEEP ONLY FILE LAST NAME (PGN, JPG, ...)
             $type = strrchr($_FILES['user_img']['name'], '.');
 
+            // SET DATE 
             date_default_timezone_set('Asia/Bangkok');
             $date = date("Ymd");
 
+            // RANDOM NUMBER
             $numrand = (mt_rand());
+            // SET NEW IMG NAME
             $user_image =  $date . $numrand . $type;
             $pathCopy = $path . $user_image;
             $pathLink = 'user_images/' . $user_image;
-
+            // KEEP IMG FILE TO FLODER
             move_uploaded_file($_FILES['user_img']['tmp_name'], $pathCopy);
-        } else {
-            $user_image = $current_img;
+        } 
+        // HAVE NO NEW ING
+        else 
+        {
+            // OLD IMG
+            $user_image = $img;
         }
 
 

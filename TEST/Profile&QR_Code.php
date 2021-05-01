@@ -117,9 +117,8 @@ if ($check_row > 0) {
     <div class="container">
         <div class="row">
             <!-- แสดงข้อมูล Profile -->
-            <div class='row my-5'>
+            <div class='row mb-5'>
                 <h1 class='text-center rammeto' style="color: #FBB03B;">Profile</h1>
-                <br>
             </div>
             <div class="card">
                 <div class="card-body">
@@ -142,7 +141,7 @@ if ($check_row > 0) {
             </div>
         </div>
         <br>
-        <div class="row my-5">
+        <div class="row mt-5 mb-4">
             <h1 class='text-center rammeto' style="color: #FBB03B;">History & QR Code</h1>
         </div>
         <?php
@@ -174,7 +173,7 @@ if ($check_row > 0) {
                     }
             ?>
                     <div class="col-md-4">
-                        <div class="card my-3" style="height: 12rem;">
+                        <div class="card mt-4" style="height: 12rem;">
                             <div class="row g-0">
                                 <div class="col-6 d-flex justify-content-center align-items-center" style="height: 176px;">
                                     <?php if ($status == "Unpaid") { ?>
@@ -348,8 +347,8 @@ if ($check_row > 0) {
                 <?php
                 }
             } else { ?>
-                <hr>
-                <h5 class="my-3" style='text-align:center;'>ไม่พบประวัติการสั่งซื้อ QR Code</h5>
+                <hr class="text-white mt-3" noshade="noshade" size="5">
+                <p class="text-white my-5" style='text-align:center;'>ไม่พบประวัติการสั่งซื้อ QR Code</p>
             <?php
             }
             ?>
