@@ -82,11 +82,11 @@ if (isset($_GET['msg'])) {
 
         body {
             background-color: black;
-            background-image: url(Web_Image/cat1920x1080.png);
+            /* background-image: url(Web_Image/cat1920x1080.png);
             background-repeat: no-repeat;
             background-position: top -90px right -90px;
             background-size: cover;
-            background-attachment: fixed;
+            background-attachment: fixed; */
         }
 
         .carousel,
