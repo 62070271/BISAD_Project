@@ -242,7 +242,7 @@
               LEFT JOIN SLIP_OF_PAYMENT AS SP
               USING (order_id)
               SET O.status = 'Fail'
-              WHERE SP.time_stamp >= O.booking_date OR (SP.slip_id IS NULL AND O.booking_date = '$current_date');
+              WHERE SP.time_stamp >= O.booking_date OR (SP.slip_id IS NULL AND O.booking_date <= '$current_date');
               ";
       mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     }
