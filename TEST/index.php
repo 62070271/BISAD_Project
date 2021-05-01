@@ -267,7 +267,7 @@ if (isset($_GET['msg'])) {
                 <form action="index_back.php" method="POST" name="book" onsubmit="return validateForm()">
                     <div class='card ml-5 ' id='num_book' style="width: 50rem; height: 41rem; margin : auto; margin-top:4vw; margin-bottom: 4vw;">
                         <div class="card-body ">
-                            <h2 style="color:#395902; text-align: center;">Select Ticket</h2>
+                            <h2 class='rammeto' style="color:#395902; text-align: center;">Select Ticket</h2>
                             <?php
                             include('dbserver.php');
                             $sql = "SELECT * FROM TICKET WHERE ticket_id = 1";
@@ -345,7 +345,7 @@ if (isset($_GET['msg'])) {
                             <div class="row bg-light" style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5 style="color:#395902;">บัตรเด็กต่างชาติ</h5>
+                                        <h5 style="color:#395902;">Foreigner : Kid <br>(บัตรผู้เด็ก : ชาวต่างชาติ)</h5>
                                         <div class='box-detail'>
                                             <p><?php echo  $_SESSION['card_detail_3'] ?></p>
                                         </div>
@@ -362,7 +362,7 @@ if (isset($_GET['msg'])) {
                             <div class="row" style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5 style="color:#395902;">บัตรผู้ใหญ่ต่างชาติ</h5>
+                                        <h5 style="color:#395902;">Foreigner : ADULT <br>(บัตรผู้ใหญ่ : ชาวต่างชาติ)</h5>
                                         <div class='box-detail'>
                                             <p><?php echo  $_SESSION['card_detail_4'] ?></p>
                                         </div>
