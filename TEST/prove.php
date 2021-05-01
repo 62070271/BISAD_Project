@@ -241,7 +241,7 @@
                 $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
 
 
-                if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($db_con)) {
+                if ($res && createQRcode($slip_id, $order_id, $user_id, $db_con) && updateOrderStatus($order_id, $db_con) && addToSummary($db_con)) {
                     header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
                 }
             } elseif ($status == 'ConfirmDeny') {

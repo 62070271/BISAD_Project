@@ -57,7 +57,7 @@
       mysqli_stmt_close($prePair);
     }
 
-    // Register แหกยังใช้ไม่ได้
+
     function createUser($db_con, $f_name, $l_name, $Tel, $email, $password, $gender, $yob, $type, $user_imgdf) {
 
       $sql = "INSERT INTO USER (first_name, last_name, Tel, email, user_password, gender, year_of_birth, user_type, user_image) 
@@ -84,29 +84,21 @@
 
 
     // CREATE QR CODES
-    function createQRcode($slip_id, $order_id, $user_id)
+    function createQRcode($slip_id, $order_id, $user_id, $db_con)
     {
       require_once('phpqrcode/qrlib.php');
         
-      // DATABASE CONNECTION
-      $server_name = 'freedb.tech';
-      $user_name = 'freedbtech_Weeravat';
-      $user_password = 'KLIptp17';
-      $db_name = 'freedbtech_BISADProject';
-      $db_con =  mysqli_connect($server_name, $user_name, $user_password, $db_name) or die("Unable Connect");
-        
-
-        $sql = "SELECT *
-                FROM USER AS U
-                INNER JOIN ORDERS AS O
-                USING (user_id)
-                INNER JOIN SLIP_OF_PAYMENT AS S
-                USING (order_id)
-                INNER JOIN CONFIRM_SLIP AS C
-                USING (slip_id)
-                WHERE S.slip_id = '$slip_id'
-                AND O.order_id = '$order_id';
-                ";
+      $sql = "SELECT *
+              FROM USER AS U
+              INNER JOIN ORDERS AS O
+              USING (user_id)
+              INNER JOIN SLIP_OF_PAYMENT AS S
+              USING (order_id)
+              INNER JOIN CONFIRM_SLIP AS C
+              USING (slip_id)
+              WHERE S.slip_id = '$slip_id'
+              AND O.order_id = '$order_id';
+              ";
 
         $result = mysqli_query($db_con, $sql) or die ("Error in query: $sql " . mysqli_error($db_con));
         $check_row = mysqli_num_rows($result);
@@ -125,9 +117,8 @@
             }
         }
         else
-        {
-            // echo 'Not found!';
-            return false;
+        {     
+          return false;
         }
 
 
@@ -149,20 +140,15 @@
 
 
 
-    function updateOrderStatus($order_id)
+    function updateOrderStatus($order_id, $db_con)
     {
-      // DATABASE CONNECTION
-      $server_name = 'freedb.tech';
-      $user_name = 'freedbtech_Weeravat';
-      $user_password = 'KLIptp17';
-      $db_name = 'freedbtech_BISADProject';
-      $db_con =  mysqli_connect($server_name, $user_name, $user_password, $db_name) or die("Unable Connect");
-
-      $sql = "UPDATE ORDERS SET status='Complete' WHERE order_id='$order_id';";
+      $sql = "UPDATE ORDERS 
+              SET status='Complete' 
+              WHERE order_id='$order_id';
+              ";
       $result = mysqli_query($db_con, $sql) or die ("Error in query: $sql " . mysqli_error($db_con));
       if($result){return true;}
       else{return false;}
-
       mysqli_close($db_con);
     }
 
@@ -188,10 +174,6 @@
       }
       else {echo '0 rows';}
       
-
-
-
-
       // GET ORDER DETAILS DATA WHEN APPROVE 
       $sql = "SELECT CS.confirm_id, O.booking_date, OT.ticket_id, SUM(OT.quantity) AS tk_type, O.total_price_and_vat, O.total_quantity
       FROM CONFIRM_SLIP AS CS
