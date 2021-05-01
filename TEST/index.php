@@ -404,7 +404,7 @@ if (isset($_GET['msg'])) {
                             <div class="row bg-light" style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5 style="color:#395902;">Foreigner : Kid <br>(บัตรผู้เด็ก : ชาวต่างชาติ)</h5>
+                                        <h5 style="color:#395902;">Foreigner: Kid <br>(บัตรเด็ก: ชาวต่างชาติ)</h5>
                                         <div class='box-detail'>
                                             <p>
                                                 <?php echo  $_SESSION['card_detail_3'] ?>
@@ -426,7 +426,7 @@ if (isset($_GET['msg'])) {
                             <div class="row" style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5 class="mt-2" style="color:#395902;">Foreigner : ADULT <br>(บัตรผู้ใหญ่ :
+                                        <h5 class="mt-2" style="color:#395902;">Foreigner: Adult <br>(บัตรผู้ใหญ่:
                                             ชาวต่างชาติ)</h5>
                                         <div class='box-detail'>
                                             <p>
