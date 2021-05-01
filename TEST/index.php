@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 if (isset($_GET['logout'])) {
     session_destroy();
@@ -173,24 +174,15 @@ if (isset($_GET['msg'])) {
         <div class="carousel-inner img-fluid">
             <div class="carousel-item active" data-bs-interval="6000">
                 <img src="Web_Image/pexels-magda-ehlers-1599452.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
+                <div class="carousel-caption d-none d-md-block"></div>
             </div>
             <div class="carousel-item img-fluid" data-bs-interval="6000">
                 <img src="https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="d-block w-100 " alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
+                <div class="carousel-caption d-none d-md-block"></div>
             </div>
             <div class="carousel-item img-fluid" data-bs-interval="6000">
                 <img src="Web_Image\pexels-diego-madrigal-2062314.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
+                <div class="carousel-caption d-none d-md-block"></div>
             </div>
             <!-- <div class="carousel-item">
             <img src="..." class="d-block w-100" alt="...">

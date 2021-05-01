@@ -6,6 +6,11 @@ if (isset($_GET["error"])) {
     if (($_GET["error"]) == "emty_input_login") {
         echo "<script>alert('Please input  email and password for login')</script>";
     }
+    if (isset($_GET["error"])) {
+        if ($_GET["error"] == 'Please login before booking the ticket!') {
+            echo "<script>alert('Please login before booking the ticket!')</script>";
+        }
+    }
 }
 ?>
 <!DOCTYPE html>
