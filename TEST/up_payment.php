@@ -223,11 +223,11 @@
                     <div class="col-9">
                         <h4 style="color:#395902;" class='pr-3 mr-5 rammeto'>Total price and vat 7%</h4>
                     </div>
-                    <div class="col-3 text-center mb-3">
+                    <div class="col-3 text-center mb-4">
                         <h4><?php echo (float)$_SESSION['sum_price_vat'] . " THB"; ?></h4>
                     </div>
                 </div>
-                <div class='row'>
+                <div class='row mt-4'>
                     <div class='col d-flex justify-content-end'>
                         <form action="up_payment_back.php" method="POST" name="back_payment_" onsubmit="return validateForm()">
                             <button style="margin-right: 8px" class="btn btn-secondary rammeto" type="submit" name="back_payment">Later</button>

@@ -44,7 +44,8 @@
 
 
     ?>
-
+    <!-- icon -->
+    <link rel="shortcut icon" type="image/x-icon" class="rounded-circle" href="Web_Image/Logo_Web.ico" />
     <title>Prove Statement</title>
     <style>
         .qr-code {
@@ -112,37 +113,39 @@
         $user_image = $_SESSION['user_image'];
     }
     ?>
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
-            <div class="container">
-                <a class="navbar-brand" href="index.php?status=loggedIn">
-                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle">
-                    <span class="rammeto">ZOO</span>
-                </a>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item" class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only"></span></a>
-                        </li>
-                        <li class="nav-item text-white">
-                            <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only"></span></a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- dropdown -->
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?></a>
-                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-                    </ul>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+        <div class="container">
+            <a class="navbar-brand" href="index.php?status=loggedIn">
+                <img src="Web_Image/Logo300X300v4.png" alt="" width=" 32" height="32" class="d-inline-block align-text-top rounded-circle">
+                <span class="rammeto">ZOO</span>
+            </a>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item" class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn">
+                            <b>Prove</b>
+                            <span class="sr-only"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item text-white">
+                        <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn">
+                            <b>Summary</b>
+                            <span class="sr-only"></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </div>
+            <!-- dropdown -->
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;">
+                    <img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='25' height='25' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
 

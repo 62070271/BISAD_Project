@@ -35,7 +35,7 @@ include('dbserver.php');
 
             if($result && $result2)
             {
-                header("Location: index.php?msg=yourSlipHasBeenUpLoad");
+                header("Location: Profile&QR_Code.php?msg=yourSlipHasBeenUpLoad");
             }
         }
     }

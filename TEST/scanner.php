@@ -1,10 +1,29 @@
 <?php
+if (isset($_GET['logout'])) {
+  session_destroy();
+  unset($_SESSION['email']);
+  header("Location: logIn_front.php");
+}
+if (isset($_SESSION['email'])) {
+  if ($_SESSION['user_type'] == 'Customer') {
+    header("Location: index.php?status=loggedIn.php");
+  }
+  if ($_SESSION['user_type'] == 'Financial') {
+    header("Location: prove.php?status=loggedIn.php");
+  }
+  $user_name = $_SESSION['user_name'];
+  $user_image = $_SESSION['user_image'];
+}
+?>
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
+  <!-- icon -->
+  <link rel="shortcut icon" type="image/x-icon" class="rounded-circle" href="Web_Image/Logo_Web.ico" />
   <title>Verify QR-code</title>
   <!-- bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -25,42 +44,23 @@ session_start();
 <body style="background-image: url('https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
 
   <!-- Nav Bar -->
-  <?php
-  if (isset($_GET['logout'])) {
-    session_destroy();
-    unset($_SESSION['email']);
-    header("Location: logIn_front.php");
-  }
-  if (isset($_SESSION['email'])) {
-    if ($_SESSION['user_type'] == 'Customer') {
-      header("Location: index.php?status=loggedIn.php");
-    }
-    if ($_SESSION['user_type'] == 'Financial') {
-      header("Location: prove.php?status=loggedIn.php");
-    }
-    $user_name = $_SESSION['user_name'];
-    $user_image = $_SESSION['user_image'];
-  }
-  ?>
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
-      <div class="container">
-        <a class="navbar-brand rammeto" href="index.php?status=loggedIn">
-          <img src="Web_Image/Logo300X300v4.png" alt="" width=" 32" height="32" class="d-inline-block align-text-top rounded-circle">
-          ZOO
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+    <div class="container">
+      <a class="navbar-brand rammeto" href="index.php?status=loggedIn">
+        <img src="Web_Image/Logo300X300v4.png" alt="" width=" 32" height="32" class="d-inline-block align-text-top rounded-circle">
+        ZOO
+      </a>
+      <!-- dropdown -->
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;">
+          <img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='25' height='25' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?>
         </a>
-        <!-- dropdown -->
-        <div class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;">
-            <img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='25' height='25' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-          </ul>
-        </div>
+        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
+        </ul>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
 
   <div class="container">
     <div class="row py-5">
@@ -126,8 +126,7 @@ session_start();
               $date2   =   $current_date;
 
               if (mysqli_num_rows($querystatus) == 1) {
-                if (strtotime($date1) > strtotime($date2))
-                {
+                if (strtotime($date1) > strtotime($date2)) {
                   echo "<script>";
                   echo "alert('You came before the reserved date!');";
                   echo "</script>";
