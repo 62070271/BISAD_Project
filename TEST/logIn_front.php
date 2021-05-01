@@ -59,6 +59,25 @@ if (isset($_GET["error"])) {
 </head>
 
 <body>
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
+        <div class="container">
+            <a class="navbar-brand rammeto" href="index.php">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle ">
+                ZOO
+            </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         <div class='row d-flex justify-content-center align-self-center'>
             <!-- <div class='col-8'> -->

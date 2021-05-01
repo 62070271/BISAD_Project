@@ -14,8 +14,6 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main_css.css">
-    <!-- Font Kanit -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
     <style>
@@ -30,53 +28,33 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle ">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle ">
                 ZOO
             </a>
-            <?php
-            if (isset($_SESSION['email'])) {
-            ?>
-                <!-- dropdown -->
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
-                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="Profile+QR_Code.php">Profile & QR Code</a></li>
-                        <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-                    </ul>
-                </div>
-            <?php
-            } else if (!isset($_SESSION['email'])) {
-            ?>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
-                        </li>
-                    </ul>
-                </div>
-            <?php
-            }
-            ?>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <div class="container">
-        <div class="row py-5">
-            <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="d-flex justify-content-center my-5">
                 <h1 class="card-title rammeto ptyellow">Sign Up</h1>
             </div>
             <div class="col-sm-12">
-                <div class="card mx-auto" style="width: 25rem;">
+                <div class="card mx-auto mb-3" style="width: 25rem;">
                     <img src="user_images\user_default.png" class="card-img-top w-50 mx-auto pt-5 pb-2">
                     <div class="card-body px-4">
                         <div>
