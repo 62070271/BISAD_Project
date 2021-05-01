@@ -119,7 +119,7 @@ session_start();
                     <h5>Confirm ID : <input type="text" id="saccount" name="saccount" style="border:none;"></h5>
                     <h5>Firstname : <span id="sfirstname"></span></h5>
                     <h5>Lastname : <span id="slastname"></span></h5>
-                    <h5>Booking Date : <span id="sbook"></span></h5>
+                    <h5>Booking Date : <input id="sbook" name="booking_date"></input></h5>
                     <h5>Quantity Order : <span id="squan"></span></h5>
                   </div>
                   <div class="modal-footer">
@@ -142,21 +142,34 @@ session_start();
               $querystatus = mysqli_query($db_con, $tkstatus);
               $fetquestatus = mysqli_fetch_assoc($querystatus);
 
+              date_default_timezone_set('Asia/Bangkok');
+              $current_date = date("Y-m-d");
+
               if (mysqli_num_rows($querystatus) == 1) {
-                if ($fetquestatus['qrcode_status'] == '1') {
+                if ($_POST['booking_date'] < $current_date)
+                {
+                  echo "<script>";
+                  echo "alert('You came before the reserved date!');";
+                  echo "</script>";
+                }
+
+                elseif ($fetquestatus['qrcode_status'] == '1') {
                   $sql = "UPDATE QR_CODE SET qrcode_status='0' WHERE confirm_id=$accidsql";
                   mysqli_query($db_con, $sql);
                   echo "<script>";
                   echo "alert('Use QR-code success!');";
                   echo "</script>";
                 }
+
                 elseif ($fetquestatus['qrcode_status'] == '2')
                 {
                   echo "<script>";
                   echo "alert('This QR-Code is expired!');";
                   echo "</script>";
                 }
-                 else {
+
+                else 
+                {
                   echo "<script>";
                   echo "alert('This QR-Code has been used!');";
                   echo "</script>";
@@ -164,7 +177,7 @@ session_start();
                   // echo "<script>";
                   // echo "alert(".$querystatus.");";
                   // echo "</script>";  
-                };
+                }
               } else {
                 echo "<script>";
                 echo "alert('QR-code not found!');";
@@ -225,6 +238,7 @@ session_start();
       console.error(e);
     });
   </script>
+
 </body>
 <!-- Footer -->
 <footer class="text-center text-lg-start text-light mt-5" style="background-color: #395902;">
