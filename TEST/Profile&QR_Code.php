@@ -5,6 +5,8 @@ require_once('function.php');
 
 // UPDATE ORDER STATUS BY DATE (IN FUNCTION FILE.)
 auto_update_order_stutus($db_con);
+// AUTO UPDATE QR CODE STATUS ---> Profile and QR Code
+auto_update_qr_status($db_con);
 
 session_start();
 if (!isset($_SESSION['email'])) {
