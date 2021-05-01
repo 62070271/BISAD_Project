@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 if (isset($_GET['logout'])) {
     session_destroy();
@@ -173,24 +174,15 @@ if (isset($_GET['msg'])) {
         <div class="carousel-inner img-fluid">
             <div class="carousel-item active" data-bs-interval="6000">
                 <img src="Web_Image/pexels-magda-ehlers-1599452.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
+                <div class="carousel-caption d-none d-md-block"></div>
             </div>
             <div class="carousel-item img-fluid" data-bs-interval="6000">
                 <img src="https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="d-block w-100 " alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
+                <div class="carousel-caption d-none d-md-block"></div>
             </div>
             <div class="carousel-item img-fluid" data-bs-interval="6000">
                 <img src="Web_Image\pexels-diego-madrigal-2062314.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
+                <div class="carousel-caption d-none d-md-block"></div>
             </div>
             <!-- <div class="carousel-item">
             <img src="..." class="d-block w-100" alt="...">
@@ -275,7 +267,7 @@ if (isset($_GET['msg'])) {
                 <form action="index_back.php" method="POST" name="book" onsubmit="return validateForm()">
                     <div class='card ml-5 ' id='num_book' style="width: 50rem; height: 41rem; margin : auto; margin-top:4vw; margin-bottom: 4vw;">
                         <div class="card-body ">
-                            <h2 style="color:#395902; text-align: center;">Select Ticket</h2>
+                            <h2 class='rammeto' style="color:#395902; text-align: center;">Select Ticket</h2>
                             <?php
                             include('dbserver.php');
                             $sql = "SELECT * FROM TICKET WHERE ticket_id = 1";
@@ -353,7 +345,7 @@ if (isset($_GET['msg'])) {
                             <div class="row bg-light" style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5 style="color:#395902;">บัตรเด็กต่างชาติ</h5>
+                                        <h5 style="color:#395902;">Foreigner : Kid <br>(บัตรผู้เด็ก : ชาวต่างชาติ)</h5>
                                         <div class='box-detail'>
                                             <p><?php echo  $_SESSION['card_detail_3'] ?></p>
                                         </div>
@@ -370,7 +362,7 @@ if (isset($_GET['msg'])) {
                             <div class="row" style="padding-left: 30px;">
                                 <div class="box-input-type-card" style="height: 120px;">
                                     <div class="col-detail" style="width: 50%;">
-                                        <h5 style="color:#395902;">บัตรผู้ใหญ่ต่างชาติ</h5>
+                                        <h5 class="mt-2" style="color:#395902;">Foreigner : ADULT <br>(บัตรผู้ใหญ่ : ชาวต่างชาติ)</h5>
                                         <div class='box-detail'>
                                             <p><?php echo  $_SESSION['card_detail_4'] ?></p>
                                         </div>
