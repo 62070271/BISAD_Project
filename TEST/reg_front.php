@@ -18,9 +18,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
     <style>
         body {
-            background-image: url('https://img1.goodfon.com/wallpaper/nbig/a/43/owl-animals-black-black.jpg');
+            background-image: url(Web_Image/pexels-luis-ruiz-1322842.jpg);
+            background-color: black;
             background-repeat: no-repeat;
-            background-position: center;
+            background-position: bottom -90px left -375px;
             background-size: cover;
             background-attachment: fixed;
         }

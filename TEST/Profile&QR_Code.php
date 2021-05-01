@@ -168,15 +168,15 @@ if ($check_row > 0) {
                             <div class="row g-0">
                                 <div class="col-6 d-flex justify-content-center align-items-center" style="height: 176px;">
                                     <?php if ($status == "Unpaid") { ?>
-                                        <span class='text-warning' style='vertical-align: middle;'>กรุณาชำระเงิน</span>
+                                        <span class='text-warning' style='vertical-align: middle;'><b>กรุณาชำระเงิน</b></span>
                                     <?php } elseif ($status == "In_progress") { ?>
-                                        <span class='text-primary' style='vertical-align: middle;'>อยู่ระหว่างการตรวจสอบ</span>
+                                        <span class='text-primary' style='vertical-align: middle;'><b>อยู่ระหว่างการตรวจสอบ</b></span>
                                     <?php } elseif ($status == "Complete") { ?>
                                         <div class='d-flex justify-content-center align-items-center'>
                                             <img src="qrcodes/<?php echo "$qr_code" ?> " width='160px' height='160px'>
                                         </div>
                                     <?php } else { ?>
-                                        <span class='text-danger' style='vertical-align: middle;'>ยกเลิกการตรวจสอบ</span>
+                                        <span class='text-danger' style='vertical-align: middle;'><b>ยกเลิกการตรวจสอบ</b></span>
                                     <?php
                                     }
                                     ?>
@@ -185,10 +185,8 @@ if ($check_row > 0) {
                                     <div class="card-body">
                                         <h5 class="card-title">Order ID: <?php echo $order_id ?></h5>
                                         <p class="card-text">
-                                            Booking date:
-                                            <br>
-                                            <?php echo "$booking_date" ?><br>
-                                            Status: <?php echo "$status" ?>
+                                            <b>Booking date:</b><br><?php echo "$booking_date" ?><br>
+                                            <b>Status:</b> <?php echo "$status" ?>
                                         </p>
                                         <?php if ($status == "Unpaid") { ?>
                                             <div class="d-flex justify-content-center align-items-center">
@@ -209,9 +207,9 @@ if ($check_row > 0) {
                                                             <div class="text-center">
                                                                 <img class=" mb-2" src='qrcodes/MEI_QR.png' width='250px' height='250px' alt=''>
                                                             </div>
-                                                            <h6 class="text-center">ธนาคาร: xxxxxxxx</h6>
-                                                            <h6 class="text-center">เลขที่บัญชี: xxx-xxxxxx-x</h6>
-                                                            <h6 class="text-center">สวนสัตว์คนพันธุ์เสือ</h6>
+                                                            <h6 class="text-center"><b>ธนาคาร:</b> xxxxxxxx</h6>
+                                                            <h6 class="text-center"><b>ชื่อบัญชี:</b> สวนสัตว์คนพันธุ์เสือ</h6>
+                                                            <h6 class="text-center"><b>เลขที่บัญชี:</b> xxx-xxxxxx-x</h6>
                                                             <div class='modal-body'>
                                                                 <div class="table-responsive">
                                                                     <table class="table">
@@ -268,9 +266,9 @@ if ($check_row > 0) {
                                                 </div>
                                             </div>
                                         <?php } elseif ($status == "In_progress") { ?>
-                                            <p class='text-primary text-center' style='vertical-align: middle;'>Please Wait</p>
+                                            <p class='text-primary text-center' style='vertical-align: middle;'><b>Please Wait</b></p>
                                         <?php } elseif ($status == "Fail") { ?>
-                                            <p class='text-danger text-center' style='vertical-align: middle;'>Cancelled</p>
+                                            <p class='text-danger text-center' style='vertical-align: middle;'><b>Cancelled</b></p>
                                         <?php } elseif ($status == "Complete") { ?>
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <button type='button' class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#QR_Modal_<?= $order_id ?>' style="float: right;">View Details</button>
