@@ -119,7 +119,7 @@ if (!isset($_SESSION['email'])) {
             ?>
         </div>
     </nav>
-    <div class="container my-5">
+    <div class="container mb-5">
         <div class="my-5">
             <h1 class="card-title text-center rammeto ptyellow">Edit Your Profile</h1>
         </div>

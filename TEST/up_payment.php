@@ -17,11 +17,10 @@
     <link rel="stylesheet" href="Datepicka_Fong.S.W/lib/themes/classic.date.css">
     <link rel="stylesheet" href="Datepicka_Fong.S.W/lib/themes/classic.time.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <!-- Font Kanit -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
     <!-- CSS Style -->
+    <link href="main_css.css" rel="stylesheet">
     <title>Upload Payment</title>
     <style>
         .box-input-type-card {
@@ -52,14 +51,11 @@
             scroll-behavior: smooth;
         }
 
-        /* .show_calendar {
-            display: none;
-        } */
-
         body {
-            background-image: url(Web_Image/lion-width4000__heal.png);
+            background-color: black;
+            background-image: url(Web_Image/cat1920x1080.png);
             background-repeat: no-repeat;
-            background-position: center;
+            background-position: top -90px right -90px;
             background-size: cover;
             background-attachment: fixed;
         }
@@ -98,68 +94,31 @@
         $user_image = $_SESSION['user_image'];
     }
     ?>
-
     <!-- Nav Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
+            <a class="navbar-brand rammeto" href="index.php">
+                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle ">
                 ZOO
             </a>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
+            <!-- dropdown -->
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?></a>
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
+                    <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
-                    </li>
+                    <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- Carousel -->
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <!-- <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                aria-label="Slide 3"></button> -->
+    <div class="container">
+        <div class='row my-5'>
+            <h1 class='text-center rammeto' style="color: #FBB03B;">Confirm Purchase</h1>
         </div>
-        <div class="carousel-inner img-fluid">
-            <div class="carousel-item active" data-bs-interval="6000">
-                <img src="https://wallpapercave.com/wp/wp4841327.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item img-fluid" data-bs-interval="6000">
-                <img src="https://d3tidaycr45ky4.cloudfront.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/l/planet-zoo--australia-pack.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <!-- <div class="carousel-item">
-            <img src="..." class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>Some representative placeholder content for the third slide.</p>
-            </div>
-          </div> -->
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <div class="container pt-5" style="font-family: 'Kanit', sans-serif;">
         <div class="bank online">
             <div class='card' style="width: 50rem; height: 10rem; margin : auto;">
                 <div class="row">
@@ -261,20 +220,13 @@
                     <div class='col-7'>
                     </div>
                     <div class='col-5'>
-
                         <form style="display: inline;" action="up_payment_back.php" method="POST" name="back_payment_" onsubmit="return validateForm()"><button class="btn btn-success mr-5" style="margin-left: 25px; margin-right: 30px;" type="submit" name="back_payment">later</button></form>
-
                         <form style="display: inline;" action="up_payment_back.php" method="POST" name="upload_payment_" onsubmit="return validateForm()"><button class="btn btn-success " style="margin-left: 15px;" type="submit" name="upload_payment">Upload Payment</button></form>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
     </div>
-
 </body>
 <footer class="text-center text-lg-start text-light" style="background-color: #395902;">
     <!-- Grid container -->

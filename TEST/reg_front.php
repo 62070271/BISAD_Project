@@ -47,14 +47,13 @@
             </div>
         </div>
     </nav>
-
     <div class="container">
         <div class="row">
-            <div class="d-flex justify-content-center my-5">
+            <div class="d-flex justify-content-center mb-5">
                 <h1 class="card-title rammeto ptyellow">Sign Up</h1>
             </div>
             <div class="col-sm-12">
-                <div class="card mx-auto mb-3" style="width: 25rem;">
+                <div class="card mx-auto" style="width: 25rem;">
                     <img src="user_images\user_default.png" class="card-img-top w-50 mx-auto pt-5 pb-2">
                     <div class="card-body px-4">
                         <div>
