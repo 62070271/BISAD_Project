@@ -96,10 +96,25 @@ if (isset($_GET['msg'])) {
             align-items: center;
         }
 
-        .row {
+        .navbar {
+            z-index: 10001;
+        }
+
+        .circle_img {
+            /* vertical-align: middle; */
+            object-fit: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* .fl_row {
             --bs-gutter-x: 0rem;
             --bs-gutter-y: 0rem;
-        }
+        } */
     </style>
     <title>Homepage</title>
 </head>
@@ -117,7 +132,7 @@ if (isset($_GET['msg'])) {
             ?>
                 <!-- dropdown -->
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'].' '; ?></a>
+                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?></a>
                     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
                         <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
@@ -209,14 +224,14 @@ if (isset($_GET['msg'])) {
                 }
             }
             if (isset($_GET["status_date"])) {
-                echo '<style>.homepage_name1 {display: none;}</style>';
+                // echo '<style>.homepage_name1 {display: none;}</style>';
                 echo '<style>.homepage_name2 {display: inline;}</style>';
                 echo '<style>.br-display {display: none;}</style>';
                 echo '<style>.show_calendar {display: none;}</style>';
                 echo '<style>.num_book {display: inline;}</style>';
                 echo '<style>.textdate {display: inline;}</style>';
-                echo '<div class="col-5 pl-1 text-warning"><h1>Set : ' . $_SESSION['$date'] . '</h1></div>';
-                echo  '<div class="col-7 pr-5 text-warning"><h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspBooking amount : ' . $_SESSION['number_booking'] . '</h1></div>';
+                echo '<div class="col-5 pl-1 text-warning"><h1>วันที่เลือก : ' . $_SESSION['$date'] . '</h1></div>';
+                echo  '<div class="col-7 pr-5 text-warning"><h1>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspจำนวนบัตรที่ถูกจองไป : ' . $_SESSION['number_booking'] . '</h1></div>';
             } else {
                 echo '<style>.homepage_name1 {display: inline;}</style>';
                 echo '<style>.homepage_name2 {display: none;}</style>';
@@ -232,8 +247,9 @@ if (isset($_GET['msg'])) {
                     <div class='card justify-content-md-end' style="width: 50rem; height: 12rem; margin : auto;">
                         <div class="card-body card-body-date">
                             <h2 style="text-align: center;">เลือกวันที่ต้องการจองบัตร</h2>
-                            <label for="datepicker">Enter Date :</label>
+                            <label for="datepicker">Enter Date : <span class="form-text text-danger">หมายเหตุ การจองบัตรต้องเลือกก่อน&nbsp1&nbspวันก่อนมาเข้าชม.</span></label>
                             <input class="datepicker form-control" name="date" id="date" aria-owns="date_1_root" aria-hidden='false' placeholder="pick date">
+                            <!-- <div class="form-text text-danger">หมายเหตุ การจองบัตรต้องเลือกก่อน&nbsp1&nbspวันก่อนมาเข้าชม.</div> -->
                             <div class="row">
                                 <div class="col-10">
                                 </div>
@@ -250,234 +266,304 @@ if (isset($_GET['msg'])) {
         <div class='br-display'>
             <br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
-        <div>
 
 
 
-            <div class="row ">
-                <div class="col pl-5">
-                    <form action="index_back.php" method="POST" name="book" onsubmit="return validateForm()">
-                        <div class='card ml-5 ' id='num_book' style="width: 50rem; height: 41rem; margin : auto; margin-top:4vw; margin-bottom: 4vw;">
-                            <div class="card-body ">
-                                <h2 style="color:#395902; text-align: center;">Select Ticket</h2>
-                                <?php
-                                include('dbserver.php');
-                                $sql = "SELECT * FROM TICKET WHERE ticket_id = 1";
-                                $result = mysqli_query($db_con, $sql);
-                                $check_row = mysqli_num_rows($result);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    // echo "<script>alert('" . $row['first_name'] . "')</script>";
-                                    $_SESSION['card_detail_1'] = $row['description'];
-                                    $_SESSION['card_price_1'] = $row['price'];
-                                    $_SESSION['ticket_kid_1'] = $row['ticket_id'];
-                                }
-                                $sql = "SELECT * FROM TICKET WHERE ticket_id = 2";
-                                $result = mysqli_query($db_con, $sql);
-                                $check_row = mysqli_num_rows($result);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    // echo "<script>alert('" . $row['first_name'] . "')</script>";
-                                    $_SESSION['card_detail_2'] = $row['description'];
-                                    $_SESSION['card_price_2'] = $row['price'];
-                                    $_SESSION['ticket_adult_1'] = $row['ticket_id'];
-                                }
-                                $sql = "SELECT * FROM TICKET WHERE ticket_id = 5";
-                                $result = mysqli_query($db_con, $sql);
-                                $check_row = mysqli_num_rows($result);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    // echo "<script>alert('" . $row['first_name'] . "')</script>";
-                                    $_SESSION['card_detail_3'] = $row['description'];
-                                    $_SESSION['card_price_3'] = $row['price'];
-                                    $_SESSION['ticket_kid_2'] = $row['ticket_id'];
-                                }
-                                $sql = "SELECT * FROM TICKET WHERE ticket_id = 6";
-                                $result = mysqli_query($db_con, $sql);
-                                $check_row = mysqli_num_rows($result);
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    // echo "<script>alert('" . $row['first_name'] . "')</script>";
-                                    $_SESSION['card_detail_4'] = $row['description'];
-                                    $_SESSION['card_price_4'] = $row['price'];
-                                    $_SESSION['ticket_adult_2'] = $row['ticket_id'];
-                                }
-                                ?>
 
-                                <div class="row bg-light " style="padding-left: 30px;">
-                                    <div class="box-input-type-card" style="height: 120px;">
-                                        <div class="col-detail" style="width: 50%;">
-                                            <h5 style="color:#395902;">บัตรเด็ก</h5>
-                                            <div class='box-detail'>
-                                                <p><?php echo  $_SESSION['card_detail_1'] ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-price" style="width: 20%;">
-                                            <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_1'] ?></h5>
-                                        </div>
-                                        <div class="col-price" style="width: 10%;">
-                                            <!-- <label for="type-card-1">number:</label> -->
-                                            <input class="type-card-1" type="number" step="any" min="0" value="0" max="35" name="type-card-1" id="type-card-1">
+        <div class="row ">
+            <div class="col pl-5">
+                <form action="index_back.php" method="POST" name="book" onsubmit="return validateForm()">
+                    <div class='card ml-5 ' id='num_book' style="width: 50rem; height: 41rem; margin : auto; margin-top:4vw; margin-bottom: 4vw;">
+                        <div class="card-body ">
+                            <h2 style="color:#395902; text-align: center;">Select Ticket</h2>
+                            <?php
+                            include('dbserver.php');
+                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 1";
+                            $result = mysqli_query($db_con, $sql);
+                            $check_row = mysqli_num_rows($result);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                // echo "<script>alert('" . $row['first_name'] . "')</script>";
+                                $_SESSION['card_detail_1'] = $row['description'];
+                                $_SESSION['card_price_1'] = $row['price'];
+                                $_SESSION['ticket_kid_1'] = $row['ticket_id'];
+                            }
+                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 2";
+                            $result = mysqli_query($db_con, $sql);
+                            $check_row = mysqli_num_rows($result);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                // echo "<script>alert('" . $row['first_name'] . "')</script>";
+                                $_SESSION['card_detail_2'] = $row['description'];
+                                $_SESSION['card_price_2'] = $row['price'];
+                                $_SESSION['ticket_adult_1'] = $row['ticket_id'];
+                            }
+                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 5";
+                            $result = mysqli_query($db_con, $sql);
+                            $check_row = mysqli_num_rows($result);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                // echo "<script>alert('" . $row['first_name'] . "')</script>";
+                                $_SESSION['card_detail_3'] = $row['description'];
+                                $_SESSION['card_price_3'] = $row['price'];
+                                $_SESSION['ticket_kid_2'] = $row['ticket_id'];
+                            }
+                            $sql = "SELECT * FROM TICKET WHERE ticket_id = 6";
+                            $result = mysqli_query($db_con, $sql);
+                            $check_row = mysqli_num_rows($result);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                // echo "<script>alert('" . $row['first_name'] . "')</script>";
+                                $_SESSION['card_detail_4'] = $row['description'];
+                                $_SESSION['card_price_4'] = $row['price'];
+                                $_SESSION['ticket_adult_2'] = $row['ticket_id'];
+                            }
+                            ?>
+
+                            <div class="row bg-light " style="padding-left: 30px;">
+                                <div class="box-input-type-card" style="height: 120px;">
+                                    <div class="col-detail" style="width: 50%;">
+                                        <h5 style="color:#395902;">บัตรเด็ก</h5>
+                                        <div class='box-detail'>
+                                            <p><?php echo  $_SESSION['card_detail_1'] ?></p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row" style="padding-left: 30px;">
-                                    <div class="box-input-type-card" style="height: 120px;">
-                                        <div class="col-detail" style="width: 50%;">
-                                            <h5 style="color:#395902;">บัตรผู้ใหญ่</h5>
-                                            <div class='box-detail'>
-                                                <p><?php echo  $_SESSION['card_detail_2'] ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-price" style="width: 20%;">
-                                            <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_2'] ?></h5>
-                                        </div>
-                                        <div class="col-price" style="width: 10%;">
-                                            <!-- <label for="type-card-1">number:</label> -->
-                                            <input class="type-card-2" type="number" step="any" min="0" value="0" max="35" name="type-card-2" id="type-card-2">
-                                        </div>
+                                    <div class="col-price" style="width: 20%;">
+                                        <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_1'] ?></h5>
+                                    </div>
+                                    <div class="col-price" style="width: 10%;">
+                                        <!-- <label for="type-card-1">number:</label> -->
+                                        <input class="type-card-1" type="number" step="any" min="0" value="0" max="35" name="type-card-1" id="type-card-1">
                                     </div>
                                 </div>
-                                <div class="row bg-light" style="padding-left: 30px;">
-                                    <div class="box-input-type-card" style="height: 120px;">
-                                        <div class="col-detail" style="width: 50%;">
-                                            <h5 style="color:#395902;">บัตรเด็กต่างชาติ</h5>
-                                            <div class='box-detail'>
-                                                <p><?php echo  $_SESSION['card_detail_3'] ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-price" style="width: 20%;">
-                                            <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_3'] ?></h5>
-                                        </div>
-                                        <div class="col-price" style="width: 10%;">
-                                            <!-- <label for="type-card-1">number:</label> -->
-                                            <input class="type-card-3" type="number" step="any" min="0" value="0" max="35" name="type-card-3" id="type-card-3">
+                            </div>
+                            <div class="row" style="padding-left: 30px;">
+                                <div class="box-input-type-card" style="height: 120px;">
+                                    <div class="col-detail" style="width: 50%;">
+                                        <h5 style="color:#395902;">บัตรผู้ใหญ่</h5>
+                                        <div class='box-detail'>
+                                            <p><?php echo  $_SESSION['card_detail_2'] ?></p>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row" style="padding-left: 30px;">
-                                    <div class="box-input-type-card" style="height: 120px;">
-                                        <div class="col-detail" style="width: 50%;">
-                                            <h5 style="color:#395902;">บัตรผู้ใหญ่ต่างชาติ</h5>
-                                            <div class='box-detail'>
-                                                <p><?php echo  $_SESSION['card_detail_4'] ?></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-price" style="width: 20%;">
-                                            <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_4'] ?></h5>
-                                        </div>
-                                        <div class="col-price" style="width: 10%;">
-                                            <!-- <label for="type-card-1">number:</label> -->
-                                            <input class="type-card-4" type="number" step="any" min="0" value="0" max="35" name="type-card-4" id="type-card-4">
-                                        </div>
+                                    <div class="col-price" style="width: 20%;">
+                                        <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_2'] ?></h5>
+                                    </div>
+                                    <div class="col-price" style="width: 10%;">
+                                        <!-- <label for="type-card-1">number:</label> -->
+                                        <input class="type-card-2" type="number" step="any" min="0" value="0" max="35" name="type-card-2" id="type-card-2">
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row bg-light" style="padding-left: 30px;">
+                                <div class="box-input-type-card" style="height: 120px;">
+                                    <div class="col-detail" style="width: 50%;">
+                                        <h5 style="color:#395902;">บัตรเด็กต่างชาติ</h5>
+                                        <div class='box-detail'>
+                                            <p><?php echo  $_SESSION['card_detail_3'] ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-price" style="width: 20%;">
+                                        <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_3'] ?></h5>
+                                    </div>
+                                    <div class="col-price" style="width: 10%;">
+                                        <!-- <label for="type-card-1">number:</label> -->
+                                        <input class="type-card-3" type="number" step="any" min="0" value="0" max="35" name="type-card-3" id="type-card-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-left: 30px;">
+                                <div class="box-input-type-card" style="height: 120px;">
+                                    <div class="col-detail" style="width: 50%;">
+                                        <h5 style="color:#395902;">บัตรผู้ใหญ่ต่างชาติ</h5>
+                                        <div class='box-detail'>
+                                            <p><?php echo  $_SESSION['card_detail_4'] ?></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-price" style="width: 20%;">
+                                        <h5>&nbsp&nbspTHB&nbsp<?php echo $_SESSION['card_price_4'] ?></h5>
+                                    </div>
+                                    <div class="col-price" style="width: 10%;">
+                                        <!-- <label for="type-card-1">number:</label> -->
+                                        <input class="type-card-4" type="number" step="any" min="0" value="0" max="35" name="type-card-4" id="type-card-4">
+                                    </div>
+                                </div>
+                            </div>
 
-                                <div class="row" style="padding-left: 35px;">
-                                    <div class="col-8"></div>
-                                    <!-- <div class='col-1 d-grid gap-2 d-md-flex justify-content-md-end'>
+                            <div class="row" style="padding-left: 35px;">
+                                <div class="col-8"></div>
+                                <!-- <div class='col-1 d-grid gap-2 d-md-flex justify-content-md-end'>
                                     </div> -->
-                                    <div class="col-4" style="padding-left: 40px;">
-                                        <form action="index_back.php" method="POST" name="book" onsubmit="return validateForm()"><button class="btn btn-success mr-3 mt-3" type="submit" name="back">back</button></form>
-                                        <button class="btn btn-success  mt-3" type="submit" name="payment" style="margin-left: 15px;">payment</button>
-                                    </div>
+                                <div class="col-4" style="padding-left: 40px;">
+                                    <form action="index_back.php" method="POST" name="book" onsubmit="return validateForm()"><button class="btn btn-success mr-3 mt-3" type="submit" name="back">back</button></form>
+                                    <button class="btn btn-success  mt-3" type="submit" name="payment" style="margin-left: 15px;">payment</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                    <?php
-                    if (isset($_GET["error"])) {
-                        if ($_GET["error"] == 'Please select the number of reservations.') {
-                            echo "<script>alert('Please select the number of reservations.')</script>";
-                        }
+                    </div>
+                </form>
+                <?php
+                if (isset($_GET["error"])) {
+                    if ($_GET["error"] == 'Please select the number of reservations.') {
+                        echo "<script>alert('Please select the number of reservations.')</script>";
                     }
-                    ?>
+                }
+                ?>
 
-                </div>
             </div>
-
-            <!-- Our ZOO -->
-            <div class="container d-flex justify-content-center align-items-center">
-                <div class="row  w-75">
-                    <div class="col-sm-6 ">
-                        <div class="row ">
-                            <div class="col-sm-12 " style="width: 100%; height: 20vh;">
-                                <h3 class="rammeto ptyellow">Our animals</h3>
-                                <p class="text-white">ภาพตัวอย่างของสัตว์แสนน่ารักในสวนสัตว์ของเรา</p>
-                                <button class="btn rammeto border-2 border-warning ptyellow"> See all animales</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <img class="img-fluid" style="width: 100%; height: 60vh;" src="https://images.pexels.com/photos/4577132/pexels-photo-4577132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                            </div>
-                            <div class="col-sm-6 ">
-                                <div class="row ">
-                                    <div class="col-sm-12 ">
-                                        <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/3712289/pexels-photo-3712289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+        </div>
+        <div id='intro' class="row mt-5">
+            <div class="col-8">
+                <h1 class=" m-4 rammeto ptyellow lh-base">Introducing</h1>
+                <p class="fs-5 text-white"> สวนสัตว์คนพันธุ์เสือประเทศไทยที่มีมานานกว่า 60 ปีแล้ว บนเนื้อที่กว่า 5,000 ไร่อันกว้างขวางของจังหวัดชลบุรี นอกจากเหล่าสัตว์น้อยใหญ่นานาพันธุ์กว่า 300 ชนิด กิจกรรมและการแสดงโชว์สัตว์แสนรู้อีกหลายการแสดงในพื้นที่สวนสัตว์เปิดเขาเขียวแห่งนี้
+                    ภายในบริเวณ สวนสัตว์ประกอบไปด้วยส่วนต่างๆ เช่น Orange zone, Blue zone, Green zone
+                </p>
+            </div>
+        </div>
+        <div id='card-zone' class="row">
+            <div class='col'>
+                <div class="card-group m-0 p-0">
+                    <div class="card bg-black" style="height: 40rem; background-color: #000;">
+                        <div class="card-body p-0">
+                            <div class="row">
+                                <div class='col-6 p-0 m-0' style="font-size: 1.25rem">
+                                    <div class="row p-0 m-0" style="height: 50%;">
+                                        <div class='col p-2 m-0'>
+                                            <h3 class=" m-2 rammeto ptyellow lh-base">Orange zone</h1>
+                                                <p class="card-text text-white">โซนนี้ประกอบไปด้วย
+                                                    <br>- สัตว์ป่า เช่น ยีราฟ ม้าลาย นกกระจอกเทศ เสือโคร่ง สิงโต ลิงและค่างชนิดต่างๆ
+                                                    <br>- สัตว์เลื้อยคลาน เช่น เต่า งู กิ้งก่า กบยักษ์แอฟริกัน สีสันแปลกตา
+                                                    <br>- สัตว์ป่าสงวนของไทย เช่น เก้งหม้อเผือก ที่หาดูได้ยาก
+                                                </p>
+                                                <button class=" btn rammeto border-2 border-warning ptyellow" style="margin-top: 20px;"> View details</button>
+                                        </div>
+                                    </div>
+                                    <div class="row p-0 m-0" style="height: 70%;">
+                                        <div class='col p-0 m-0'>
+                                            <img src="https://images.pexels.com/photos/2263936/pexels-photo-2263936.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" style=" object-fit: none; display: inline-block; overflow: hidden; position: relative; width: 100%; height: 20rem;" class="card-img-bottom img-fluid" alt="...">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row ">
-                                    <div class="col-sm-12 ">
-                                        <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/704434/pexels-photo-704434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                                    </div>
+                                <div class='col-6 p-0 m-0'>
+                                    <img src="https://images.pexels.com/photos/922519/pexels-photo-922519.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=350" style=" object-fit: none; display: inline-block; overflow: hidden; position: relative; width: 98.5%; height: 20rem;" class="card-img img-fluid" alt="...">
+                                    <img src="https://static.thainationalparks.com/img/species/2013/11/25/7976/indian-muntjac-w-900.jpg" style=" object-fit: none; display: inline-block; overflow: hidden; position: relative; width: 98.5%; height: 20rem;" class="card-img-right img-fluid" alt="...">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mt-5 mb-5">
+            <h2 class=" mt-5 text-center rammeto ptyellow lh-base">Blue zone</h2>
+            <div class="col-6" style="height: 40rem;">
+                <img class="rounded-circle circle_img" src="https://static.thairath.co.th/media/PZnhTOtr5D3rd9ocK40waJor2MBKJwCcgOtJ6SlFesqczhb.webp" alt="Generic placeholder image" width="350" height="350">
+                <h2 class="mt-4 mb-2 text-white">กายกรรมประเทศเคนยา</h2>
+                <p class="fs-5 text-white">นอกจากเดินชมสัตว์ชนิดต่างๆ ได้อย่างเพลิดเพลินแล้ว ยังมีการแสดงให้ชมด้วย หนึ่งในนั้นคือ การแสดงกายกรรมจากประเทศเคนยา มีทั้งการโชว์เต้นลอดไม่กั้น การกระโดดทะลุห่วง กระโดดเชือก กายกรรมต่อตัว เป็นต้น</p>
+                <button class=" btn rammeto border-2 border-warning ptyellow"> View details</button>
+            </div>
+            <div class="col-6" style="height: 30rem;">
+                <img class="rounded-circle circle_img" src="https://static.thairath.co.th/media/PZnhTOtr5D3rd9ocK40waJor2MBKJwCcgkkZ6op4apFhInW.webp" alt="Generic placeholder image" width="350" height="350">
+                <h2 class="mt-4 mb-2 text-white">การแสดงแมวน้ำ</h2>
+                <p class=" fs-5 text-white">อีกหนึ่งการแสดงที่น่าชมไม่แพ้กัน ก็คือ การแสดงแมวน้ำ จะมีเจ้าหน้าที่ครูฝึกและน้องแมวน้ำสุดน่ารักออกมาแสดงความสามารถให้ชมกันอย่างเพลิดเพลิน</p>
+                <button class=" btn rammeto border-2 border-warning ptyellow" style="margin-top: 30px;"> View details</button>
+            </div>
+        </div>
+        <div class="row " style="margin-bottom: 100px;">
+            <div class='col'>
+                <div class="card bg-dark" style="height: 25rem; ">
+                    <img class="card-img" src="https://images.pexels.com/photos/1436495/pexels-photo-1436495.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=650" style="image-rendering:auto; object-fit: none; display: inline-block; overflow: hidden; position: relative; width: 100%; height: 25rem;" class="card-img img-fluid" alt="Card image">
+                    <div class="card-img-overlay">
+                        <h1 class=" rammeto ">Green zone</h1>
+                        <h5 class=""><b>โซนนี้ประกอบไปด้วย<br>สัตว์ปีก เช่น นกกก(นกกาฮัง, นกกะวะ หรือ นกอีฮาก), <br>นกกระตั้วดำ, นกกระตั้วใหญ่หงอนเหลือนกแก้ว<br></b></h5>
+                        <button class=" btn rammeto border-2 border-dark " style="margin-top: 28px;"> View details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Our ZOO -->
+        <div class="container my-5 d-flex justify-content-center align-items-center">
+            <div class="row" style="--bs-gutter-x: 0rem;">
+                <div class="col-sm-6 ">
+                    <div class="row " style="--bs-gutter-x: 0rem;">
+                        <div class="col-sm-12 " style="width: 100%; height: 30vh;">
+                            <h3 class="rammeto ptyellow">Our animals</h3>
+                            <p class="text-white">ภาพตัวอย่างของสัตว์แสนน่ารักในสวนสัตว์ของเรา</p>
+                            <button class="btn rammeto border-2 border-warning ptyellow"> See all animales</button>
+                        </div>
+                    </div>
+                    <div class="row" style="--bs-gutter-x: 0rem;">
+                        <div class="col-sm-6">
+                            <img class="img-fluid" style="width: 100%; height: 60vh;" src="https://images.pexels.com/photos/4577132/pexels-photo-4577132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                        </div>
+                        <div class="col-sm-6 ">
+                            <div class="row ">
+                                <div class="col-sm-12 ">
+                                    <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/3712289/pexels-photo-3712289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-sm-12 ">
+                                    <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/704434/pexels-photo-704434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 ">
-                        <div class="row ">
-                            <div class="col-sm-12 ">
-                                <img class="img-fluid" style="width: 100%; height: 50vh;" src="https://images.pexels.com/photos/4751260/pexels-photo-4751260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                            </div>
+                </div>
+                <div class="col-sm-6 ">
+                    <div class="row " style="--bs-gutter-x: 0rem;">
+                        <div class="col-sm-12 ">
+                            <img class="img-fluid" style="width: 100%; height: 60vh;" src="https://images.pexels.com/photos/4751260/pexels-photo-4751260.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6 ">
-                                <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/735174/pexels-photo-735174.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                            </div>
-                            <div class="col-sm-6 ">
-                                <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://cdn.pixabay.com/photo/2018/04/08/16/46/caiman-3301709_960_720.jpg">
-                            </div>
+                    </div>
+                    <div class="row" style="--bs-gutter-x: 0rem;">
+                        <div class="col-sm-6 ">
+                            <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://images.pexels.com/photos/735174/pexels-photo-735174.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                        </div>
+                        <div class="col-sm-6 ">
+                            <img class="img-fluid" style="width: 100%; height: 30vh;" src="https://cdn.pixabay.com/photo/2018/04/08/16/46/caiman-3301709_960_720.jpg">
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
-        <script>
-            // PICKADATE FORMATTING
-            var $input = $('.datepicker').pickadate({
-                format: 'yyyy-mm-dd',
-                // An integer (positive/negative) sets it relative to today.
-                min: 1,
-                // `true` sets it to today. `false` removes any limits.
-                // max: 15
-                inline: true,
-                sideBySide: true,
-                closeOnSelect: false,
-                closeOnClear: false,
-                today: ''
-                // close: false
-            });
-            var picker = $input.pickadate('picker');
-            picker.$node.addClass('picker__input--active picker__input--target');
-            picker.$node.attr('aria-expanded', 'true');
-            picker.$root.addClass('picker--focused picker--opened');
-            picker.$root.attr('aria-hidden', 'false');
-        </script>
-        <style>
-            .picker__holder {
-                text-align: center;
-                margin-left: 7.25vw;
-                line-height: 1.5;
-                display: inline-block;
-                vertical-align: middle;
 
-            }
 
-            .card-body-date {
-                font-family: sans-serif;
-            }
-        </style>
+    </div>
+
+    <script>
+        // PICKADATE FORMATTING
+        var $input = $('.datepicker').pickadate({
+            format: 'yyyy-mm-dd',
+            // An integer (positive/negative) sets it relative to today.
+            min: 1,
+            // `true` sets it to today. `false` removes any limits.
+            // max: 15
+            inline: true,
+            sideBySide: true,
+            closeOnSelect: false,
+            closeOnClear: false,
+            today: ''
+            // close: false
+        });
+        var picker = $input.pickadate('picker');
+        picker.$node.addClass('picker__input--active picker__input--target');
+        picker.$node.attr('aria-expanded', 'true');
+        picker.$root.addClass('picker--focused picker--opened');
+        picker.$root.attr('aria-hidden', 'false');
+    </script>
+    <style>
+        .picker__holder {
+            text-align: center;
+            margin-left: 7.25vw;
+            line-height: 1.5;
+            display: inline-block;
+            vertical-align: middle;
+
+        }
+
+        .card-body-date {
+            font-family: sans-serif;
+        }
+    </style>
     </div>
 </body>
 <!-- Footer -->
