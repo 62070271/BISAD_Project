@@ -73,10 +73,10 @@ if ($check_row > 0) {
         }
 
         body {
-            background-image: url(Web_Image/GeorgeWheelhouse_D88_1590-5eb6c27cce9d2__880.jpg);
+            background-image: url(Web_Image/lemor1920x1080.png);
             background-color: black;
             background-repeat: no-repeat;
-            background-position: top 0px right -790px;
+            background-position: top 100px right -240px;
             background-size: cover;
             background-attachment: fixed;
         }

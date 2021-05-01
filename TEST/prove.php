@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
@@ -86,9 +86,10 @@
             height: 700px;
             overflow: auto;
         }
+
         .t_header {
             position: sticky;
-            top:0;
+            top: 0;
         }
     </style>
 </head>
@@ -117,50 +118,30 @@
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
             <div class="container">
                 <a class="navbar-brand" href="index.php?status=loggedIn">
-                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
+                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle">
                     <span class="rammeto">ZOO</span>
                 </a>
-                <?php
-                if (isset($_SESSION['email'])) {
-                ?>
-                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item" class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only"></span></a>
-                            </li>
-                            <li class="nav-item text-white">
-                                <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only"></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- dropdown -->
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
-                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-                        </ul>
-                    </div>
-                <?php
-                } else if (!isset($_SESSION['email'])) {
-                ?>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
-                            </li>
-                        </ul>
-                    </div>
-                <?php
-                    header("Location: login_front.php?pleaseLogin");
-                }
-                ?>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item" class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <a id='nav-link1' class="nav-link shadow-sm text-white" class='shadow-lg  align-text-top' href="prove.php?status=loggedIn"><b>Prove</b><span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item text-white">
+                            <a id='nav-link2' class="nav-link shadow-sm text-white" class='align-text-top' href="summary_front.php?status=loggedIn"><b>Summary</b><span class="sr-only"></span></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- dropdown -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?></a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
@@ -262,28 +243,23 @@
                 $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
 
 
-                if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($db_con)) 
-                {
+                if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($db_con)) {
                     header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
-                } 
-            }
-
-            elseif ($status == 'ConfirmDeny') 
-                {
-                    $slip_id = $_GET['slipID'];
-                    $order_id = $_GET['orderID'];
-
-                    $sql1 = "UPDATE SLIP_OF_PAYMENT SET is_check='1' WHERE slip_id='$slip_id'";
-                    $result = mysqli_query($db_con, $sql1) or die("Error in query: $sql1 " . mysqli_error($db_con));
-
-                    $sql2 = "UPDATE ORDERS SET status='Fail' WHERE order_id='$order_id';";
-                    $result2 = mysqli_query($db_con, $sql2) or die("Error in query: $sql2 " . mysqli_error($db_con));
-
-                    if ($result && $result2) 
-                    {
-                        header("Location: prove.php?DenySuccess.");
-                    }
                 }
+            } elseif ($status == 'ConfirmDeny') {
+                $slip_id = $_GET['slipID'];
+                $order_id = $_GET['orderID'];
+
+                $sql1 = "UPDATE SLIP_OF_PAYMENT SET is_check='1' WHERE slip_id='$slip_id'";
+                $result = mysqli_query($db_con, $sql1) or die("Error in query: $sql1 " . mysqli_error($db_con));
+
+                $sql2 = "UPDATE ORDERS SET status='Fail' WHERE order_id='$order_id';";
+                $result2 = mysqli_query($db_con, $sql2) or die("Error in query: $sql2 " . mysqli_error($db_con));
+
+                if ($result && $result2) {
+                    header("Location: prove.php?DenySuccess.");
+                }
+            }
         }
 
         ?>
@@ -351,8 +327,8 @@
                 <h5 class="text-uppercase">ที่มาของสวนสัตว์</h5>
 
                 <p>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ 
-                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สวนสัตว์คนพันธุ์เสือ ได้นำสวนสัตว์เข้ามาผสมผสานกับความสมบูรณ์ของ
+                    ป่าไม้ภายในพื้นที่โดยใช้การอนุรักษ์และหาประโยชน์จากสภาพผืนป่าแบบระมัดระวังและรอบคอบ
                     ไม่ให้มีการเปลี่ยนแปลงสภาพพื้นที่ของป่า และลดการทำลายสภาพพื้นที่เดิมให้มากที่สุด
                 </p>
             </div>
@@ -417,4 +393,5 @@
     <!-- Copyright -->
 </footer>
 <!-- Footer -->
+
 </html>
