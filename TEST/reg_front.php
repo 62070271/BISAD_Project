@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <!-- icon -->
+    <link rel="shortcut icon" type="image/x-icon" class="rounded-circle" href="Web_Image/Logo_Web.ico" />
+    <title>Sign Up</title>
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <!-- CSS only -->
@@ -21,7 +23,7 @@
             background-image: url(Web_Image/pexels-luis-ruiz-1322842.jpg);
             background-color: black;
             background-repeat: no-repeat;
-            background-position: bottom -90px left -375px;
+            background-position: bottom -90px left -400px;
             background-size: cover;
             background-attachment: fixed;
         }
@@ -33,7 +35,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle ">
+                <img src="Web_Image/Logo300X300v4.png" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle">
                 ZOO
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">

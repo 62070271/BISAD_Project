@@ -60,7 +60,9 @@ if ($check_row > 0) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile&QR_Code</title>
+    <!-- icon -->
+    <link rel="shortcut icon" type="image/x-icon" class="rounded-circle" href="Web_Image/Logo_Web.ico" />
+    <title>Profile & QR_Code</title>
     <!-- Boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <!-- Sperate -->
@@ -99,12 +101,14 @@ if ($check_row > 0) {
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle ">
+                <img src="Web_Image/Logo300X300v4.png" alt="" width=" 32" height="32" class="d-inline-block align-text-top rounded-circle">
                 ZOO
             </a>
             <!-- dropdown -->
             <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?></a>
+                <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;">
+                <img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='25' height='25' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?>
+            </a>
                 <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
                     <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
@@ -214,7 +218,7 @@ if ($check_row > 0) {
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <h4 class="text-center rammeto">Confirm Purchase</h4>
+                                                            <h4 class="text-center rammeto my-3">Confirm Purchase</h4>
                                                             <div class="text-center">
                                                                 <img class=" mb-2" src='qrcodes/MEI_QR.png' width='250px' height='250px' alt=''>
                                                             </div>
@@ -228,7 +232,7 @@ if ($check_row > 0) {
                                                                             <tr>
                                                                                 <th class="w-33 text-center" scope="col">Ticket</th>
                                                                                 <th class="w-33 text-center" scope="col">Quantity</th>
-                                                                                <th class="w-33 text-center" scope="col">Price</th>
+                                                                                <th class="w-33 text-center" scope="col">Price (THB)</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>

@@ -37,7 +37,7 @@ session_start();
     }
     if ($_SESSION['user_type'] == 'Financial') {
       header("Location: prove.php?status=loggedIn.php");
-  }
+    }
     $user_name = $_SESSION['user_name'];
     $user_image = $_SESSION['user_image'];
   }
@@ -46,40 +46,18 @@ session_start();
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
       <div class="container">
         <a class="navbar-brand rammeto" href="index.php?status=loggedIn">
-          <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top border border-white rounded-circle">
+          <img src="Web_Image/Logo300X300v4.png" alt="" width=" 32" height="32" class="d-inline-block align-text-top rounded-circle">
           ZOO
         </a>
-        <?php
-        if (isset($_SESSION['email'])) {
-        ?>
-          <!-- dropdown -->
-          <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><?php echo "<img src='user_images/$user_image' alt='' width='30' height='30' class='d-inline-block align-text-top border border-dark rounded-circle'>"; ?>&nbsp;<?php echo "$user_name"; ?></a>
-            <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
-            </ul>
-          </div>
-        <?php
-        } else if (!isset($_SESSION['email'])) {
-        ?>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link rounded text-dark" href="logIn_front.php" style="background-color: #FBB03B;">Log In</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white" href="reg_front.php">Sign Up</a>
-              </li>
-            </ul>
-          </div>
-        <?php
-          header("Location: login_front.php?pleaseLogin");
-        }
-        ?>
+        <!-- dropdown -->
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;">
+            <img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='25' height='25' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="index.php?logout=1">Log out</a></li>
+          </ul>
+        </div>
       </div>
     </nav>
   </div>
@@ -153,25 +131,17 @@ session_start();
                   echo "<script>";
                   echo "alert('You came before the reserved date!');";
                   echo "</script>";
-                }
-
-                elseif ($fetquestatus['qrcode_status'] == '1') {
+                } elseif ($fetquestatus['qrcode_status'] == '1') {
                   $sql = "UPDATE QR_CODE SET qrcode_status='0' WHERE confirm_id=$accidsql";
                   mysqli_query($db_con, $sql);
                   echo "<script>";
                   echo "alert('Use QR-code success!');";
                   echo "</script>";
-                }
-
-                elseif ($fetquestatus['qrcode_status'] == '2')
-                {
+                } elseif ($fetquestatus['qrcode_status'] == '2') {
                   echo "<script>";
                   echo "alert('This QR-Code is expired!');";
                   echo "</script>";
-                }
-
-                else 
-                {
+                } else {
                   echo "<script>";
                   echo "alert('This QR-Code has been used!');";
                   echo "</script>";

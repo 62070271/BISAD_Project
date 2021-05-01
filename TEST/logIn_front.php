@@ -29,6 +29,8 @@ if (isset($_GET["error"])) {
 
     <!-- main css -->
     <link href="main_css.css" rel="stylesheet">
+    <!-- icon -->
+    <link rel="shortcut icon" type="image/x-icon" class="rounded-circle" href="Web_Image/Logo_Web.ico" />
     <title>Log in</title>
     <style>
         html {
@@ -68,7 +70,7 @@ if (isset($_GET["error"])) {
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle ">
+            <img src="Web_Image/Logo300X300v4.png" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle">
                 ZOO
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -96,11 +98,11 @@ if (isset($_GET["error"])) {
 
                         <div class="card-body">
                             <div class='d-flex justify-content-center my-3'>
-                                <img src="images/20210413885810631.jpg" alt="" width="120" height="120" class="img-thumbnail border rounded-circle ">
+                                <img src="Web_Image/Logo300X300v4.png" alt="" width="150" height="150" class="rounded-circle ">
                             </div>
                             <form action="logIn_back.php" method="POST" onsubmit="" name="logIn">
-                                <div class="d-flex justify-content-start">
-                                    <h2 class='my-2 rammeto'>Log In</h2>
+                                <div class="d-flex justify-content-center">
+                                    <h2 class='my-2 rammeto '>Log In</h2>
                                 </div>
                                 <div class="my-3">
                                     <input type="text" class="form-control" name="email" placeholder="E-mail">

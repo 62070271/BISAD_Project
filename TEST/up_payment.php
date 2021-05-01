@@ -21,6 +21,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
     <!-- CSS Style -->
     <link href="main_css.css" rel="stylesheet">
+    <!-- icon -->
+    <link rel="shortcut icon" type="image/x-icon" class="rounded-circle" href="Web_Image/Logo_Web.ico" />
     <title>Upload Payment</title>
     <style>
         .box-input-type-card {
@@ -96,12 +98,14 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
-                <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle ">
+                <img src="Web_Image/Logo300X300v4.png" alt="" width=" 32" height="32" class="d-inline-block align-text-top rounded-circle">
                 ZOO
             </a>
             <!-- dropdown -->
             <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?></a>
+                <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;">
+                    <img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='25' height='25' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?>
+                </a>
                 <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
                     <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
@@ -124,11 +128,11 @@
                         <img src="Web_Image/9cRHWYxV_400x400.jpg" height="150px" width="150px" alt="">
                     </div>
                     <div class="col-6 d-flex justify-content-center align-items-center">
-                    <div class="align-middle">
-                        <h5><b style="color:#395902;">ธนาคาร:</b>&nbsp;ไทยพาณิชย์</h5>
-                        <h5><b style="color:#395902;">ชื่อบัญชี:</b>&nbsp;สวนสัตว์คนพันธุ์เสือ</h5>
-                        <h5><b style="color:#395902;">เลขที่บัญชี:</b>&nbsp;413-048895-2</h5>
-                    </div>
+                        <div class="align-middle">
+                            <h5><b style="color:#395902;">ธนาคาร:</b>&nbsp;ไทยพาณิชย์</h5>
+                            <h5><b style="color:#395902;">ชื่อบัญชี:</b>&nbsp;สวนสัตว์คนพันธุ์เสือ</h5>
+                            <h5><b style="color:#395902;">เลขที่บัญชี:</b>&nbsp;413-048895-2</h5>
+                        </div>
                     </div>
                     <div class="col-3 d-flex justify-content-center align-items-center">
                         <img src="qrcodes/MEI_QR.png" height="150px" width="150px" alt="">
@@ -146,64 +150,68 @@
                 <!-- height: 32rem; -->
                 <div class="row">
                     <div class="col">
-                        <h3 class="pb-3" style="color:#395902;">Summary price</h3>
+                        <h3 class="pb-3 rammeto" style="color:#395902;">Summary</h3>
                         <table class="table  p-3">
                             <tbody class="pr-4 pl-4">
                                 <?php
                                 if (isset($_SESSION['$num_type_1'])) {
                                     $_SESSION['sum_type_1'] = (int)$_SESSION['card_price_1'] * (int)$_SESSION['$num_type_1'];
-                                    echo '<tr>';
-                                    echo '<th scope="row">';
-                                    echo  '<h4>บัตรเด็ก</h4>';
-                                    echo '</th>';
-                                    echo '<td>' . $_SESSION['card_price_1'] . '</td>';
-                                    echo '<td>x</td>';
-                                    echo '<td>' . $_SESSION['$num_type_1'] . '</td>';
-                                    echo '<td>:&nbsp' . $_SESSION['sum_type_1'] . '</td>';
-                                    echo '</tr>';
-                                    $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_1'];
+                                ?>
+                                    <tr>
+                                        <th scope="row">
+                                            <h5>บัตรเด็ก</h5>
+                                        </th>
+                                        <td><?php echo $_SESSION['card_price_1'] ?></td>
+                                        <td>x</td>
+                                        <td><?php echo $_SESSION['$num_type_1'] ?></td>
+                                        <td>:&nbsp;<?php echo $_SESSION['sum_type_1'] ?></td>
+                                    </tr>
+                                <?php $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_1'];
                                     $_SESSION['total_quantity'] = $_SESSION['total_quantity'] + (int)$_SESSION['$num_type_1'];
                                 }
                                 if (isset($_SESSION['$num_type_2'])) {
                                     $_SESSION['sum_type_2'] = (int)$_SESSION['card_price_2'] * (int)$_SESSION['$num_type_2'];
-                                    echo '<tr>';
-                                    echo '<th scope="row">';
-                                    echo  '<h4>บัตรผู้ใหญ่</h4>';
-                                    echo '</th>';
-                                    echo '<td>' . $_SESSION['card_price_2'] . '</td>';
-                                    echo '<td>x</td>';
-                                    echo '<td>' . $_SESSION['$num_type_2'] . '</td>';
-                                    echo '<td> :&nbsp' . $_SESSION['sum_type_2'] . '</td>';
-                                    echo '</tr>';
-                                    $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_2'];
+                                ?>
+                                    <tr>
+                                        <th scope="row">
+                                            <h5>บัตรผู้ใหญ่</h5>
+                                        </th>
+                                        <td><?php echo $_SESSION['card_price_2'] ?></td>
+                                        <td>x</td>
+                                        <td><?php echo $_SESSION['$num_type_2'] ?></td>
+                                        <td>:&nbsp;<?php echo $_SESSION['sum_type_2'] ?></td>
+                                    </tr>
+                                <?php $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_2'];
                                     $_SESSION['total_quantity'] = $_SESSION['total_quantity'] + (int)$_SESSION['$num_type_2'];
                                 }
                                 if (isset($_SESSION['$num_type_3'])) {
                                     $_SESSION['sum_type_3'] = (int)$_SESSION['card_price_3'] * (int)$_SESSION['$num_type_3'];
-                                    echo '<tr>';
-                                    echo '<th scope="row">';
-                                    echo  '<h4>บัตรเด็กต่างชาติ</h4>';
-                                    echo '</th>';
-                                    echo '<td>' . $_SESSION['card_price_3'] . '</td>';
-                                    echo '<td>x</td>';
-                                    echo '<td>' . $_SESSION['$num_type_3'] . '</td>';
-                                    echo '<td> :&nbsp' . $_SESSION['sum_type_3'] . '</td>';
-                                    echo '</tr>';
-                                    $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_3'];
+                                ?>
+                                    <tr>
+                                        <th scope="row">
+                                            <h5>Foreigner: Kid (บัตรเด็ก: ชาวต่างชาติ)</h5>
+                                        </th>
+                                        <td class="w-10"> <?php echo $_SESSION['card_price_3'] ?> </td>
+                                        <td>x</td>
+                                        <td><?php echo $_SESSION['$num_type_3'] ?> </td>
+                                        <td>:&nbsp;<?php echo $_SESSION['sum_type_3'] ?> </td>
+                                    </tr>
+                                <?php $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_3'];
                                     $_SESSION['total_quantity'] = $_SESSION['total_quantity'] + (int)$_SESSION['$num_type_3'];
                                 }
                                 if (isset($_SESSION['$num_type_4'])) {
                                     $_SESSION['sum_type_4'] = (int)$_SESSION['card_price_4'] * (int)$_SESSION['$num_type_4'];
-                                    echo '<tr>';
-                                    echo '<th scope="row">';
-                                    echo  '<h4>บัตรผู้ใหญ่ต่างชาติ</h4>';
-                                    echo '</th>';
-                                    echo '<td>' . $_SESSION['card_price_4'] . '</td>';
-                                    echo '<td>x</td>';
-                                    echo '<td>' . $_SESSION['$num_type_4'] . '</td>';
-                                    echo '<td> :&nbsp' . $_SESSION['sum_type_4'] . '</td>';
-                                    echo '</tr>';
-                                    $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_4'];
+                                ?>
+                                    <tr>
+                                        <th scope="row">
+                                            <h5>Foreigner: Adult (บัตรผูัใหญ่: ชาวต่างชาติ)</h5>
+                                        </th>
+                                        <td><?php echo $_SESSION['card_price_4'] ?></td>
+                                        <td>x</td>
+                                        <td><?php echo $_SESSION['$num_type_4'] ?></td>
+                                        <td>:&nbsp;<?php echo $_SESSION['sum_type_4'] ?></td>
+                                    </tr>
+                                <?php $_SESSION['sum_price'] = $_SESSION['sum_price'] + (int)$_SESSION['sum_type_4'];
                                     $_SESSION['total_quantity'] = $_SESSION['total_quantity'] + (int)$_SESSION['$num_type_4'];
                                 }
                                 $_SESSION['sum_price_vat'] = (float)($_SESSION['sum_price'] * 1.07);
@@ -212,16 +220,21 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <h3 style="color:#395902;" class='pr-3 mr-5'>Total price and vat 7% :&nbsp&nbsp<?php echo (float)$_SESSION['sum_price_vat']; ?></h3>
+                    <div class="col-9">
+                        <h4 style="color:#395902;" class='pr-3 mr-5 rammeto'>Total price and vat 7%</h4>
+                    </div>
+                    <div class="col-3 text-center mb-3">
+                        <h4><?php echo (float)$_SESSION['sum_price_vat'] . " THB"; ?></h4>
                     </div>
                 </div>
                 <div class='row'>
-                    <div class='col-7'>
-                    </div>
-                    <div class='col-5'>
-                        <form style="display: inline;" action="up_payment_back.php" method="POST" name="back_payment_" onsubmit="return validateForm()"><button class="btn btn-success mr-5" style="margin-left: 25px; margin-right: 30px;" type="submit" name="back_payment">later</button></form>
-                        <form style="display: inline;" action="up_payment_back.php" method="POST" name="upload_payment_" onsubmit="return validateForm()"><button class="btn btn-success " style="margin-left: 15px;" type="submit" name="upload_payment">Upload Payment</button></form>
+                    <div class='col d-flex justify-content-end'>
+                        <form action="up_payment_back.php" method="POST" name="back_payment_" onsubmit="return validateForm()">
+                            <button style="margin-right: 8px" class="btn btn-secondary rammeto" type="submit" name="back_payment">Later</button>
+                        </form>
+                        <form action="up_payment_back.php" method="POST" name="upload_payment_" onsubmit="return validateForm()">
+                            <button class="btn btn-primary rammeto" type="submit" name="upload_payment">Confirm Purchase</button>
+                        </form>
                     </div>
                 </div>
             </div>

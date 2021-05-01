@@ -123,12 +123,6 @@ if (isset($_GET['msg'])) {
         a:link {
             text-decoration: none;
         }
-
-        a:visited {
-            text-decoration: none;
-            color: #fbb03b;
-        }
-
         /* .fl_row {
             --bs-gutter-x: 0rem;
             --bs-gutter-y: 0rem;
@@ -142,21 +136,17 @@ if (isset($_GET['msg'])) {
         <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #395902;">
             <div class="container">
                 <a class="navbar-brand rammeto" href="index.php">
-                    <img src="images/20210413885810631.jpg" alt="" width=" 30" height="30"
-                        class="d-inline-block align-text-top rounded-circle ">
-                    ZOO
-                </a>
+                <img src="Web_Image/Logo300X300v4.png" alt="" width=" 32" height="32" class="d-inline-block align-text-top rounded-circle">
+                ZOO
+            </a>
                 <?php
                 if (isset($_SESSION['email'])) {
                 ?>
                 <!-- dropdown -->
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                        style="background-color: #FBB03B;"><img src='user_images/<?php echo $_SESSION["user_image"] ?>'
-                            alt='' width='30' height='30' class='d-inline-block align-text-top rounded-circle'>&nbsp
-                        <?php echo $_SESSION['user_name'] . ' '; ?>
-                    </a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;">
+                <img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='25' height='25' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?>
+            </a>
                     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
                         <li><a class="dropdown-item" href="Editprofile.php">Edit profile</a></li>
@@ -451,12 +441,11 @@ if (isset($_GET['msg'])) {
                                 <div class="col-8"></div>
                                 <!-- <div class='col-1 d-grid gap-2 d-md-flex justify-content-md-end'>
                                     </div> -->
-                                <div class="col-4" style="padding-left: 40px;">
-                                    <form action="index_back.php" method="POST" name="book"
-                                        onsubmit="return validateForm()"><button class="btn btn-success mr-3 mt-3"
-                                            type="submit" name="back">back</button></form>
-                                    <button class="btn btn-success  mt-3" type="submit" name="payment"
-                                        style="margin-left: 15px;">payment</button>
+                                <div class="col-4 d-flex justify-content-end">
+                                    <form action="index_back.php" method="POST" name="book"onsubmit="return validateForm()">
+                                        <button class="btn btn-secondary mt-3 rammeto" type="submit" name="back" style="margin-right: 8px;">Back</button>
+                                    </form>
+                                    <button class="btn btn-primary mt-3 rammeto" type="submit" name="payment">Purchase</button>
                                 </div>
                             </div>
                         </div>
