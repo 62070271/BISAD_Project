@@ -246,4 +246,27 @@
               ";
       mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     }
+
+
+
+    // AUTO UPDATE QR CODE STATUS ---> Profile and QR Code
+    function auto_update_qr_status($db_con)
+    {
+      // FIND CURRENT DATE
+      date_default_timezone_set('Asia/Bangkok');
+      $current_date = date("Y-m-d");
+
+      $sql = "UPDATE  QR_CODE AS Q
+              INNER JOIN CONFIRM_SLIP AS CS
+              USING (confirm_id)
+              INNER JOIN SLIP_OF_PAYMENT AS SP
+              USING (slip_id)
+              INNER JOIN ORDERS AS O
+              USING (order_id)
+              SET Q.qrcode_status = '2'
+              WHERE O.booking_date < '$current_date'
+              AND Q.qrcode_status = '1'  
+      ;";
+      mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
+    }
 ?>

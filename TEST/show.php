@@ -20,6 +20,17 @@
     require_once('function.php');
     
     ob_start();
+
+
+    date_default_timezone_set('Asia/Bangkok');
+      $current_date = date("Y-m-d");
+      echo $current_date;
+    // date_default_timezone_set('Asia/Bangkok');
+    // $current_date = date("Y-m-d");
+
+    // $date = strtotime("+1 day");
+    // echo date('Y-m-d',$date);
+
     // session_start();
 
     // UPDATE ORDER STATUS BY DATE

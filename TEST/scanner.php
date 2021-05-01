@@ -149,7 +149,14 @@ session_start();
                   echo "<script>";
                   echo "alert('Use QR-code success!');";
                   echo "</script>";
-                } else {
+                }
+                elseif ($fetquestatus['qrcode_status'] == '2')
+                {
+                  echo "<script>";
+                  echo "alert('This QR-Code is expired!');";
+                  echo "</script>";
+                }
+                 else {
                   echo "<script>";
                   echo "alert('This QR-Code has been used!');";
                   echo "</script>";
