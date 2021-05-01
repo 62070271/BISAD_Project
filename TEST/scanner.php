@@ -119,7 +119,7 @@ session_start();
                     <h5>Confirm ID : <input type="text" id="saccount" name="saccount" style="border:none;"></h5>
                     <h5>Firstname : <span id="sfirstname"></span></h5>
                     <h5>Lastname : <span id="slastname"></span></h5>
-                    <h5>Booking Date : <input id="sbook" name="booking_date"></input></h5>
+                    <h5>Booking Date : <input id="sbook" name="booking_date" style="border:none;"></input></h5>
                     <h5>Quantity Order : <span id="squan"></span></h5>
                   </div>
                   <div class="modal-footer">
@@ -215,7 +215,7 @@ session_start();
       document.getElementById("saccount").value = spldata[0];
       document.getElementById("sfirstname").innerHTML = spldata[1];
       document.getElementById("slastname").innerHTML = spldata[2];
-      document.getElementById("sbook").innerHTML = spldata[3];
+      document.getElementById("sbook").value = spldata[3];
       document.getElementById("squan").innerHTML = spldata[4];
 
       document.getElementById("pscan").innerHTML = '<p class="text-primary">Scan Success!</p>';
