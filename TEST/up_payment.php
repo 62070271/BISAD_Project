@@ -118,21 +118,20 @@
             <h1 class='text-center rammeto' style="color: #FBB03B;">Confirm Purchase</h1>
         </div>
         <div class="d-flex justify-content-center">
-            <div class='card' style="width: 70%">
+            <div class='card' style="width: 61%">
                 <div class="row" width="100px">
-                    <div class="col-4 d-flex justify-content-center">
-                        <img src="http://pngimg.com/uploads/bank/bank_PNG3.png" height="200px" width="200px" class="img-fluid" alt="">
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                        <img src="Web_Image/9cRHWYxV_400x400.jpg" height="150px" width="150px" alt="">
                     </div>
-                    <div class="col-4">
-                        <b style="color:#395902;">ธนาคาร:</b>
-                        <h3>ไทยพาณิชย์</h3>
-                        <b style="color:#395902;">ชื่อบัญชี:</b>
-                        <h3>สวนสัตว์คนพันธุ์เสือ</h3>
-                        <b style="color:#395902;">เลขที่บัญชี:</b>
-                        <h3>413-048895-2</h3>
+                    <div class="col-6 d-flex justify-content-center align-items-center">
+                    <div class="align-middle">
+                        <h5><b style="color:#395902;">ธนาคาร:</b>&nbsp;ไทยพาณิชย์</h5>
+                        <h5><b style="color:#395902;">ชื่อบัญชี:</b>&nbsp;สวนสัตว์คนพันธุ์เสือ</h5>
+                        <h5><b style="color:#395902;">เลขที่บัญชี:</b>&nbsp;413-048895-2</h5>
                     </div>
-                    <div class="col-4 d-flex justify-content-center">
-                        <img src="qrcodes/MEI_QR.png" height="200px" width="200px" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-3 d-flex justify-content-center align-items-center">
+                        <img src="qrcodes/MEI_QR.png" height="150px" width="150px" alt="">
                     </div>
                 </div>
             </div>
