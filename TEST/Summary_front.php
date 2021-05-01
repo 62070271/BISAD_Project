@@ -44,14 +44,12 @@
         header("Location: logIn_front.php");
     }
     if (isset($_SESSION['email'])) {
-        // if ($_SESSION['user_type'] == 'Financial') {
-        //     echo '<script>alert("yess")</script>';
-        //     header("Location: prove.php?status=loggedIn.php");
-        // }
-        // if ($_SESSION['user_type'] == 'Reception') {
-        //     echo '<script>alert("yess")</script>';
-        //     header("Location: scanner.php?status=loggedIn.php");
-        // }
+        if ($_SESSION['user_type'] == 'Customer') {
+            header("Location: index.php?status=loggedIn.php");
+        }
+        if ($_SESSION['user_type'] == 'Reception') {
+            header("Location: scanner.php?status=loggedIn.php");
+        }
         $user_name = $_SESSION['user_name'];
         $user_image = $_SESSION['user_image'];
     }
