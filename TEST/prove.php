@@ -29,15 +29,15 @@
     auto_update_order_stutus($db_con);
 
     $sql = "SELECT *
-                FROM CONFIRM_SLIP AS CS
-                RIGHT OUTER JOIN SLIP_OF_PAYMENT AS SP
-                ON CS.slip_id = SP.slip_id
-                INNER JOIN ORDERS AS O
-                ON O.order_id = SP.order_id
-                WHERE CS.slip_id IS NULL
-                AND SP.is_check <> '1'
-                AND O.status <> 'Fail';
-                ";
+            FROM CONFIRM_SLIP AS CS
+            RIGHT OUTER JOIN SLIP_OF_PAYMENT AS SP
+            ON CS.slip_id = SP.slip_id
+            INNER JOIN ORDERS AS O
+            ON O.order_id = SP.order_id
+            WHERE CS.slip_id IS NULL
+            AND SP.is_check <> '1'
+            AND O.status <> 'Fail';
+            ";
 
     $result = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
     $check_row = mysqli_num_rows($result);
@@ -262,9 +262,14 @@
                 $res = mysqli_query($db_con, $sql) or die("Error in query: $sql " . mysqli_error($db_con));
 
 
-                if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($db_con)) {
+                if ($res && createQRcode($slip_id, $order_id, $user_id) && updateOrderStatus($order_id) && addToSummary($db_con)) 
+                {
                     header("Location: prove.php?InsertQRCODEToDBandUpdateOrderStatusSuccess.");
-                } elseif ($status == 'ConfirmDeny') {
+                } 
+            }
+
+            elseif ($status == 'ConfirmDeny') 
+                {
                     $slip_id = $_GET['slipID'];
                     $order_id = $_GET['orderID'];
 
@@ -274,11 +279,11 @@
                     $sql2 = "UPDATE ORDERS SET status='Fail' WHERE order_id='$order_id';";
                     $result2 = mysqli_query($db_con, $sql2) or die("Error in query: $sql2 " . mysqli_error($db_con));
 
-                    if ($result && $result2) {
+                    if ($result && $result2) 
+                    {
                         header("Location: prove.php?DenySuccess.");
                     }
                 }
-            }
         }
 
         ?>

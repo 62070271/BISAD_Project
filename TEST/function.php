@@ -99,13 +99,14 @@
         $sql = "SELECT *
                 FROM USER AS U
                 INNER JOIN ORDERS AS O
-                ON U.user_id = O.user_id
+                USING (user_id)
                 INNER JOIN SLIP_OF_PAYMENT AS S
-                ON O.order_id = S.order_id
+                USING (order_id)
                 INNER JOIN CONFIRM_SLIP AS C
-                ON S.slip_id = C.slip_id
+                USING (slip_id)
                 WHERE S.slip_id = '$slip_id'
-                AND O.order_id = '$order_id';";
+                AND O.order_id = '$order_id';
+                ";
 
         $result = mysqli_query($db_con, $sql) or die ("Error in query: $sql " . mysqli_error($db_con));
         $check_row = mysqli_num_rows($result);
@@ -114,17 +115,18 @@
         {
             while($row = mysqli_fetch_assoc($result))
             {
+                $confirm_id_use = $row['confirm_id'];
                 $confirm_id = $row['confirm_id'] . ',';
                 $order_id = $row['order_id'] . ',';
                 $user_fname = $row['first_name'] . ',';
                 $user_lname = $row['last_name'] . ',';
                 $booking =  $row['booking_date'] . ',';
-                $quntity = $row['total_quantity'] . ',';
+                $quntity = $row['total_quantity'];
             }
         }
         else
         {
-            echo 'Not found!';
+            // echo 'Not found!';
             return false;
         }
 
@@ -136,9 +138,9 @@
         $txt = $confirm_id . $user_fname . $user_lname . $booking . $quntity;
         QRcode::png($txt, $file);
 
-        $sql2 = "INSERT INTO QR_CODE (confirm_id, qrcode_status, qr_code, user_id) VALUES ('$confirm_id', '1', '$file_name', '$user_id');";
+        $sql2 = "INSERT INTO QR_CODE (confirm_id, qrcode_status, qr_code, user_id) VALUES ('$confirm_id_use', '1', '$file_name', '$user_id');";
 
-        $result2 = mysqli_query($db_con, $sql2) or die ("Error in query: $sql " . mysqli_error($db_con));
+        $result2 = mysqli_query($db_con, $sql2) or die ("Error in query: $sql2" . mysqli_error($db_con));
 
         if($result2){return true;}
         
