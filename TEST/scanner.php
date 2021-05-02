@@ -201,7 +201,7 @@ session_start();
 
         // 0 open the front camera
         // 1 open the back camera
-        scanner.start(cameras[0]);
+        scanner.start(cameras[1]);
       } else {
         console.error('No cameras found.');
       }
