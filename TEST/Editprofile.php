@@ -26,7 +26,7 @@ if (!isset($_SESSION['email'])) {
     <!-- Font Rammetto -->
     <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap" rel="stylesheet">
 
-    <title>Edit Your Profile</title>
+    <title>Edit Profile</title>
     <style>
         body {
             background-image: url('https://ae01.alicdn.com/kf/HTB1ttqNbv5TBuNjSspmq6yDRVXa0/Home-decoration-deer-antler-white-wild-life-animal-black-background-Silk-Fabric-Poster-Print-DW335.jpg');
@@ -107,7 +107,7 @@ if (!isset($_SESSION['email'])) {
     </nav>
     <div class="container mb-5">
         <div class="my-5">
-            <h1 class="card-title text-center rammeto ptyellow">Edit Your Profile</h1>
+            <h1 class="card-title text-center rammeto ptyellow">Edit Profile</h1>
         </div>
         <div class='row'>
             <div class="col-3"></div>

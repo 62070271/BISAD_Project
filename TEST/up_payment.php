@@ -23,7 +23,7 @@
     <link href="main_css.css" rel="stylesheet">
     <!-- icon -->
     <link rel="shortcut icon" type="image/x-icon" class="rounded-circle" href="Web_Image/Logo_Web.ico" />
-    <title>Upload Payment</title>
+    <title>Purchase</title>
     <style>
         .box-input-type-card {
             display: flex;
