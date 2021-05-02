@@ -144,7 +144,7 @@ if (isset($_GET['msg'])) {
                 <!-- dropdown -->
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark rounded-pill" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #FBB03B;">
-                        <img src="Web_Image/Logo300X300v4.png" alt="" width="32" height="32" class="d-inline-block align-text-top rounded-circle">
+                    <img src='user_images/<?php echo $_SESSION["user_image"] ?>' alt='' width='25' height='25' class='d-inline-block align-text-top rounded-circle'>&nbsp<?php echo $_SESSION['user_name'] . ' '; ?>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="Profile&QR_Code.php">Profile & QR Code</a></li>
