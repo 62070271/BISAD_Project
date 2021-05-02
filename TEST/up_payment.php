@@ -119,7 +119,7 @@
     </nav>
     <div class="container">
         <div class='row my-5'>
-            <h1 class='text-center rammeto' style="color: #FBB03B;">Confirm Purchase</h1>
+            <h1 class='text-center rammeto' style="color: #FBB03B;">Purchase</h1>
         </div>
         <div class="d-flex justify-content-center">
             <div class='card' style="width: 61%">
