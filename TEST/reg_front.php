@@ -35,7 +35,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-5" style="background-color: #395902;">
         <div class="container">
             <a class="navbar-brand rammeto" href="index.php">
-                <img src="Web_Image/Logo300X300v4.png" alt="" width=" 30" height="30" class="d-inline-block align-text-top rounded-circle">
+                <img src="Web_Image/Logo300X300v4.png" alt="" width=" 32" height="32" class="d-inline-block align-text-top rounded-circle">
                 ZOO
             </a>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
