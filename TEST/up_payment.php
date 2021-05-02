@@ -119,10 +119,10 @@
     </nav>
     <div class="container">
         <div class='row my-5'>
-            <h1 class='text-center rammeto' style="color: #FBB03B;">Purchase</h1>
+            <h1 class='text-center rammeto ptyellow'>Purchase</h1>
         </div>
         <div class="d-flex justify-content-center">
-            <div class='card' style="width: 61%">
+            <div class='card' style="width: 680px">
                 <div class="row" width="100px">
                     <div class="col-3 d-flex justify-content-center align-items-center">
                         <img src="Web_Image/9cRHWYxV_400x400.jpg" height="150px" width="150px" alt="">
