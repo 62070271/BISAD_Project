@@ -222,9 +222,9 @@ if ($check_row > 0) {
                                                             <div class="text-center">
                                                                 <img class=" mb-2" src='qrcodes/MEI_QR.png' width='250px' height='250px' alt=''>
                                                             </div>
-                                                            <h6 class="text-center"><b>ธนาคาร:</b> xxxxxxxx</h6>
+                                                            <h6 class="text-center"><b>ธนาคาร:</b> ไทยพาณิชย์</h6>
                                                             <h6 class="text-center"><b>ชื่อบัญชี:</b> สวนสัตว์คนพันธุ์เสือ</h6>
-                                                            <h6 class="text-center"><b>เลขที่บัญชี:</b> xxx-xxxxxx-x</h6>
+                                                            <h6 class="text-center"><b>เลขที่บัญชี:</b> 413-048895-2</h6>
                                                             <div class='modal-body'>
                                                                 <div class="table-responsive">
                                                                     <table class="table">
