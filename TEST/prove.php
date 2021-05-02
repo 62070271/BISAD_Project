@@ -25,9 +25,6 @@
     ob_start();
     session_start();
 
-    // UPDATE ORDER STATUS BY DATE (IN FUNCTION FILE).
-    auto_update_order_stutus($db_con);
-
     $sql = "SELECT *
             FROM CONFIRM_SLIP AS CS
             RIGHT OUTER JOIN SLIP_OF_PAYMENT AS SP
